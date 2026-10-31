@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.4 语义基础设施：解析、推理、校验、存储 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.4 语义基础设施：解析、推理、校验、存储&lt;/h1&gt;&lt;p class="chapter-sub"&gt;十四块地基，十年没怎么变过&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.4 语义基础设施：解析、推理、校验、存储 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.4 语义基础设施：解析、推理、校验、存储&lt;/h1&gt;&lt;p class="chapter-sub"&gt;十四块地基，十年没怎么变过&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-infra">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html" class="is-active">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.4 语义基础设施：解析、推理、校验、存储</h1><p class="chapter-sub">十四块地基，十年没怎么变过</p>
+      <p class="lede">这一格是「沉默的大多数」：rdflib 建于 2012 年、Jena 2013 年、Protégé 相关的 OWLAPI 也是 2013 年。它们不增长，但整个生态建在它们上面。两次分裂值得注意：<strong>推理机在萎缩</strong>（Pellet 2017 年停更、Openllet 2025 年停更），<strong>校验在增长</strong>（SHACL 相关全部活跃）。</p>
+<div class="note"><strong>判据</strong>：需要「缺了什么」用 SHACL，需要「能推出什么」用推理机。业务系统问的永远是前者。</div>
+<div class="cards"><article class="card" id="p-rdflib-rdflib">
+  <div class="card-head">
+    <h3 class="card-title">RDFLib</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/RDFLib/rdflib">RDFLib/rdflib</a></div>
+  <div class="card-meta"><span class="stars">★ 2,542</span><span>2012-02-03</span><span>Python</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">Python 的 RDF 图操作库：解析、序列化、命名空间、SPARQL 1.1。几乎所有 Python 本体工具都建在它上面。但它是内存图加朴素查询引擎，没有优化器，不是数据库。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要写一次性脚本做本体体检、格式转换或小规模查询时。</div>
+</article><article class="card" id="p-apache-jena">
+  <div class="card-head">
+    <h3 class="card-title">Apache Jena</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/apache/jena">apache/jena</a></div>
+  <div class="card-meta"><span class="stars">★ 1,490</span><span>2013-01-04</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">Java 的 RDF / SPARQL 全栈：ARQ 查询引擎、TDB2 原生存储、Fuseki HTTP 端点，外加 RDFS 与规则推理。注意它不自带完整 OWL DL 推理机。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要在 JVM 上起一个 SPARQL 服务、且需要事务与持久化时。</div>
+</article><article class="card" id="p-owlcs-owlapi">
+  <div class="card-head">
+    <h3 class="card-title">OWL API</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/owlcs/owlapi">owlcs/owlapi</a></div>
+  <div class="card-meta"><span class="stars">★ 944</span><span>2013-02-17</span><span>Java</span><span>—</span></div>
+  <div class="card-body">OWL2 的 Java 对象模型与推理机接口。它的真正价值是标准化了「换推理机不改代码」这件事：HermiT、ELK、Openllet、Konclude 都实现同一套接口。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要在 Java 里操作 OWL 结构、或对比多个推理机时。</div>
+</article><article class="card" id="p-neo4j-labs-neosemantics">
+  <div class="card-head">
+    <h3 class="card-title">Neosemantics</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/neo4j-labs/neosemantics">neo4j-labs/neosemantics</a></div>
+  <div class="card-meta"><span class="stars">★ 971</span><span>2016-03-21</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">Neo4j 与 RDF / SHACL 之间的桥：把 RDF 导入属性图、在库里跑 SHACL 校验、维护本体作为「schema 子图」。它证明了属性图与 RDF 不是二选一。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>已有属性图、需要接一层本体约束时。</div>
+</article><article class="card" id="p-eclipse-rdf4j-rdf4j">
+  <div class="card-head">
+    <h3 class="card-title">Eclipse RDF4J</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/eclipse-rdf4j/rdf4j">eclipse-rdf4j/rdf4j</a></div>
+  <div class="card-meta"><span class="stars">★ 422</span><span>2016-01-14</span><span>Java</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">Eclipse 的 Java RDF 框架，以 Repository 为中心抽象存储，GraphDB 的底座。比 Jena 多一个能力：SHACL Sail 把校验放进写入路径。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要「坏数据根本进不来」而不是「事后报表」时。</div>
+</article><article class="card" id="p-rdflib-pyshacl">
+  <div class="card-head">
+    <h3 class="card-title">pySHACL</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/RDFLib/pySHACL">RDFLib/pySHACL</a></div>
+  <div class="card-meta"><span class="stars">★ 364</span><span>2018-09-05</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">Python 的 SHACL 校验器，覆盖 Core、SPARQL、Advanced Features 与 JS 扩展，可先推理再校验。退出码非零，可以直接当 CI 闸门，不需要解析输出。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要一份能执行的 schema 文档、并且真的会拒绝坏数据时。</div>
+</article><article class="card" id="p-topquadrant-shacl">
+  <div class="card-head">
+    <h3 class="card-title">TopBraid SHACL</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/TopQuadrant/shacl">TopQuadrant/shacl</a></div>
+  <div class="card-meta"><span class="stars">★ 246</span><span>2015-05-24</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">基于 Jena 的 SHACL 实现，覆盖 Core + SPARQL + Advanced Features，也是规范参考实现之一。维护者联系信息已转到外部团队，后续活跃度需观察。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>JVM 技术栈、需要完整 SHACL-AF 规则时。</div>
+</article><article class="card" id="p-rdflib-owl-rl">
+  <div class="card-head">
+    <h3 class="card-title">OWL-RL</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/RDFLib/OWL-RL">RDFLib/OWL-RL</a></div>
+  <div class="card-meta"><span class="stars">★ 181</span><span>2012-04-25</span><span>Python</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">OWL2 RL 的前向链规则闭包，跑在 RDFLib 之上，同时支持基础 RDFS 推理。它是「不装推理机也能推一点」的折中：能推规则，但不会告诉你缺了什么。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>只需要子类继承、传递闭包这类规则推导时。</div>
+</article><article class="card" id="p-gtfierro-reasonable">
+  <div class="card-head">
+    <h3 class="card-title">Reasonable</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/gtfierro/reasonable">gtfierro/reasonable</a></div>
+  <div class="card-meta"><span class="stars">★ 137</span><span>2019-10-31</span><span>Rust</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">Rust 写的 OWL2 RL 推理机，基于 DataFrog 的差分数据流，提供 CLI 与 Python 绑定，README 直接给了与 OWL-RL、Allegro 的性能对比。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>Python 侧闭包太慢、又不想起 JVM 时。</div>
+</article><article class="card" id="p-galigator-openllet">
+  <div class="card-head">
+    <h3 class="card-title">Openllet</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/Galigator/openllet">Galigator/openllet</a></div>
+  <div class="card-meta"><span class="stars">★ 136</span><span>2016-01-21</span><span>Java</span><span>NOASSERTION</span></div>
+  <div class="card-body">Pellet 的活跃维护分支，OWL2 DL 推理，实现 OWLAPI 接口，保留了解释（explanation）能力。2025 年 8 月后无提交。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要 Pellet 行为兼容、且能接受 AGPL 时。</div>
+</article><article class="card" id="p-liveontologies-elk-reasoner">
+  <div class="card-head">
+    <h3 class="card-title">ELK Reasoner</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/liveontologies/elk-reasoner">liveontologies/elk-reasoner</a></div>
+  <div class="card-meta"><span class="stars">★ 129</span><span>2015-10-16</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">OWL2 EL 推理机，consequence-based 算法，多项式时间，为 SNOMED 级（数十万类）规模设计，支持增量分类。它的价值不是「推理」而是「大规模分类的可维护性」。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>词表分类树大到人工维护必错时。</div>
+</article><article class="card" id="p-konclude-konclude">
+  <div class="card-head">
+    <h3 class="card-title">Konclude</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/konclude/Konclude">konclude/Konclude</a></div>
+  <div class="card-meta"><span class="stars">★ 54</span><span>2019-07-02</span><span>C++</span><span>—</span></div>
+  <div class="card-body">C++ 的 SROIQV(D) 推理机，tableau + 并行，性能取向，可当 HTTP 服务用。作者自己在 README 里写「当前版本可能含有 bug」。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要 DL 推理的吞吐上限、或做推理机性能基线时。</div>
+</article><article class="card" id="p-ibm-expressive-reasoning-graph-store">
+  <div class="card-head">
+    <h3 class="card-title">ERGS</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/IBM/expressive-reasoning-graph-store">IBM/expressive-reasoning-graph-store</a></div>
+  <div class="card-meta"><span class="stars">★ 32</span><span>2020-08-20</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">在属性图上做 RDF 与推理：RDF→属性图编码、SPARQL→Gremlin 转换、RDFS 加少量 OWL。名字里的 Expressive 是目标而非现状。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>阅读「RDF 如何编码进属性图」的具体方案时。</div>
+</article><article class="card" id="p-stardog-union-pellet">
+  <div class="card-head">
+    <h3 class="card-title">Pellet</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/stardog-union/pellet">stardog-union/pellet</a></div>
+  <div class="card-meta"><span class="stars">★ 357</span><span>2013-04-10</span><span>Web Ontology Language</span><span>NOASSERTION</span></div>
+  <div class="card-body">经典的 OWL2 DL 推理机，2017 年后彻底停更。它存在的意义是提醒：DL 推理这个方向的开源供给正在萎缩。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>只在阅读推理机发展史时。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="cat-toolchain.html"><span>上一篇</span><strong>8.3 建模与工程工具链</strong></a><a class="pager-next" href="cat-graphrag.html"><span>下一篇</span><strong>8.5 图谱检索与 GraphRAG</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-rdflib-rdflib">RDFLib</a></li><li class="lvl3"><a href="#p-apache-jena">Apache Jena</a></li><li class="lvl3"><a href="#p-owlcs-owlapi">OWL API</a></li><li class="lvl3"><a href="#p-neo4j-labs-neosemantics">Neosemantics</a></li><li class="lvl3"><a href="#p-eclipse-rdf4j-rdf4j">Eclipse RDF4J</a></li><li class="lvl3"><a href="#p-rdflib-pyshacl">pySHACL</a></li><li class="lvl3"><a href="#p-topquadrant-shacl">TopBraid SHACL</a></li><li class="lvl3"><a href="#p-rdflib-owl-rl">OWL-RL</a></li><li class="lvl3"><a href="#p-gtfierro-reasonable">Reasonable</a></li><li class="lvl3"><a href="#p-galigator-openllet">Openllet</a></li><li class="lvl3"><a href="#p-liveontologies-elk-reasoner">ELK Reasoner</a></li><li class="lvl3"><a href="#p-konclude-konclude">Konclude</a></li><li class="lvl3"><a href="#p-ibm-expressive-reasoning-graph-store">ERGS</a></li><li class="lvl3"><a href="#p-stardog-union-pellet">Pellet</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

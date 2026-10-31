@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.1 企业本体平台与 Palantir 复刻派 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.1 企业本体平台与 Palantir 复刻派&lt;/h1&gt;&lt;p class="chapter-sub"&gt;把 Foundry 的「对象类型 + 关系 + 动作 + 权限」四件套搬成开源实现&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.1 企业本体平台与 Palantir 复刻派 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.1 企业本体平台与 Palantir 复刻派&lt;/h1&gt;&lt;p class="chapter-sub"&gt;把 Foundry 的「对象类型 + 关系 + 动作 + 权限」四件套搬成开源实现&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-platform">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html" class="is-active">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.1 企业本体平台与 Palantir 复刻派</h1><p class="chapter-sub">把 Foundry 的「对象类型 + 关系 + 动作 + 权限」四件套搬成开源实现</p>
+      <p class="lede">这是 2026 年最拥挤的一格。共同叙事是：Foundry 贵且重，但它的<strong>模式</strong>是可复制的——对象与链接负责「读」，动作负责「写」，权限与审计负责「敢不敢用」。这一格里真正把动作当一等公民的只有三个项目（Operational Ontology、BKN Foundry、Omnigraph），其余仍停在「建图 + 给 Agent 喂上下文」。</p>
+<div class="note"><strong>读法建议</strong>：先读 Operational Ontology 的四性质，把它当验收清单；再用其余项目检验这份清单缺了什么。注意本类 11 个项目里有 10 个建于 2026 年，API 会变、生产案例基本为零。</div>
+<div class="cards"><article class="card" id="p-gura105-operational-ontology">
+  <div class="card-head">
+    <h3 class="card-title">Operational Ontology</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/gura105/operational-ontology">gura105/operational-ontology</a></div>
+  <div class="card-meta"><span class="stars">★ 202</span><span>2026-07-18</span><span>TypeScript</span><span>MIT</span></div>
+  <div class="card-body">把 Palantir Foundry 的 Ontology 从产品抽象成可独立讨论的模式，提出四条性质：语义对象与链接、动作门控写入、规则在动作上、写回权威源。配套的状态所有权三分法（source-backed / ontology-owned / derived）是同类材料里最实用的一张表。作者明说这是教学实现，不是框架。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要向团队解释「语义层与操作本体差在哪」时，用它当教材。</div>
+</article><article class="card" id="p-leading-ai-io-palantir-ontology-strategy">
+  <div class="card-head">
+    <h3 class="card-title">Palantir Ontology Strategy</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/Leading-AI-IO/palantir-ontology-strategy">Leading-AI-IO/palantir-ontology-strategy</a></div>
+  <div class="card-meta"><span class="stars">★ 246</span><span>2026-02-21</span><span>—</span><span>NOASSERTION</span></div>
+  <div class="card-body">一本开源书（日英双语），把 Foundry 本体拆成「名词」（对象、属性、链接）与「动词」（动作、函数、动态安全），并把分支与评审流程算进本体本身。价值在二手拆解，不在产品功能清单。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要一份不依赖厂商话术的对外解释时。</div>
+</article><article class="card" id="p-fabio-rovai-open-ontologies">
+  <div class="card-head">
+    <h3 class="card-title">Open Ontologies</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/fabio-rovai/open-ontologies">fabio-rovai/open-ontologies</a></div>
+  <div class="card-meta"><span class="stars">★ 2,240</span><span>2026-03-09</span><span>Rust</span><span>MIT</span></div>
+  <div class="card-body">Rust 单二进制，把本体变更当基础设施变更管：plan → 爆炸半径报告 → apply → 回滚，并给审计者一份可自证的证书。README 的例子极具说服力：只加一条 domain 声明，不增删任何数据，却多出 901 条推论。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计「变更前先算影响面 + 变更后可复核」的流程时。</div>
+</article><article class="card" id="p-modernrelay-omnigraph">
+  <div class="card-head">
+    <h3 class="card-title">Omnigraph</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ModernRelay/omnigraph">ModernRelay/omnigraph</a></div>
+  <div class="card-meta"><span class="stars">★ 1,817</span><span>2026-04-10</span><span>Rust</span><span>MIT</span></div>
+  <div class="card-body">对象存储原生的图库，带类型化本体与 Git 式分支，向量 / BM25 / 图三路检索统一在一个引擎里。为「多个长周期 Agent 共享同一个世界模型」设计，Agent 只做无状态消费者。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>多个 Agent 并行写同一张图、需要隔离与合并时。</div>
+</article><article class="card" id="p-aws-context-ontology-accelerator">
+  <div class="card-head">
+    <h3 class="card-title">Context Ontology Accelerator</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/aws/context-ontology-accelerator">aws/context-ontology-accelerator</a></div>
+  <div class="card-meta"><span class="stars">★ 1,045</span><span>2026-07-28</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">AWS 的语义上下文加速器，路线是 Scan（扫数据源、发现 schema）→ Model（归纳本体、定义指标）→ Serve（SPARQL 联邦 + MCP 供 Agent）。权限做成命名空间隔离加双层角色。工程很重：Python、Node、Java、Docker 四套工具链。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要搭一整套语义上下文服务、且技术栈已在 AWS 上时。</div>
+</article><article class="card" id="p-microsoft-ontology-playground">
+  <div class="card-head">
+    <h3 class="card-title">Ontology Playground</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/microsoft/Ontology-Playground">microsoft/Ontology-Playground</a></div>
+  <div class="card-meta"><span class="stars">★ 2,988</span><span>2026-02-17</span><span>TypeScript</span><span>MIT</span></div>
+  <div class="card-body">微软的纯静态本体设计器与词表目录：Cytoscape 渲染、可视化编辑、RDF 导入导出，配一套任务式教程。零后端依赖，可直接托管。它的定位是「给眼睛看」，没有 API、校验、权限。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>评审会上需要一个能点、能缩放的图当讨论载体时。</div>
+</article><article class="card" id="p-cloudbadal007-foundry-ontology-open">
+  <div class="card-head">
+    <h3 class="card-title">Foundry Ontology Open</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/cloudbadal007/foundry-ontology-open">cloudbadal007/foundry-ontology-open</a></div>
+  <div class="card-meta"><span class="stars">★ 108</span><span>2026-03-22</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">Foundry 三层架构的 Python 复刻，把 Interface、Marking 这些容易被漏掉的概念也画进了分层图，并提供 OWL/SHACL 导出桥与 MCP server。但仓库只有 53 KB：三层架构加导出桥塞进这个体量，只能是骨架。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要一个完整的三层概念清单（含接口与标记）时。</div>
+</article><article class="card" id="p-openbkn-ai-bkn-foundry">
+  <div class="card-head">
+    <h3 class="card-title">BKN Foundry</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/openbkn-ai/bkn-foundry">openbkn-ai/bkn-foundry</a></div>
+  <div class="card-meta"><span class="stars">★ 1,040</span><span>2026-05-26</span><span>Go</span><span>NOASSERTION</span></div>
+  <div class="card-body">Go 写的「本体后端基座」，K8s 部署，自带 BKN Lang 描述业务语义，把本体翻成 data / logic / actions / security 四类运行时服务。它是本类里少数把 actions 写进能力清单的项目。许可为多许可，商用前必须读原文。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>想看「本体如何变成服务」的重型实现时。</div>
+</article><article class="card" id="p-helixdb-helix-foundry">
+  <div class="card-head">
+    <h3 class="card-title">Helix Foundry</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/HelixDB/helix-foundry">HelixDB/helix-foundry</a></div>
+  <div class="card-meta"><span class="stars">★ 1,852</span><span>2026-10-07</span><span>Go</span><span>Apache-2.0</span></div>
+  <div class="card-body">接数据库与文档，让 Agent 起草本体，审核后灌进 HelixDB。两个设计值得记：每个值都保留出处（表的某行或文档某句），以及两份文档冲突时不自动采信、进队列等人工裁决。本地版明说单人使用、无登录。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>研究「Agent 起草 + 人工审核 + 冲突裁决」流程时。</div>
+</article><article class="card" id="p-trustgraph-ai-trustgraph">
+  <div class="card-head">
+    <h3 class="card-title">TrustGraph</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/trustgraph-ai/trustgraph">trustgraph-ai/trustgraph</a></div>
+  <div class="card-meta"><span class="stars">★ 2,853</span><span>2024-07-10</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">面向 Agent 的治理平台，主张把规则在「动作发生的点上」执行，并保留策略版本以复现每个结果。这两句话指向可审计系统的三个技术前提：动作点执行、策略版本化、结果可复现。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计「可复现的决策审计」时，借它的策略版本思路。</div>
+</article><article class="card" id="p-u485349-coder-openfoundry">
+  <div class="card-head">
+    <h3 class="card-title">OpenFoundry</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/u485349-coder/OpenFoundry">u485349-coder/OpenFoundry</a></div>
+  <div class="card-meta"><span class="stars">★ 152</span><span>2026-04-24</span><span>—</span><span>NOASSERTION</span></div>
+  <div class="card-body">自称开源版 Foundry，README 是标准的产品落地页写法：五条卖点、四个行业场景、零架构内容。建库次日之后再无提交，GitHub 检测不到主语言。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>作为「营销语言包装本体」的反面样本使用。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="ecosystem.html"><span>上一篇</span><strong>八 · 开源生态地图</strong></a><a class="pager-next" href="cat-agent.html"><span>下一篇</span><strong>8.2 Agent 上下文与记忆</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-gura105-operational-ontology">Operational Ontology</a></li><li class="lvl3"><a href="#p-leading-ai-io-palantir-ontology-strategy">Palantir Ontology Strategy</a></li><li class="lvl3"><a href="#p-fabio-rovai-open-ontologies">Open Ontologies</a></li><li class="lvl3"><a href="#p-modernrelay-omnigraph">Omnigraph</a></li><li class="lvl3"><a href="#p-aws-context-ontology-accelerator">Context Ontology Accelerator</a></li><li class="lvl3"><a href="#p-microsoft-ontology-playground">Ontology Playground</a></li><li class="lvl3"><a href="#p-cloudbadal007-foundry-ontology-open">Foundry Ontology Open</a></li><li class="lvl3"><a href="#p-openbkn-ai-bkn-foundry">BKN Foundry</a></li><li class="lvl3"><a href="#p-helixdb-helix-foundry">Helix Foundry</a></li><li class="lvl3"><a href="#p-trustgraph-ai-trustgraph">TrustGraph</a></li><li class="lvl3"><a href="#p-u485349-coder-openfoundry">OpenFoundry</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

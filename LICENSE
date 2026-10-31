@@ -1,0 +1,36 @@
+本手册采用双许可（dual licensing）：
+
+1. 文字内容（src/*.md 与由其生成的全部 HTML 正文、README）
+   许可：Creative Commons Attribution 4.0 International (CC BY 4.0)
+   全文：https://creativecommons.org/licenses/by/4.0/legalcode
+   你可以复制、分发、修改、商用，条件是保留署名并在修改时说明。
+
+2. 代码（build.py、assets/app.js、assets/style.css 及其片段）
+   许可：MIT License
+
+   Copyright (c) 2026 yunfong
+
+   Permission is hereby granted, free of charge, to any person obtaining a copy
+   of this software and associated documentation files (the "Software"), to deal
+   in the Software without restriction, including without limitation the rights
+   to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+   copies of the Software, and to permit persons to whom the Software is
+   furnished to do so, subject to the following conditions:
+
+   The above copyright notice and this permission notice shall be included in all
+   copies or substantial portions of the Software.
+
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+   AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+   SOFTWARE.
+
+建议引用格式（CC BY 4.0 要求署名）：
+《本体论工程手册：78 个开源项目的核验与方法论汇编》，yunfong，v1.0，2026-10。
+https://yunfong.github.io/ontology-handbook/
+
+文中评述的开源项目各自遵循其原许可（以 data/meta.json 记录的 SPDX 标识为准）；
+本手册只做描述与评价，不包含这些项目的源代码。

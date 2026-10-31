@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>三 · 建模语言与约束选型 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;三 · 建模语言与约束选型&lt;/h1&gt;&lt;p class="chapter-sub"&gt;OWL / SHACL / LinkML / 属性图 / 对象类型&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="三 · 建模语言与约束选型 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;三 · 建模语言与约束选型&lt;/h1&gt;&lt;p class="chapter-sub"&gt;OWL / SHACL / LinkML / 属性图 / 对象类型&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="languages">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html" class="is-active">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">方法论</div><h1 class="chapter-title">三 · 建模语言与约束选型</h1><p class="chapter-sub">OWL / SHACL / LinkML / 属性图 / 对象类型</p>
+      <p>选型问题通常被问成「OWL 还是属性图」，但这是个伪问题。真正要选的是：<strong>你要表达的约束落在哪一层</strong>。这一章先给四层表达模型，再给语言对照表与决策树。</p>
+<h2 id="h2-0">四层表达模型</h2>
+<p>任何语义模型要表达的东西，可以按「越往下越难执行」排成四层：</p>
+<div class="table-wrap"><table><thead><tr><th>层</th><th>要表达的东西</th><th>典型手段</th><th>可执行性</th></tr></thead><tbody><tr><td><strong>L1 结构</strong></td><td>有哪些字段、什么类型、必填还是可选</td><td>JSON Schema、SQL DDL、LinkML</td><td>强：几乎所有工具都能校验</td></tr><tr><td><strong>L2 约束</strong></td><td>跨字段条件、枚举、基数、值域</td><td>SHACL、ShEx、检查约束</td><td>强：可在写入路径执行</td></tr><tr><td><strong>L3 语义</strong></td><td>子类、等价、传递、逆、定义域值域</td><td>OWL 2（EL/QL/RL/DL）</td><td>中：需要推理机，且不报错</td></tr><tr><td><strong>L4 动作</strong></td><td>前置条件、副作用、权限、回滚</td><td>动作 DSL、策略引擎</td><td>弱：没有标准，各家自造</td></tr></tbody></table></div>
+<p>这个分层解释了一个反复出现的现象：<strong>大多数「本体项目」实际只做到了 L1 和 L2，却用 L3 的语言在描述。</strong> 用 OWL 写出来的东西，如果只被当作文档和 schema 使用，那它的表达力是浪费的，而它的工具链成本是照付的。</p>
+<p>反过来也成立：如果一个需求真的需要 L3（例如「有心脏的动物都是脊椎动物」这种可推导的分类），用 JSON Schema 是做不到的——你只能把结论手工写进数据，然后承担它随时间漂移的代价。</p>
+<h2 id="h2-1">语言对照</h2>
+<div class="table-wrap"><table><thead><tr><th>语言</th><th>定位</th><th>表达力</th><th>工具成熟度</th><th>典型代价</th></tr></thead><tbody><tr><td><strong>OWL 2 EL</strong></td><td>大规模分类（SNOMED 级）</td><td>存在与合取、部分角色限制</td><td>高（ELK）</td><td>表达力窄，写不出「至多一个」</td></tr><tr><td><strong>OWL 2 RL</strong></td><td>规则可实现的子集</td><td>可用前向链规则实现</td><td>中（OWL-RL、Reasonable）</td><td>只有 maxCardinality 0/1，表达力被规则集限制</td></tr><tr><td><strong>OWL 2 QL</strong></td><td>查询重写（OBDA）</td><td>可用 SQL 重写实现</td><td>中（Ontop）</td><td>为下推牺牲表达力</td></tr><tr><td><strong>OWL 2 DL</strong></td><td>完整表达</td><td>最强</td><td>低且在萎缩（Pellet 停更）</td><td>推理不可预测，解释困难</td></tr><tr><td><strong>SHACL</strong></td><td>数据形状校验</td><td>闭合世界、强校验</td><td>高（pySHACL、TopBraid）</td><td>不做推理，只判对错</td></tr><tr><td><strong>ShEx</strong></td><td>类似的形状语言</td><td>与 SHACL 接近</td><td>中</td><td>生态比 SHACL 小</td></tr><tr><td><strong>LinkML</strong></td><td>建模语言 + 编译器</td><td>L1/L2 为主，可编译到 OWL</td><td>中高（41 个生成器）</td><td>不是运行时，是构建期</td></tr><tr><td><strong>JSON Schema</strong></td><td>接口契约</td><td>L1</td><td>极高</td><td>表达不了图结构与跨对象约束</td></tr><tr><td><strong>属性图（Cypher/GQL）</strong></td><td>存储与查询</td><td>L1 + 部分 L4</td><td>高</td><td>无标准语义，约束靠应用层</td></tr><tr><td><strong>DTDL</strong></td><td>数字孪生</td><td>L1 + 遥测语义</td><td>中（Azure 生态）</td><td>绑生态</td></tr></tbody></table></div>
+<p>几条值得单独说的判断：</p>
+<p><strong>OWL 2 RL 的实际价值被高估了。</strong> 它常被当作「不装推理机也能推一点」的折中，但它的规则集只支持 <code>maxCardinality</code> 为 0 或 1 的基数限制，<code>minCardinality</code> 根本推不出来。如果你的需求里有「至少一个负责人」这类约束，OWL 2 RL 帮不上忙——那是 SHACL 的活。</p>
+<p><strong>SHACL 是这一代真正的赢家。</strong> 原因是它闭合世界、可执行、退出码明确。它不产生新知识，但它能挡住坏数据，而挡住坏数据是业务能感知的价值。第十一章会看到，这个判断有实测支撑。</p>
+<p><strong>LinkML 解决的是另一个问题：谁是源。</strong> 它本身不是运行时语言，而是「一份 YAML 编译到多个目标」的构建期工具。它的价值不在表达力，在于让 schema 变成可 review 的文本。</p>
+<p><strong>属性图不是「更差的 RDF」。</strong> 它在路径查询、存储效率、运维熟悉度上占优；它缺的是标准语义与推理。选择取决于你需要 L3 还是不需要——不需要 L3 时，属性图几乎总是更省事。</p>
+<h2 id="h2-2">决策树</h2>
+<p>从需求出发，按顺序判断：</p>
+<ol><li><strong>只需要接口契约（字段、类型、必填）？</strong> → JSON Schema。不要引入本体工具链。</li><li><strong>需要跨字段条件、枚举、基数，并且要拒绝坏数据？</strong> → SHACL（RDF 栈）或检查约束（关系库）。判断依据是你的数据是否天然是图：多对多、层级深、关系本身带属性。</li><li><strong>需要「从已有事实推出新事实」？</strong> → 看规模： 十万级以上类、只需分类 → OWL 2 EL + ELK 规则形态清晰、可用 Datalog 表达 → OWL 2 RL 或直接规则引擎 需要完整 DL 表达 → 先问「谁来维护解释」，多数情况下答案是「没人」，那就退回 EL</li><li><strong>需要「表不动、语义在上层」？</strong> → OBDA（虚拟知识图）。R2RML / R2RML 方言的映射，SPARQL 重写成 SQL。</li><li><strong>需要动作与权限？</strong> → 没有标准。自建 DSL，把动作声明成数据（参数、前置条件、副作用、权限），并把前置条件实现为第 2 步的约束。</li><li><strong>需要一份源、多个下游格式？</strong> → LinkML 一类编译器，或自己写生成器。</li></ol>
+<h2 id="h2-3">一个被忽略的选型维度：谁改它</h2>
+<p>表达力之外，还有一个维度决定成败：<strong>变更的日常执行者是谁。</strong></p>
+<ul><li>如果改模型的人是数据工程师，用 YAML + git，他会很舒服；给他 Protégé，他会绕着走。</li><li>如果改模型的人是领域专家，用表格或可视化编辑器；给他 Turtle，他会在两周内放弃。</li><li>如果两边都要改，就必须有一个「生成物」和一个「源」，且明确哪边不许手改。</li></ul>
+<p>这一点比表达力更能预测项目存活率。<strong>推断：选型时把「变更执行者」放在第一位，把表达力放在第二位，能显著降低「建完就没人维护」的概率。</strong></p>
+<h2 id="h2-4">反模式：用上层语言写下层需求</h2>
+<p>最常见的浪费是把 L2 的需求用 L3 的语言写：</p>
+<ul><li>需求其实是「这个字段必填、这个枚举有五个值」</li><li>实现却用 OWL 的基数限制与枚举类</li><li>结果：需要推理机才能校验，推理机不报错，校验实际没生效</li></ul>
+<p>正确的做法是同一个模型里分层：结构用 L1、约束用 L2 并真的执行、只在确实需要推导的地方用 L3，且明确标注「这一段有推理依赖」。这样即使推理机被下线，前两层仍然有效。</p>
+      <div class="pager"><a class="pager-prev" href="methodology.html"><span>上一篇</span><strong>二 · 本体工程方法论谱系</strong></a><a class="pager-next" href="reasoning.html"><span>下一篇</span><strong>四 · 推理与校验</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">四层表达模型</a></li><li class="lvl2"><a href="#h2-1">语言对照</a></li><li class="lvl2"><a href="#h2-2">决策树</a></li><li class="lvl2"><a href="#h2-3">一个被忽略的选型维度：谁改它</a></li><li class="lvl2"><a href="#h2-4">反模式：用上层语言写下层需求</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

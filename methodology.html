@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二 · 本体工程方法论谱系 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;二 · 本体工程方法论谱系&lt;/h1&gt;&lt;p class="chapter-sub"&gt;从 competency question 到 CI 的四件内核&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="二 · 本体工程方法论谱系 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;二 · 本体工程方法论谱系&lt;/h1&gt;&lt;p class="chapter-sub"&gt;从 competency question 到 CI 的四件内核&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="methodology">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html" class="is-active">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">方法论</div><h1 class="chapter-title">二 · 本体工程方法论谱系</h1><p class="chapter-sub">从 competency question 到 CI 的四件内核</p>
+      <p>本体工程不是一个新学科，它有三十年的方法论积累，也有三十年的失败记录。这一章按时代梳理主要方法论，指出它们各自解决了什么、留下了什么，然后收敛出四件去掉就会散架的内核，最后给一个两周能走完的最小流程。</p>
+<h2 id="h2-0">五个阶段，各解决一个问题</h2>
+<div class="table-wrap"><table><thead><tr><th>年代</th><th>代表方法</th><th>关注点</th><th>留下的遗产</th><th>遗留的问题</th></tr></thead><tbody><tr><td>1990s</td><td>骨架法、TOVE、METHONTOLOGY</td><td>把本体当知识获取工程</td><td>competency question 这个起点仍然最好用</td><td>产出是文档与图，不可执行</td></tr><tr><td>2000s</td><td>NeOn、ONTO-CLEAN</td><td>协作、复用、本体网络</td><td>复用的分类学（整包复用 / 摘用 / 对齐）</td><td>本体复用在实践中几乎总是失败</td></tr><tr><td>2010s</td><td>OWL 2 与推理导向</td><td>形式化、可满足性、分类</td><td>可判定性的工程边界（EL/QL/RL）</td><td>表达力与可用性之间的鸿沟</td></tr><tr><td>2015s</td><td>SHACL、JSON Schema、dbt 式约束</td><td>数据校验、放进写入路径</td><td>「约束优先」成为工业界默认</td><td>约束之间的一致性没人管</td></tr><tr><td>2020s</td><td>本体进 git、进 CI</td><td>版本、评审、影响面</td><td>本体被当代码管</td><td>影响面计算仍未标准化</td></tr><tr><td>2025s</td><td>LLM 诱导（从文本/表结构反推）</td><td>冷启动成本</td><td>起草速度提升一个数量级</td><td>幻觉进入语义层，比文本幻觉更危险</td></tr></tbody></table></div>
+<p>几个具体的方法论简评：</p>
+<ul><li><strong>METHONTOLOGY</strong> 的贡献是把本体开发拆成规格、概念化、形式化、实现、维护五段，并且强调「规格」阶段要写清用途与使用者。它的毛病是重，一个中等规模项目光走流程就要几个月。今天还值得借用的只有一件事：<strong>在动手建模前，把「这个本体要能回答哪些问题」写成句子。</strong></li><li><strong>NeOn</strong> 的贡献是承认「本体不都是自己建的」，因此把复用、重工程（re-engineering）、本地化当成一等公民。它的失败在于：复用别人本体的成本，通常高于自己重写一个够用的。</li><li><strong>ONTO-CLEAN</strong> 是这批方法里唯一把「清理」当核心的：它假设输入本体是脏的，任务是把脏东西识别出来、分类、再决定修还是删。这个视角在今天依然欠缺——大部分团队只有「建模」流程，没有「删除」流程。</li><li><strong>SHACL 之后的方法论其实还没写出来。</strong> 实践中已经形成共识（约束要可执行、要进 CI），但没有一份被广泛接受的方法文本。这份汇编的第二章后半部分，某种程度是在补这个缺口。</li></ul>
+<h2 id="h2-1">四件内核</h2>
+<p>不管用哪个时代的方法，有四件事缺了就会散架。它们不是步骤，是约束。</p>
+<h3 id="h3-2">一、competency question：先写句子，再画图</h3>
+<p>做法：收集 15–25 条真实问题，必须是<strong>能被回答或不能被回答</strong>的句子，不是名词清单。</p>
+<ul><li>好：「某个客户在上个季度是否同时持有一个已到期和一个未到期的产品？」</li><li>坏：「客户、产品、持仓」。</li></ul>
+<p>好问题的两个特征：含时间或条件（逼出时态与状态建模），含「是否」「多少」「哪些」（逼出基数与聚合）。</p>
+<p><strong>常见错法</strong>：把业务方的需求文档改写成问句。需求文档写的是「要能查询客户持仓」，改写成问句还是同一个意思，仍然不产生建模约束。真正的问句来自<strong>曾经做错过的报表</strong>。</p>
+<h3 id="h3-3">二、单一源：人可读、可 diff、可编译</h3>
+<p>做法：选一个文本格式（YAML / Turtle / 表格）当唯一真相，其余所有产物（JSON Schema、SQL DDL、OWL、SHACL、文档、ER 图）都是生成物，生成物不允许手改。</p>
+<p>三个判据：</p>
+<ul><li>能不能在 code review 里看清这次改了什么？（这淘汰了二进制编辑器工程文件）</li><li>换一个目标格式，是不是改配置而不是改模型？</li><li>生成物与源不一致时，CI 会不会失败？</li></ul>
+<p><strong>常见错法</strong>：把 Protégé 的工程文件当源。它在建模期很好用，但它是二进制的、不可 diff 的、且不能被别的工具消费。它可以当「分析工具」，不能当「源」。</p>
+<h3 id="h3-4">三、可执行校验：必须是 CI job，必须有退出码</h3>
+<p>做法：把「必须为真」的规则写成可执行约束，挂在提交或写入路径上；校验失败必须让流程失败，而不是生成一份报告。</p>
+<p>这里有一个非常实际的细节：<strong>退出码</strong>。一个校验器如果只在输出里打印「不通过」而退出码是 0，它在流水线里等于不存在。</p>
+<p><strong>常见错法</strong>：把校验做成定时任务 + 仪表盘。三个月后仪表盘没人看，坏数据已经流进下游七个系统。</p>
+<h3 id="h3-5">四、变更影响面：先算爆炸半径</h3>
+<p>做法：任何一次语义变更，在合并前回答三个问题：哪些数据会变成不合规？哪些下游查询会变？哪些推论会新增或消失？</p>
+<p>有一个很好的实证：某次变更只增加了一条 <code>domain</code> 声明，没有增删任何数据，却多出了 901 条推论。<strong>语义变更的爆炸半径与 diff 的行数无关。</strong> 这是它区别于普通代码变更的核心特征。</p>
+<p><strong>常见错法</strong>：只做语法 diff，不做语义 diff。两份 Turtle 文件按行比，差异几百行；按规范化后的三元组比，差异三条。</p>
+<h2 id="h2-6">最小可行方法论（两周）</h2>
+<p>这套流程的目标不是「建一个好本体」，而是<strong>在两周内得到一个能失败的版本</strong>——如果它会失败，越早失败越便宜。</p>
+<div class="table-wrap"><table><thead><tr><th>步骤</th><th>动作</th><th>产出</th><th>时间</th></tr></thead><tbody><tr><td>1</td><td>收集 20 条真实问题，其中至少 5 条来自「曾经做错的报表」</td><td>问句清单</td><td>1 天</td></tr><tr><td>2</td><td>从问句反抽 12–18 个对象类型，每个类型不超过 8 个属性</td><td>类型清单 + 属性表</td><td>2 天</td></tr><tr><td>3</td><td>写 5 条「必须为真」的约束（不是「最好为真」）</td><td>可执行约束</td><td>1 天</td></tr><tr><td>4</td><td>拿 100–500 条真实数据跑一遍，统计违规率</td><td>违规报告</td><td>1 天</td></tr><tr><td>5</td><td>把校验接进 CI，确保退出码非零</td><td>一个会红的流水线</td><td>1 天</td></tr><tr><td>6</td><td>冻结 v0.1，写下变更与弃用流程</td><td>版本记录 + 流程</td><td>1 天</td></tr></tbody></table></div>
+<p>第 4 步是分水岭。绝大多数本体项目从不拿真实数据跑自己的约束，因此永远不知道约束是太松（全部通过，等于没写）还是太紧（违规率 40%，无法上线）。<strong>违规率应该落在 2%–15% 之间</strong>：太低说明约束没有约束力，太高说明模型与数据现实脱节。这个区间是经验值。</p>
+<h2 id="h2-7">三条反直觉的经验</h2>
+<p><strong>建模会议不如校验报告有效。</strong> 让八个业务专家坐在一起讨论「客户到底是什么」，两小时能产出三页分歧。拿 500 条真实数据跑一份校验报告，二十分钟能产出二十条具体的、可裁决的错误。<strong>具体的错误比抽象的分歧容易收敛。</strong></p>
+<p><strong>类多了不是问题，关系少了才是。</strong> 新手常担心类型爆炸，于是把十个概念压成一个再加一个 <code>type</code> 字段。这会让所有基于类型的约束失效——因为类型变成了数据，约束无法在 schema 层表达。真正的信号是关系数量：如果一个模型有 30 个类却只有 20 条链接，它大概率是一堆孤岛。</p>
+<p><strong>本体的寿命由「删除流程」决定，不由「建模质量」决定。</strong> 三年后还在用的本体，都是那些能安全删掉一个类的本体。做不到这一点的，会在两年内退化成「谁都不敢改」的遗留资产。所以第 6 步的弃用流程不是形式主义，它决定了这份资产会不会变成负债。</p>
+      <div class="pager"><a class="pager-prev" href="concepts.html"><span>上一篇</span><strong>一 · 四个被混用的「本体」</strong></a><a class="pager-next" href="languages.html"><span>下一篇</span><strong>三 · 建模语言与约束选型</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">五个阶段，各解决一个问题</a></li><li class="lvl2"><a href="#h2-1">四件内核</a></li><li class="lvl3"><a href="#h3-2">一、competency question：先写句子，再画图</a></li><li class="lvl3"><a href="#h3-3">二、单一源：人可读、可 diff、可编译</a></li><li class="lvl3"><a href="#h3-4">三、可执行校验：必须是 CI job，必须有退出码</a></li><li class="lvl3"><a href="#h3-5">四、变更影响面：先算爆炸半径</a></li><li class="lvl2"><a href="#h2-6">最小可行方法论（两周）</a></li><li class="lvl2"><a href="#h2-7">三条反直觉的经验</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

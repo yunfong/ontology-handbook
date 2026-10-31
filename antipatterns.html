@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十二 · 反模式与落地判据 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;实证&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十二 · 反模式与落地判据&lt;/h1&gt;&lt;p class="chapter-sub"&gt;五种死法、六条判据、分阶段路线&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="十二 · 反模式与落地判据 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;实证&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十二 · 反模式与落地判据&lt;/h1&gt;&lt;p class="chapter-sub"&gt;五种死法、六条判据、分阶段路线&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="antipatterns">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html" class="is-active">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">实证</div><h1 class="chapter-title">十二 · 反模式与落地判据</h1><p class="chapter-sub">五种死法、六条判据、分阶段路线</p>
+      <p>本体项目失败的方式相当固定。它们极少死于技术选型错误，绝大多数死于四种非技术原因：建得太大、没有校验、没有维护预算、以及被当成 AI 项目立项。这一章给五种死法的识别特征、六条可以当场用的判据，以及一份分阶段路线。</p>
+<h2 id="h2-0">五种死法</h2>
+<h3 id="h3-1">死法一：全量建模</h3>
+<p><strong>症状</strong>：项目名是「企业级知识模型」「统一语义平台」；第一个交付物是一张有两百个类的图；六个月后仍在讨论「客户的定义」。</p>
+<p><strong>机制</strong>：全量建模把「对齐分歧」放在了「产生价值」之前。而分歧的收敛速度与参与人数成反比，与是否有一个真实问题要解决成正比。没有具体问题的建模会议，本质是在用抽象讨论消耗预算。</p>
+<p><strong>识别</strong>：如果第一次评审的议题是「类怎么划分」，而不是「这个查询能不能跑出来」，已经在路上了。</p>
+<p><strong>解药</strong>：从一个小域开始，两周内跑通「一类对象 + 五条约束 + 一次被拒绝的动作 + 一张对账报表」的闭环。</p>
+<h3 id="h3-2">死法二：工具先行</h3>
+<p><strong>症状</strong>：先选了一个图数据库/本体平台，然后开始找「用它能做什么」；选型依据是 benchmark 与 Gartner 象限。</p>
+<p><strong>机制</strong>：工具决定的是「上限」，需求决定的是「下限」。先定工具会导致模型被工具的表达力塑形——用属性图的人倾向于把语义压成属性，用 OWL 的人倾向于把约束写成公理。两者都会在半年后暴露：前者发现做不了推理，后者发现没人执行校验。</p>
+<p><strong>识别</strong>：技术选型文档里没有一节叫「我们不做什么」。</p>
+<p><strong>解药</strong>：先写 20 条 competency question，再从问句推出需要的表达力（第 3 章的决策树），最后才选工具。</p>
+<h3 id="h3-3">死法三：校验缺位</h3>
+<p><strong>症状</strong>：模型很完整、文档很漂亮、图很好看，但没有任何一条规则会让流水线变红。</p>
+<p><strong>机制</strong>：这是最常见的一种，也是最隐蔽的一种——因为它在交付时看起来完全成功。代价延迟 3–9 个月出现：下游开始出现「同一指标两个值」，此时已经无法定位是哪一次变更引入的。</p>
+<p><strong>识别</strong>：问一个问题就能判断——<strong>现在改一条约束，会不会有人被通知、会不会有构建失败？</strong> 两个答案都是「不会」，就是缺位。</p>
+<p><strong>解药</strong>：把「有非零退出码的校验」作为第一期的验收条件，没有它不算交付。</p>
+<h3 id="h3-4">死法四：没有维护预算</h3>
+<p><strong>症状</strong>：上线时隆重，上线后一个月无人提交；半年后有人想改，发现原作者已离职。</p>
+<p><strong>机制</strong>：本体的成本结构与软件不同——它的主要成本不在建设，在<strong>维护</strong>。一个 15 个类的模型，稳态每月需要约 0.2 人月（口径变更、豁免审批、违规处理）。拿不出这笔预算的项目，会在第 12–18 个月退化成「谁都不敢改」的遗留资产。</p>
+<p><strong>识别</strong>：项目章程里有没有「上线后每月 X 人月」这一行。没有，就是没有预算。</p>
+<p><strong>解药</strong>：在立项时把维护预算写进章程；如果拿不到，就只做第 10 章的 A 形态（不引入新存储与端点，纯生成物 + 校验流水线），它的维护成本接近于零。</p>
+<h3 id="h3-5">死法五：当成 AI 项目</h3>
+<p><strong>症状</strong>：立项理由是「大模型需要企业知识」，KPI 是「问答准确率提升」；三个月后被要求证明「为什么不用向量库就行」。</p>
+<p><strong>机制</strong>：把本体绑在 AI 叙事上，会让它的价值随模型能力波动。模型越强，纯检索的效果越好，本体的边际收益越难证明——而本体真正不可替代的部分（拒绝非法写入、口径可对账、变更可审计）恰好不在这个叙事里。</p>
+<p><strong>识别</strong>：如果需求文档里出现「让模型理解我们的业务」而没有出现「让某个字段必须有值」，方向就偏了。</p>
+<p><strong>解药</strong>：把立项理由换成治理语言：<strong>口径统一、坏数据拦截、变更可审计</strong>。这三件事的验收可以当场演示，且不随模型能力变化。</p>
+<h2 id="h2-6">六条判据</h2>
+<p>这六条可以在一次会议上问完，用来判断「该不该做」与「做到什么程度」。</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>判据</th><th>若「否」</th></tr></thead><tbody><tr><td>1</td><td>有没有一个具体的、曾经做错的报表？</td><td>先去找它，别建模</td></tr><tr><td>2</td><td>这个错误能不能用一条可执行约束描述？</td><td>说明问题不在语义层</td></tr><tr><td>3</td><td>有没有人能批准「这条数据不合规」？</td><td>没有裁决者，约束不会被遵守</td></tr><tr><td>4</td><td>改一条约束，会不会有人被通知？</td><td>没有消费者，做了也没人用</td></tr><tr><td>5</td><td>上线后每月有没有 0.2 人月？</td><td>只做 A 形态，别建平台</td></tr><tr><td>6</td><td>三年后这个模型还会被改吗？</td><td>若不会，它是文档，不是资产</td></tr></tbody></table></div>
+<p>第 6 条最容易被跳过，也最能预测结局。<strong>一个不会再被修改的模型，无论建得多好，都只是文档。</strong> 而文档不需要本体工具链。</p>
+<h2 id="h2-7">三个停止条件</h2>
+<p>比「该不该做」更难的是「什么时候停」。三个明确的停止信号：</p>
+<p><strong>一、连续两个迭代，校验报告的违规数没有下降，且新增违规主要来自新增规则而非存量修复。</strong> 这说明规则在被不断放宽以适配现实，模型正在失去约束力。此时应该停下来，把规则数量减半、把豁免流程做起来，而不是继续加规则。</p>
+<p><strong>二、业务方连续两个月没有提出新的 competency question。</strong> 说明当前的表达力已经覆盖了他们的想象力，继续扩建是自我满足。</p>
+<p><strong>三、维护者的时间有 70% 以上花在「解释模型」而不是「修改模型」。</strong> 这是「表达力过剩」的明确信号：模型比使用者能理解的要复杂。此时应该做减法，而不是写更多文档。</p>
+<h2 id="h2-8">分阶段路线</h2>
+<p>如果判据都过了，按这个节奏走：</p>
+<p><strong>第 0–2 周：一个闭环</strong> 选一个域，12–18 个类，5 条必须为真的约束，100–500 条真实数据，一次可拒绝的动作，一张对账报表。验收标准：业务方能当场看到一条坏数据被挡住。</p>
+<p><strong>第 3–6 周：把校验接进流水线</strong> 校验进 CI，退出码非零；三档严重级别；带期限的豁免机制。验收标准：一个故意的坏提交会被拒绝合并。</p>
+<p><strong>第 7–12 周：第二个域，以及复用</strong> 第二个域接入，检验第一版的抽象是否成立。此时通常会发现 30% 的类需要重构——这是正常的，越早越好。验收标准：两个域共享同一份源模型，而不是两份。</p>
+<p><strong>第 4–6 月：治理与变更</strong> 变更影响面计算、弃用流程、查询日志。验收标准：能回答「上周的变更影响了哪些下游」。</p>
+<p><strong>第 7–12 月：表达力按需扩张</strong> 只有在出现「必须推出新事实」的真实需求时，才引入推理层。验收标准：推理层的引入有明确的、可测量的收益，而不是「架构上更完整」。</p>
+<h2 id="h2-9">一句话总结</h2>
+<p><strong>本体项目的成败，在写第一行模型之前就决定了 70%</strong>：取决于你有没有一个具体的错误要修、有没有人能裁决、有没有人会在三年后继续改它。剩下的 30% 才是技术与工具。</p>
+      <div class="pager"><a class="pager-prev" href="evidence.html"><span>上一篇</span><strong>十一 · 四次实测</strong></a><a class="pager-next" href="org.html"><span>下一篇</span><strong>十三 · 组织、角色与预算</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">五种死法</a></li><li class="lvl3"><a href="#h3-1">死法一：全量建模</a></li><li class="lvl3"><a href="#h3-2">死法二：工具先行</a></li><li class="lvl3"><a href="#h3-3">死法三：校验缺位</a></li><li class="lvl3"><a href="#h3-4">死法四：没有维护预算</a></li><li class="lvl3"><a href="#h3-5">死法五：当成 AI 项目</a></li><li class="lvl2"><a href="#h2-6">六条判据</a></li><li class="lvl2"><a href="#h2-7">三个停止条件</a></li><li class="lvl2"><a href="#h2-8">分阶段路线</a></li><li class="lvl2"><a href="#h2-9">一句话总结</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

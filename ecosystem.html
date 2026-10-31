@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>八 · 开源生态地图 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;生态&lt;/div&gt;&lt;h1 class="chapter-title"&gt;八 · 开源生态地图&lt;/h1&gt;&lt;p class="chapter-sub"&gt;78 个项目、七个类别、四种采纳级别&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="八 · 开源生态地图 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;生态&lt;/div&gt;&lt;h1 class="chapter-title"&gt;八 · 开源生态地图&lt;/h1&gt;&lt;p class="chapter-sub"&gt;78 个项目、七个类别、四种采纳级别&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="ecosystem">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html" class="is-active">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">生态</div><h1 class="chapter-title">八 · 开源生态地图</h1><p class="chapter-sub">78 个项目、七个类别、四种采纳级别</p>
+      <p>这一章是地图，不是清单。它回答三个问题：这 78 个项目在结构上如何分布；分布本身说明了什么；以及在这张图上，一个具体的团队应该站在哪里。</p>
+<h2 id="h2-0">口径</h2>
+<ul><li><strong>78 个项目</strong> = 一份流传较广的公众号索引里的 59 个 + 趋势论证中引用、但未被索引收录的 19 个。</li><li>原索引分了 6 类；这里拆成 7 类，多出来的第 7 类（<a href="cat-beyond.html">7.7 索引之外的系统</a>）专门收纳那 19 个「被引用但没被收录」的项目。<strong>如果不补这一类，趋势章节的论证会被自己的索引证伪。</strong></li><li>所有星数、建库日期、许可证、主语言取自 GitHub API，核验时间 2026-10-30。分级（S/A/B/C）是本书的判断，不是任何官方口径。</li></ul>
+<h2 id="h2-1">七个类别的规模与星数</h2>
+<div class="table-wrap"><table><thead><tr><th>类别</th><th>数量</th><th>星数中位</th><th>极值</th><th>2026 年新建</th><th>一句话判读</th></tr></thead><tbody><tr><td><a href="cat-platform.html">7.1 企业本体平台</a></td><td>11</td><td>1,045</td><td>108 – 2,988</td><td><strong>10</strong></td><td>全是 2026 年的新供给，复刻同一个模式</td></tr><tr><td><a href="cat-agent.html">7.2 Agent 上下文与记忆</a></td><td>10</td><td>880</td><td>455 – 14,342</td><td>7</td><td>需求真实，但多数只做到「带类型的上下文」</td></tr><tr><td><a href="cat-toolchain.html">7.3 建模与工具链</a></td><td>8</td><td>351</td><td>49 – 1,617</td><td>0</td><td>十年没有新增，编辑器与编译器两类</td></tr><tr><td><a href="cat-infra.html">7.4 语义基础设施</a></td><td>14</td><td>302</td><td>32 – 2,542</td><td>0</td><td>沉默的地基，推理在萎缩、校验在增长</td></tr><tr><td><a href="cat-graphrag.html">7.5 图谱检索</a></td><td>8</td><td>7,898</td><td>342 – 139,218</td><td>1</td><td>星数最高，但与本体是两件事</td></tr><tr><td><a href="cat-vocab.html">7.6 领域词表</a></td><td>8</td><td>725</td><td>25 – 1,254</td><td>0</td><td>是资产不是工具，借用方式决定价值</td></tr><tr><td><a href="cat-beyond.html">7.7 索引之外</a></td><td>19</td><td>329</td><td>11 – 89,016</td><td>3</td><td>补齐趋势论证的缺口，含三个超新星</td></tr></tbody></table></div>
+<p>合计 78 个，星数中位 <strong>698</strong>。分级：S 级 7 个、A 级 21 个、B 级 39 个、C 级 11 个。</p>
+<p>逐个项目的名称、仓库、星数、建库时间、许可、语言与分级，汇总在附录 C 的总表里；下面七节则给出每个项目「它解决什么问题、能拿来干什么」的说明。</p>
+<h2 id="h2-2">四个反直觉的分布事实</h2>
+<p><strong>一、越「新」的类别，星数中位越高；越「基础」的类别，星数中位越低。</strong></p>
+<p>企业本体平台中位 1,045、Agent 上下文 880，而语义基础设施只有 302、建模工具链 351。这不符合「基础设施更成熟所以更受欢迎」的直觉。</p>
+<p>解释只有一个：<strong>星数衡量的是注意力，不是成熟度。</strong> 2026 年新出现的平台类项目，在发布时就有明确的叙事（「开源版 Foundry」「Agent 的记忆层」），容易被转发；而 rdflib 这类项目建于 2012 年，功能稳定、没有新闻，星数自然停在两千多。</p>
+<p><strong>实操含义</strong>：用星数排序做选型，会系统性地把新项目排在老项目前面，而新项目恰恰是未经生产验证的那一批。这是一个真实存在的选型偏差。</p>
+<p><strong>二、21 个项目建于 2026 年，占 27%，且几乎全部集中在两个类别。</strong></p>
+<p>平台类 11 个里 10 个是 2026 年建的；Agent 类 10 个里 7 个是。基础设施与工具链两类，2026 年新增 <strong>0</strong> 个。</p>
+<p>这个分布非常干净地说明：<strong>生态的增量全部在「怎么用」，没有在「怎么推」。</strong> 没有人 2026 年去写一个新的推理机（有人 2025 年停更了一个），但有十个人在复刻同一种对象-动作模型。</p>
+<p><strong>三、15% 的项目许可证需要法务看过再用。</strong></p>
+<p>78 个里，GitHub 无法识别为标准许可的有 12 个（<code>NOASSERTION</code>），另有 5 个没有声明许可。前者通常意味着自定义许可、多许可或源码可用（source-available）——三家图库（FalkorDB、Memgraph）都落在这一档，它们实际用的是 SSPL 与 BSL，<strong>不是 OSI 认可的开源许可</strong>。</p>
+<p>其余分布：Apache-2.0 28 个、MIT 22 个、BSD 系 8 个、GPL/LGPL 2 个、CC BY 4.0 1 个。</p>
+<p><strong>实操含义</strong>：把「许可证」当技术属性会出错，它是采购属性。一个 <code>NOASSERTION</code> 的项目，在 PoC 阶段完全可用，在商业化前必须过法务。</p>
+<p><strong>四、语言分布仍是 Python + JVM 的天下。</strong></p>
+<p>Python 31 个、Java 12 个、TypeScript 8 个、Rust 6 个、Go 3 个。本体核心（OWL API、Jena、Protégé、ELK、ROBOT）几乎全在 JVM 上，这不是历史包袱，是因为 OWL 的类型系统与 Java 的对象模型天然接近。</p>
+<p>Rust 的 6 个集中在「存储与推理」这一层（Oxigraph、Reasonable、open-ontologies、TerminusDB 的引擎、FalkorDB、utopia）。<strong>系统级语言重写，重写的是执行效率与部署形态，不是语义能力。</strong></p>
+<h2 id="h2-3">四个采纳级别</h2>
+<p>分级只看一件事：<strong>一个团队在什么情况下应该真的把它用起来。</strong></p>
+<div class="table-wrap"><table><thead><tr><th>级别</th><th>数量</th><th>含义</th><th>怎么用</th></tr></thead><tbody><tr><td><strong>S · 核心必读</strong></td><td>7</td><td>各自领域的事实标准，或提供了不可替代的机制</td><td>直接引入或作为设计基准</td></tr><tr><td><strong>A · 重要参考</strong></td><td>21</td><td>有明确独到之处，但需评估契合度</td><td>读设计、摘机制，谨慎引入</td></tr><tr><td><strong>B · 观察备选</strong></td><td>39</td><td>方向对但成熟度或体量不足</td><td>跟踪，PoC 用，不进主链路</td></tr><tr><td><strong>C · 仅作存档</strong></td><td>11</td><td>已停更，或仅有概念价值</td><td>只读 README，作为反例</td></tr></tbody></table></div>
+<p>S 级的 7 个分布在四类：基础设施（rdflib、pySHACL、OWL-RL）、工具链（LinkML、Protégé）、平台（Operational Ontology）、以及作为模式参照的 Palantir 拆解。<strong>注意：S 级里没有一个是 2026 年新建的。</strong> 这不是巧合。</p>
+<h2 id="h2-4">生态的三个结构性判断</h2>
+<p><strong>一、供给在最后一个环节爆发，且同质化严重。</strong></p>
+<p>十一个平台项目里，讲的故事几乎逐字相同：对象类型、链接、动作、权限、审计、写回。真正把动作当一等公民并给出可验证机制的只有三个。<strong>推断：这个格局意味着未来 12 个月会有大量项目停止维护，选择时要假设「这个仓库两年后可能没人管」。</strong></p>
+<p><strong>二、基础设施沉默，但它是唯一不可替代的一层。</strong></p>
+<p>你可以不用任何一个平台项目，用 rdflib + pySHACL + 一个数据库拼出自己的语义层。反过来不成立：没有解析器与校验器，任何平台都跑不起来。<strong>推断：技术选型的安全边际，来自对基础设施的掌握，而不是对平台的依赖。</strong></p>
+<p><strong>三、词表是资产，抄的是劳动，不是代码。</strong></p>
+<p>八个词表项目里，最有价值的是那些把「建模决策」写下来的（FIBO 的域划分、AudioSet 的七字段结构、DTDL 的版本化标识符），最没价值的是链接清单。借用时永远只借三样：术语、分层、命名规范。</p>
+<h2 id="h2-5">怎么用这七个分类页</h2>
+<p>每个分类页的结构一致：一段判读（这一类在解决什么、共同盲点是什么）、一张判据提示、然后是项目卡片。每张卡片给出四要素——它做了什么、关键机制、何时采纳、以及仓库的四项硬数据（星数、建库、语言、许可）。</p>
+<p>三条使用建议：</p>
+<ol><li><strong>先读判读，再看卡片。</strong> 卡片是证据，判读是观点；先有观点再读证据，效率更高。</li><li><strong>看「何时采纳」这一行，而不是「做了什么」。</strong> 前者是决策依据，后者是宣传语的复述。</li><li><strong>C 级卡片不要跳过。</strong> 它们记录了失败方式，而失败方式比成功案例更可复用——第 11 章会用到它们。</li></ol>
+      <div class="pager"><a class="pager-prev" href="case.html"><span>上一篇</span><strong>七 · 一个完整案例：五周与三个事故</strong></a><a class="pager-next" href="cat-platform.html"><span>下一篇</span><strong>8.1 企业本体平台</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">口径</a></li><li class="lvl2"><a href="#h2-1">七个类别的规模与星数</a></li><li class="lvl2"><a href="#h2-2">四个反直觉的分布事实</a></li><li class="lvl2"><a href="#h2-3">四个采纳级别</a></li><li class="lvl2"><a href="#h2-4">生态的三个结构性判断</a></li><li class="lvl2"><a href="#h2-5">怎么用这七个分类页</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

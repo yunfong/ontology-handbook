@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.5 图谱检索与 GraphRAG · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.5 图谱检索与 GraphRAG&lt;/h1&gt;&lt;p class="chapter-sub"&gt;检索的邻居，不是本体的替代品&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.5 图谱检索与 GraphRAG · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.5 图谱检索与 GraphRAG&lt;/h1&gt;&lt;p class="chapter-sub"&gt;检索的邻居，不是本体的替代品&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-graphrag">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html" class="is-active">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.5 图谱检索与 GraphRAG</h1><p class="chapter-sub">检索的邻居，不是本体的替代品</p>
+      <p class="lede">这一类严格说不属于本体，但 2026 年的「本体热」有一半是被它带起来的，必须单列并划清边界。GraphRAG 解决「检索粒度与多跳」，本体解决「语义一致与约束」。两者的关系是<strong>共存</strong>：本体给对象类型与主键，检索给 chunk 到实体的索引，两边靠 ID 对齐。</p>
+<div class="note"><strong>三条判据</strong>：问「还要看什么」→ 检索；问「什么必须为真」→ 约束；出现审批、回滚、对账 → 检索出局。</div>
+<div class="cards"><article class="card" id="p-microsoft-graphrag">
+  <div class="card-head">
+    <h3 class="card-title">Microsoft GraphRAG</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/microsoft/graphrag">microsoft/graphrag</a></div>
+  <div class="card-meta"><span class="stars">★ 36,497</span><span>2024-03-27</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">图式 RAG 的参考实现：抽实体与关系、做社区划分、生成分层摘要。README 自述已「largely in maintenance mode」，代码是 demonstration 而非官方支持产品。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>读它的论文与 prompt 设计，不要直接引代码。</div>
+</article><article class="card" id="p-hkuds-lightrag">
+  <div class="card-head">
+    <h3 class="card-title">LightRAG</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/HKUDS/LightRAG">HKUDS/LightRAG</a></div>
+  <div class="card-meta"><span class="stars">★ 40,440</span><span>2024-10-02</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">轻量双路检索（实体 + 关系），论文入选 EMNLP。工程上比 graphrag 好落地：依赖少、流程短、增量更新友好。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要一个能在两周内跑起来的图检索基线时。</div>
+</article><article class="card" id="p-falkordb-falkordb">
+  <div class="card-head">
+    <h3 class="card-title">FalkorDB</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/FalkorDB/FalkorDB">FalkorDB/FalkorDB</a></div>
+  <div class="card-meta"><span class="stars">★ 10,505</span><span>2023-07-20</span><span>Rust</span><span>NOASSERTION</span></div>
+  <div class="card-body">用 GraphBLAS 稀疏矩阵做图计算的图库，主打 GraphRAG 场景的低延迟，Cypher 兼容。许可是 SSPL，商用需法务确认。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>图检索的延迟成为瓶颈、且能接受 SSPL 时。</div>
+</article><article class="card" id="p-neo4j-labs-llm-graph-builder">
+  <div class="card-head">
+    <h3 class="card-title">LLM Graph Builder</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/neo4j-labs/llm-graph-builder">neo4j-labs/llm-graph-builder</a></div>
+  <div class="card-meta"><span class="stars">★ 5,290</span><span>2024-01-11</span><span>Jupyter Notebook</span><span>Apache-2.0</span></div>
+  <div class="card-body">Neo4j 官方的「文档进图」工具：非结构化文本抽成实体关系写入图库。它是这一类里唯一提供「先声明 node/relationship 类型再抽取」的，尽管 schema 只进 prompt、不做拒绝。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要从文档批量建图、并希望先约束抽取范围时。</div>
+</article><article class="card" id="p-memgraph-memgraph">
+  <div class="card-head">
+    <h3 class="card-title">Memgraph</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/memgraph/memgraph">memgraph/memgraph</a></div>
+  <div class="card-meta"><span class="stars">★ 4,636</span><span>2020-09-21</span><span>C++</span><span>NOASSERTION</span></div>
+  <div class="card-body">内存图库，Cypher 兼容，面向实时多跳与流式场景。许可是 BSL，不是 OSI 认可的开源许可。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要内存级多跳延迟、且许可可接受时。</div>
+</article><article class="card" id="p-graphify-labs-graphify">
+  <div class="card-head">
+    <h3 class="card-title">Graphify</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/Graphify-Labs/graphify">Graphify-Labs/graphify</a></div>
+  <div class="card-meta"><span class="stars">★ 139,218</span><span>2026-04-03</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">把代码库、文档、SQL、PDF 变成可查询的图，服务编码 Agent「查图代替 grep」。它明确不是 GraphRAG：无 embedding、无向量库、无社区摘要。边带 EXTRACTED / INFERRED 证据标签，这个设计可直接借。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要给 Agent 提供「结构导航 + 证据标签」时。</div>
+</article><article class="card" id="p-nicolas-hbt-pygraft">
+  <div class="card-head">
+    <h3 class="card-title">PyGRAFT</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/nicolas-hbt/pygraft">nicolas-hbt/pygraft</a></div>
+  <div class="card-meta"><span class="stars">★ 717</span><span>2023-09-07</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">按给定的 OWL / RDFS 本体生成合成知识图，用于 KG 系统的基准测试。本体在这里是「生成器的规格」，不是运行时约束。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要造测试数据来验证 KG 流水线时。</div>
+</article><article class="card" id="p-biocypher-biocypher">
+  <div class="card-head">
+    <h3 class="card-title">BioCypher</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/biocypher/biocypher">biocypher/biocypher</a></div>
+  <div class="card-meta"><span class="stars">★ 342</span><span>2021-09-10</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">生物医学知识图的统一构建框架，schema 驱动：先声明节点与边类型，再由适配器把不同数据源灌进图。它是「从 schema 生成物化图」最接近的现成骨架。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要把多源数据按统一 schema 物化成图时。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="cat-infra.html"><span>上一篇</span><strong>8.4 语义基础设施</strong></a><a class="pager-next" href="cat-vocab.html"><span>下一篇</span><strong>8.6 领域词表与本体资产</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-microsoft-graphrag">Microsoft GraphRAG</a></li><li class="lvl3"><a href="#p-hkuds-lightrag">LightRAG</a></li><li class="lvl3"><a href="#p-falkordb-falkordb">FalkorDB</a></li><li class="lvl3"><a href="#p-neo4j-labs-llm-graph-builder">LLM Graph Builder</a></li><li class="lvl3"><a href="#p-memgraph-memgraph">Memgraph</a></li><li class="lvl3"><a href="#p-graphify-labs-graphify">Graphify</a></li><li class="lvl3"><a href="#p-nicolas-hbt-pygraft">PyGRAFT</a></li><li class="lvl3"><a href="#p-biocypher-biocypher">BioCypher</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.3 建模与工程工具链 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.3 建模与工程工具链&lt;/h1&gt;&lt;p class="chapter-sub"&gt;编写 → 校验 → 编译 → 发布 → 消费&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.3 建模与工程工具链 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.3 建模与工程工具链&lt;/h1&gt;&lt;p class="chapter-sub"&gt;编写 → 校验 → 编译 → 发布 → 消费&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-toolchain">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html" class="is-active">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.3 建模与工程工具链</h1><p class="chapter-sub">编写 → 校验 → 编译 → 发布 → 消费</p>
+      <p class="lede">这一格解决的是「本体这件事在工程上怎么可行」。八个项目分两类：<strong>编辑器</strong>（Protégé、WebVOWL、Ontosphere、OrionBelt、Mentor）产出即交付物；<strong>编译器</strong>（LinkML）产出是中间物，再由生成器分发到各目标格式。这两类不能互相替代，但一个组织只需要一个「源」。</p>
+<div class="note"><strong>关键判断</strong>：schema 的单一源应该是人可读、可 diff、可编译的东西，而不是某个编辑器工程文件。</div>
+<div class="cards"><article class="card" id="p-linkml-linkml">
+  <div class="card-head">
+    <h3 class="card-title">LinkML</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/linkml/linkml">linkml/linkml</a></div>
+  <div class="card-meta"><span class="stars">★ 677</span><span>2021-03-16</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">YAML 优先的建模语言。仓库里有 41 个生成器模块：JSON Schema、SQL DDL、OWL、SHACL、Shex、RDF、YARRRML、ER 图、PlantUML、Markdown 数据字典、多语言代码。它回答的是「谁是 schema 的单一源」，而不是「怎么画图」。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要给一套对象模型找一个可 diff、可 review、可多目标编译的源头时。</div>
+</article><article class="card" id="p-protegeproject-protege">
+  <div class="card-head">
+    <h3 class="card-title">Protégé</h3>
+    <span class="tier tier-s" title="核心必读">S</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/protegeproject/protege">protegeproject/protege</a></div>
+  <div class="card-meta"><span class="stars">★ 1,617</span><span>2013-08-20</span><span>Java</span><span>NOASSERTION</span></div>
+  <div class="card-body">OWL 桌面编辑器二十年的事实标准，分类树、公理编辑、推理机接入都成熟。但它是安装包、无端点、无批量校验，天然只能当「建模期」工具。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要人工审视分类是否合理、公理是否矛盾时。</div>
+</article><article class="card" id="p-incatools-ontology-development-kit">
+  <div class="card-head">
+    <h3 class="card-title">Ontology Development Kit</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/INCATools/ontology-development-kit">INCATools/ontology-development-kit</a></div>
+  <div class="card-meta"><span class="stars">★ 387</span><span>2015-12-15</span><span>Dockerfile</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">把本体开发做成流水线：固定镜像、按一份配置生成仓库骨架、生成禁止手改的 Makefile、内置 CI / QC / 发布 / 动态 import。生物医学界把它跑成了工业线。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>只想借它的三条纪律（生成物与手工物分离、配置驱动骨架、QC 必须是 CI job）时。</div>
+</article><article class="card" id="p-sparna-git-sparnatural">
+  <div class="card-head">
+    <h3 class="card-title">Sparnatural</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/sparna-git/Sparnatural">sparna-git/Sparnatural</a></div>
+  <div class="card-meta"><span class="stars">★ 315</span><span>2018-08-31</span><span>TypeScript</span><span>LGPL-3.0</span></div>
+  <div class="card-body">用 SHACL 配置出来的可视化 SPARQL 查询器。三个设计值得抄：配置即 schema 所以非法组合在界面上不可表达；facet 保证不会产出零结果查询；生成的 SPARQL 先给人看再执行。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要把「写查询」降级成「点选」、又要保证结果不为空时。</div>
+</article><article class="card" id="p-visualdataweb-webvowl">
+  <div class="card-head">
+    <h3 class="card-title">WebVOWL</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/VisualDataWeb/WebVOWL">VisualDataWeb/WebVOWL</a></div>
+  <div class="card-meta"><span class="stars">★ 1,021</span><span>2015-04-17</span><span>JavaScript</span><span>MIT</span></div>
+  <div class="card-body">把 OWL 本体画成可交互的网页图，节点按类层次布局，用于评审与沟通而非开发。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要一张「不装软件就能打开」的本体全景图时。</div>
+</article><article class="card" id="p-thhanke-ontosphere">
+  <div class="card-head">
+    <h3 class="card-title">Ontosphere</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ThHanke/ontosphere">ThHanke/ontosphere</a></div>
+  <div class="card-meta"><span class="stars">★ 255</span><span>2025-09-03</span><span>TypeScript</span><span>NOASSERTION</span></div>
+  <div class="card-body">浏览器内的 RDF / 本体编辑器，可从文件、URL 或 SPARQL 端点装载，带 OWL-RL 推理。两个机制值得抄：RDFC-1.0 规范化加 SHA-256（解决空白节点标号抖动导致 diff 全红），以及带 justification 的诊断对象。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要让非工程角色在浏览器里改本体时。</div>
+</article><article class="card" id="p-ralforion-orionbelt-ontology-builder">
+  <div class="card-head">
+    <h3 class="card-title">OrionBelt Builder</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ralforion/orionbelt-ontology-builder">ralforion/orionbelt-ontology-builder</a></div>
+  <div class="card-meta"><span class="stars">★ 218</span><span>2025-11-25</span><span>Python</span><span>NOASSERTION</span></div>
+  <div class="card-body">Streamlit + rdflib 的浏览器工作台，OWL-RL 推理、SKOS 校验。设计上有两点很实：分级校验（错误 / 警告 / 提示）与「带理由的豁免」，且故意不提供一键全修复。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计「校验结果怎么让人看懂、怎么允许合理例外」时。</div>
+</article><article class="card" id="p-faubulous-mentor-vscode">
+  <div class="card-head">
+    <h3 class="card-title">Mentor for VSCode</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/faubulous/mentor-vscode">faubulous/mentor-vscode</a></div>
+  <div class="card-meta"><span class="stars">★ 49</span><span>2023-09-23</span><span>TypeScript</span><span>GPL-3.0</span></div>
+  <div class="card-body">VSCode 内的 RDF / 本体编辑支持，边写边校验，把建模放回工程师日常的窗口。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>团队是工程师文化、不希望引入新 IDE 时。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="cat-agent.html"><span>上一篇</span><strong>8.2 Agent 上下文与记忆</strong></a><a class="pager-next" href="cat-infra.html"><span>下一篇</span><strong>8.4 语义基础设施</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-linkml-linkml">LinkML</a></li><li class="lvl3"><a href="#p-protegeproject-protege">Protégé</a></li><li class="lvl3"><a href="#p-incatools-ontology-development-kit">Ontology Development Kit</a></li><li class="lvl3"><a href="#p-sparna-git-sparnatural">Sparnatural</a></li><li class="lvl3"><a href="#p-visualdataweb-webvowl">WebVOWL</a></li><li class="lvl3"><a href="#p-thhanke-ontosphere">Ontosphere</a></li><li class="lvl3"><a href="#p-ralforion-orionbelt-ontology-builder">OrionBelt Builder</a></li><li class="lvl3"><a href="#p-faubulous-mentor-vscode">Mentor for VSCode</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十五 · 术语表 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;附录&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十五 · 术语表&lt;/h1&gt;&lt;p class="chapter-sub"&gt;中英对照与一句话定义&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="十五 · 术语表 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;附录&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十五 · 术语表&lt;/h1&gt;&lt;p class="chapter-sub"&gt;中英对照与一句话定义&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="glossary">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html" class="is-active">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">附录</div><h1 class="chapter-title">十五 · 术语表</h1><p class="chapter-sub">中英对照与一句话定义</p>
+      <p>术语混乱是本体领域最大的隐性成本。「本体」「知识图谱」「语义层」「图数据库」在不同团队口中指不同的东西，讨论往往在术语层就分裂了。这张表给每个词一句话定义，并标注它在本书中的用法。</p>
+<h3 id="h3-0">一、本体与语义</h3>
+<div class="table-wrap"><table><thead><tr><th>术语</th><th>英文</th><th>一句话定义</th></tr></thead><tbody><tr><td>本体</td><td>Ontology</td><td>对某个领域中「有哪些东西、它们怎么关联、什么必须为真」的显式规定。本书默认指<strong>可执行</strong>的那一类，即操作本体。</td></tr><tr><td>操作本体</td><td>Operational Ontology</td><td>能被机器校验、被流水线拒绝写入的本体。与「写给人看的文档本体」相对。</td></tr><tr><td>分类体系</td><td>Taxonomy</td><td>只有层级（is-a）没有公理与约束的树。是本体最弱的一种形式，常被误称为本体。</td></tr><tr><td>词表</td><td>Vocabulary</td><td>一组受控术语及其定义，通常不含类之间的逻辑关系。SKOS 是它的标准表达。</td></tr><tr><td>公理</td><td>Axiom</td><td>断言为真的陈述，是所有推论的起点。例如「每个指标必有责任人」。</td></tr><tr><td>推理</td><td>Reasoning</td><td>从已有断言推出新断言的过程。<strong>它不检查对错，只展开蕴含。</strong></td></tr><tr><td>蕴含</td><td>Entailment</td><td>若 A 为真则 B 必为真。推理机的全部工作就是算这个关系。</td></tr><tr><td>闭包</td><td>Closure</td><td>把能推出的事实全部物化后的图。实测中体积膨胀 2.1–2.3 倍。</td></tr><tr><td>开放世界假设</td><td>Open World Assumption (OWA)</td><td>「没写」等于「未知」，不等于「不存在」。这是 OWL 与所有校验技术分歧的根源。</td></tr><tr><td>封闭世界假设</td><td>Closed World Assumption (CWA)</td><td>「没写」等于「没有」。SHACL、SQL、所有业务校验都建立在这个假设上。</td></tr><tr><td>唯一命名假设</td><td>Unique Name Assumption (UNA)</td><td>不同名字指不同对象。OWL 默认不成立，因此常出现意外的「同一实体」合并。</td></tr><tr><td>可满足性</td><td>Satisfiability</td><td>一个模型是否存在任何合法实例。不可满足意味着模型自相矛盾。</td></tr><tr><td>不一致</td><td>Inconsistency</td><td>数据与公理冲突。推理机能发现它，但通常只在分类时暴露，且不指出具体哪条数据错。</td></tr><tr><td>本体工程</td><td>Ontology Engineering</td><td>把领域知识转成上述形式化产物的方法、流程与工具的总称。</td></tr><tr><td>competency question</td><td>Competency Question (CQ)</td><td>模型必须能回答的问句。它是需求的形式化，也是验收标准。本书建议从 20 条起步。</td></tr></tbody></table></div>
+<h3 id="h3-1">二、语言与标准</h3>
+<div class="table-wrap"><table><thead><tr><th>术语</th><th>英文</th><th>一句话定义</th></tr></thead><tbody><tr><td>RDF</td><td>Resource Description Framework</td><td>「主语—谓语—宾语」三元组的数据模型。所有语义技术的公共底座。</td></tr><tr><td>Turtle</td><td>Terse RDF Triple Language</td><td>RDF 的可读文本语法。本书示例一律用 Turtle。</td></tr><tr><td>RDFS</td><td>RDF Schema</td><td>最轻的词汇表语言：类、子类、定义域、值域。只能做很弱的推理。</td></tr><tr><td>OWL</td><td>Web Ontology Language</td><td>重表达力的本体语言，有 EL / QL / RL / DL 等不同权衡的轮廓（profile）。</td></tr><tr><td>OWL 2 RL</td><td>Rule Language profile</td><td>可用规则引擎实现的 OWL 子集。**不含 <code>minCardinality</code> 规则**，这是实测确认的关键限制。</td></tr><tr><td>SHACL</td><td>Shapes Constraint Language</td><td>W3C 的数据形状校验标准。封闭世界、有明确违规报告、有退出码。<strong>本书推荐的校验层。</strong></td></tr><tr><td>ShEx</td><td>Shape Expressions</td><td>SHACL 的同类竞品，语法更简洁，生态更小。</td></tr><tr><td>SPARQL</td><td>SPARQL Protocol and RDF Query Language</td><td>RDF 的查询语言，含 CONSTRUCT 可用于转换。</td></tr><tr><td>JSON-LD</td><td>JSON for Linked Data</td><td>用 JSON 表达 RDF 的方式，Web 集成的事实标准。</td></tr><tr><td>SKOS</td><td>Simple Knowledge Organization System</td><td>词表/叙词表的标准，适合「标签与同义词」而非结构建模。</td></tr><tr><td>R2RML</td><td>RDB to RDF Mapping Language</td><td>把关系表映射成虚拟 RDF 图的标准。</td></tr><tr><td>OBDA</td><td>Ontology-Based Data Access</td><td>不搬数据、用映射把已有库「当成」知识图来查的架构。</td></tr><tr><td>SHACL-AF</td><td>SHACL Advanced Features</td><td>SHACL 的扩展：规则、函数、推理。谨慎使用，会重新引入推理的复杂度。</td></tr></tbody></table></div>
+<h3 id="h3-2">三、工程与治理</h3>
+<div class="table-wrap"><table><thead><tr><th>术语</th><th>英文</th><th>一句话定义</th></tr></thead><tbody><tr><td>单一源</td><td>Single Source of Truth</td><td>一份模型源文件，其他产物（建表、文档、约束、API）全部生成。</td></tr><tr><td>生成器</td><td>Generator</td><td>从模型源产出某一目标格式的模块。本书实测的一个项目有 41 个。</td></tr><tr><td>校验闸门</td><td>Validation Gate</td><td>会让流水线变红的校验。没有非零退出码的校验不算闸门。</td></tr><tr><td>严重级别</td><td>Severity</td><td>违规的分级（如 fatal / warn / info），决定是阻断、告警还是记录。</td></tr><tr><td>带期限豁免</td><td>Time-boxed Waiver</td><td>允许已知违规存在，但必须写明负责人与到期日。防止豁免变成永久。</td></tr><tr><td>影响面</td><td>Blast Radius</td><td>一次变更会波及哪些下游（表、报表、API、模型）。</td></tr><tr><td>双时态</td><td>Bitemporal</td><td>同时记录「业务发生时间」与「系统记录时间」，用于回答「当时我们以为是什么」。</td></tr><tr><td>本体当代码</td><td>Ontology-as-Code</td><td>把模型源纳入版本控制、评审、CI 的做法。本书的基本主张。</td></tr><tr><td>弃用</td><td>Deprecation</td><td>不删除、只标记并给出替代与期限。兼容性的核心手段。</td></tr><tr><td>分级</td><td>Tier (S/A/B/C)</td><td>本书对项目成熟度的粗分：S 可作基础设施、A 可生产采用、B 可借鉴、C 仅观察。</td></tr><tr><td>活跃度</td><td>Activity</td><td>按最后提交时间分四档（活跃/放缓/停滞/死库）。<strong>不等于质量</strong>。</td></tr></tbody></table></div>
+<h3 id="h3-3">四、动作与状态</h3>
+<div class="table-wrap"><table><thead><tr><th>术语</th><th>英文</th><th>一句话定义</th></tr></thead><tbody><tr><td>动作</td><td>Action</td><td>一个有名字、有参数、有前置条件、有副作用的业务操作。</td></tr><tr><td>前置条件</td><td>Precondition</td><td>动作执行前必须为真的断言。可被校验，因此可被拒绝。</td></tr><tr><td>后置条件</td><td>Postcondition</td><td>动作完成后必须为真的断言，用于对账与回归。</td></tr><tr><td>状态所有权</td><td>State Ownership</td><td>每个状态字段归属三方之一：源系统（source-backed）、本体（ontology-owned）、派生（derived）。</td></tr><tr><td>对账</td><td>Reconciliation</td><td>比较「应该有」与「实际有」，产出差异清单。</td></tr><tr><td>审计</td><td>Audit</td><td>记录谁在何时以什么理由改了什么。五个必备字段：who / when / what / why / result。</td></tr></tbody></table></div>
+<h3 id="h3-4">五、生态与相邻概念</h3>
+<div class="table-wrap"><table><thead><tr><th>术语</th><th>英文</th><th>一句话定义</th></tr></thead><tbody><tr><td>知识图谱</td><td>Knowledge Graph (KG)</td><td>用图结构组织的、带语义的事实集合。<strong>比本体宽泛</strong>：没有公理与约束的图也叫 KG。</td></tr><tr><td>图数据库</td><td>Graph Database</td><td>存储与查询图结构的系统（属性图或 RDF 图）。<strong>是存储，不是语义。</strong></td></tr><tr><td>属性图</td><td>Property Graph</td><td>节点与边都可挂属性的图模型。Cypher/GQL 生态。</td></tr><tr><td>语义层</td><td>Semantic Layer</td><td>业务指标与维度的统一定义层。BI 语境下常指这个，与本体有交集但不相同。</td></tr><tr><td>GraphRAG</td><td>Graph Retrieval-Augmented Generation</td><td>用图结构辅助检索增强生成的做法。与本体共享「结构化」但不共享「约束」。</td></tr><tr><td>向量库</td><td>Vector Store</td><td>存 embedding、按相似度检索的系统。与本体是互补而非替代关系。</td></tr><tr><td>本体优先</td><td>Ontology-First</td><td>先建模型再建应用的开发顺序。本书实测显示该提法在 2026 年缺乏规模证据。</td></tr><tr><td>结构索引</td><td>Structural Index</td><td>对代码/文档的语法结构做索引（非语义）。近年星数最高的几个「图谱」项目属于此类。</td></tr><tr><td>数据契约</td><td>Data Contract</td><td>生产者与消费者之间关于字段、类型、约束的显式约定。与本体高度重叠，常可互译。</td></tr><tr><td>元数据管理</td><td>Metadata Management</td><td>更宽的治理范畴：血缘、目录、质量、权限。本体是其中「语义」那一块。</td></tr></tbody></table></div>
+<h3 id="h3-5">一句话区分三个最容易混的词</h3>
+<ul><li><strong>本体</strong>回答「什么必须为真」——它有约束，会拒绝。</li><li><strong>知识图谱</strong>回答「有什么、怎么连」——它有结构，不拒绝。</li><li><strong>图数据库</strong>回答「怎么存、怎么查得快」——它是引擎，不懂业务。</li></ul>
+<p>三者可以叠在一套系统里，但<strong>不能互相替代</strong>。把它们混为一谈的项目，通常在第六个月发现「图建好了，但没人能说清什么算错」。</p>
+      <div class="pager"><a class="pager-prev" href="llm.html"><span>上一篇</span><strong>十四 · 本体与模型系统的边界</strong></a><a class="pager-next" href="method.html"><span>下一篇</span><strong>附录 A · 方法与可复现性</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#h3-0">一、本体与语义</a></li><li class="lvl3"><a href="#h3-1">二、语言与标准</a></li><li class="lvl3"><a href="#h3-2">三、工程与治理</a></li><li class="lvl3"><a href="#h3-3">四、动作与状态</a></li><li class="lvl3"><a href="#h3-4">五、生态与相邻概念</a></li><li class="lvl3"><a href="#h3-5">一句话区分三个最容易混的词</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

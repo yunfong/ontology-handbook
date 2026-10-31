@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.7 索引之外的十九个系统 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.7 索引之外的十九个系统&lt;/h1&gt;&lt;p class="chapter-sub"&gt;趋势章节提到、却不在主索引里的项目&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.7 索引之外的十九个系统 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.7 索引之外的十九个系统&lt;/h1&gt;&lt;p class="chapter-sub"&gt;趋势章节提到、却不在主索引里的项目&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-beyond">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html" class="is-active">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.7 索引之外的十九个系统</h1><p class="chapter-sub">趋势章节提到、却不在主索引里的项目</p>
+      <p class="lede">一份索引的边界往往由作者的关键词决定，而趋势论证又常常引用索引之外的项目。这一格把缺口补齐：一个 OBDA 实现、一个国产图引擎、一个带版本控制的图库、三个记忆层、四个本体工程工具、七个「本体优先」实验、两个代码图谱。</p>
+<div class="note"><strong>为什么值得单列</strong>：这批项目的星数比主索引高一个数量级，如果只看主索引，会严重低估「结构热」的规模。</div>
+<div class="cards"><article class="card" id="p-ontop-ontop">
+  <div class="card-head">
+    <h3 class="card-title">Ontop</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ontop/ontop">ontop/ontop</a></div>
+  <div class="card-meta"><span class="stars">★ 1,005</span><span>2013-07-22</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">虚拟知识图（OBDA）最长寿的实现：关系库不动，用 mapping 把表解释成本体，SPARQL 查询实时重写成 SQL 下推。数据不搬家是它唯一但足够大的卖点。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>已有关系库、不想为语义层重建数据资产时，先验方言兼容性。</div>
+</article><article class="card" id="p-openspg-openspg">
+  <div class="card-head">
+    <h3 class="card-title">OpenSPG</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/OpenSPG/openspg">OpenSPG/openspg</a></div>
+  <div class="card-meta"><span class="stars">★ 2,285</span><span>2023-10-23</span><span>Java</span><span>Apache-2.0</span></div>
+  <div class="card-body">蚂蚁与 OpenKG 的知识图引擎，核心是 SPG 框架：把属性图的结构与 RDF 的语义缝起来。README 的判词很硬——「RDF/OWL 的语义复杂度无法工业化落地」。配套 KGDSL 用领域语言写规则。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要在「属性图好落地」与「RDF 有语义」之间找折中时。</div>
+</article><article class="card" id="p-terminusdb-terminusdb">
+  <div class="card-head">
+    <h3 class="card-title">TerminusDB</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/terminusdb/terminusdb">terminusdb/terminusdb</a></div>
+  <div class="card-meta"><span class="stars">★ 3,464</span><span>2019-07-23</span><span>Prolog</span><span>Apache-2.0</span></div>
+  <div class="card-body">把 git 语义做进图库内核：每次更新是一个 commit，commit 之间可 diff / patch，支持 branch 与 time-travel 查询，自我定位是 system of record。核心用 Prolog 写。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要「任意时点可查 + 变更可 diff」的存储形态时。</div>
+</article><article class="card" id="p-getzep-graphiti">
+  <div class="card-head">
+    <h3 class="card-title">Graphiti</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/getzep/graphiti">getzep/graphiti</a></div>
+  <div class="card-meta"><span class="stars">★ 32,367</span><span>2024-08-08</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">面向 Agent 的时序上下文图：每条事实带有效期窗口，矛盾以「失效」而非「覆盖」处理，全部派生事实可追回原始 episode。区分「预声明类型」与「从数据学出的类型」两种本体。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计双时态与溯源时，直接抄它的数据模型。</div>
+</article><article class="card" id="p-topoteretes-cognee">
+  <div class="card-head">
+    <h3 class="card-title">Cognee</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/topoteretes/cognee">topoteretes/cognee</a></div>
+  <div class="card-meta"><span class="stars">★ 32,926</span><span>2023-08-16</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">把记忆抽象成四个动词：remember / recall / improve / forget，并用 session distillation 把被接受的经验沉淀成永久记忆。可在无 LLM 模式下本地运行，也能整套跑在 Postgres 上。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计「经验如何变成规则」的沉淀机制时。</div>
+</article><article class="card" id="p-mem0ai-mem0">
+  <div class="card-head">
+    <h3 class="card-title">Mem0</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/mem0ai/mem0">mem0ai/mem0</a></div>
+  <div class="card-meta"><span class="stars">★ 68,105</span><span>2023-06-20</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">Agent 记忆层的事实标准，drop-in 的 add / search，自动抽取事实、去重、更新。它是对话场景的产物：没有类型系统、没有约束、不保证可复现。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>做对话型助手、需要长期记忆时。</div>
+</article><article class="card" id="p-oxigraph-oxigraph">
+  <div class="card-head">
+    <h3 class="card-title">Oxigraph</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/oxigraph/oxigraph">oxigraph/oxigraph</a></div>
+  <div class="card-meta"><span class="stars">★ 2,013</span><span>2018-05-16</span><span>Rust</span><span>Apache-2.0</span></div>
+  <div class="card-body">基于 RocksDB 的 Rust SPARQL 存储，四种形态：Rust 库、Python 绑定 pyoxigraph、JS/WASM、CLI + HTTP 服务。覆盖 RDF 规范化。作者自述查询求值尚未优化。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>Python 项目里需要一个可持久化的本地 RDF 库时。</div>
+</article><article class="card" id="p-ontodev-robot">
+  <div class="card-head">
+    <h3 class="card-title">ROBOT</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ontodev/robot">ontodev/robot</a></div>
+  <div class="card-meta"><span class="stars">★ 329</span><span>2015-01-31</span><span>Java</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">OBO 社区的本体命令行工具：diff、merge、reason、report、extract、convert、query。架构上把纯逻辑的 Operations 与负责 IO 的 Commands 分开，这个切分值得抄。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要列「本体 CI 该跑哪几步」时，拿它的命令清单当底稿。</div>
+</article><article class="card" id="p-ontoology-ontoology">
+  <div class="card-head">
+    <h3 class="card-title">OnToology</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/OnToology/OnToology">OnToology/OnToology</a></div>
+  <div class="card-meta"><span class="stars">★ 116</span><span>2015-03-11</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">把本体仓库接上 GitHub：每次 push 自动生成文档（Widoco）、类图（AR2DTool）、质量扫描（OOPS!）。产出物不写回源文件，流水线由一个配置文件声明。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要给本体挂自动文档与质量报告时。</div>
+</article><article class="card" id="p-krr-oxford-deeponto">
+  <div class="card-head">
+    <h3 class="card-title">DeepOnto</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/KRR-Oxford/DeepOnto">KRR-Oxford/DeepOnto</a></div>
+  <div class="card-meta"><span class="stars">★ 328</span><span>2021-11-21</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">牛津 KRR 的本体处理库，底座是 OWLAPI。六个子模块里最有用的是 Verbaliser：把复杂类表达式翻成自然语言句子；以及 Pruner：抽取子本体用于发布。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要把约束或公理翻译成人话时。</div>
+</article><article class="card" id="p-liberai-ontoekg">
+  <div class="card-head">
+    <h3 class="card-title">OntoEKG</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/LiberAI/OntoEKG">LiberAI/OntoEKG</a></div>
+  <div class="card-meta"><span class="stars">★ 79</span><span>2025-12-31</span><span>Jupyter Notebook</span><span>MIT</span></div>
+  <div class="card-body">LLM 驱动的企业本体构建，两阶段：先抽类与属性，再推断 subClassOf 层次并序列化成标准 RDF。论文覆盖数据、金融、物流三个领域。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>研究「从企业文本抽本体」的流程骨架时。</div>
+</article><article class="card" id="p-senolisci-mykg">
+  <div class="card-head">
+    <h3 class="card-title">myKG</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/SenolIsci/mykg">SenolIsci/mykg</a></div>
+  <div class="card-meta"><span class="stars">★ 80</span><span>2026-05-27</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">知识图引擎，顺序与多数项目相反：先从文档诱导出全局 schema，再按 schema 抽实例。有 CI 与覆盖率门禁，支持多家模型服务。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要「先定 schema 再抽」的工程样例时。</div>
+</article><article class="card" id="p-ontorag-ontorag">
+  <div class="card-head">
+    <h3 class="card-title">OntoRAG</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ontorag/ontorag">ontorag/ontorag</a></div>
+  <div class="card-meta"><span class="stars">★ 33</span><span>2025-12-31</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">以「Retrieve meaning, not paragraphs」为口号的 CLI 与核心库，星数很低，是「本体优先」这一提法的早期样本。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>只在追踪该口号来源时。</div>
+</article><article class="card" id="p-deepaksaipendyala-ontokg">
+  <div class="card-head">
+    <h3 class="card-title">OntoKG</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/deepaksaipendyala/OntoKG">deepaksaipendyala/OntoKG</a></div>
+  <div class="card-meta"><span class="stars">★ 11</span><span>2025-09-13</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">把属性按「查表能拿到的」与「必须走关系的」提前分类（intrinsic-relational routing）。这个分类在建模阶段做，能省掉后期大量返工。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计属性表结构、需要区分固有属性与关系属性时。</div>
+</article><article class="card" id="p-homurat-llm4vkg">
+  <div class="card-head">
+    <h3 class="card-title">LLM4VKG</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/HomuraT/LLM4VKG">HomuraT/LLM4VKG</a></div>
+  <div class="card-meta"><span class="stars">★ 25</span><span>2025-05-09</span><span>PLpgSQL</span><span>—</span></div>
+  <div class="card-body">让 LLM 读表结构、生成 OBDA mapping，方向对准「已有数据库」而非新建图。风险是 mapping 错了不报错、只静默返回错数据。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>探索「mapping 自动化」时，作为问题清单。</div>
+</article><article class="card" id="p-sciknoworg-ontolearner">
+  <div class="card-head">
+    <h3 class="card-title">OntoLearner</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/sciknoworg/OntoLearner">sciknoworg/OntoLearner</a></div>
+  <div class="card-meta"><span class="stars">★ 124</span><span>2025-01-08</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">本体学习的模块化库：术语抽取、概念形成、层次构建、关系抽取各成模块，服务 LLMs4OL 类评测。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>做本体学习实验、需要可替换模块时。</div>
+</article><article class="card" id="p-sciknoworg-ontoaligner">
+  <div class="card-head">
+    <h3 class="card-title">OntoAligner</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/sciknoworg/OntoAligner">sciknoworg/OntoAligner</a></div>
+  <div class="card-meta"><span class="stars">★ 98</span><span>2024-10-01</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">本体对齐工具箱，内置多种匹配器，用于找两个本体之间等价的类与属性。输出仍需人工复核。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要把外部词表映射到自有词表时。</div>
+</article><article class="card" id="p-egonex-ai-understand-anything">
+  <div class="card-head">
+    <h3 class="card-title">Understand Anything</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/Egonex-AI/Understand-Anything">Egonex-AI/Understand-Anything</a></div>
+  <div class="card-meta"><span class="stars">★ 89,016</span><span>2026-03-15</span><span>TypeScript</span><span>MIT</span></div>
+  <div class="card-body">把代码库、知识库、文档变成可交互知识图的插件，支持主流编码 Agent。偏「给人看」的理解工具，不承诺类型系统。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要向非工程角色解释代码结构时。</div>
+</article><article class="card" id="p-colbymchenry-codegraph">
+  <div class="card-head">
+    <h3 class="card-title">CodeGraph</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/colbymchenry/codegraph">colbymchenry/codegraph</a></div>
+  <div class="card-meta"><span class="stars">★ 75,983</span><span>2026-01-18</span><span>TypeScript</span><span>MIT</span></div>
+  <div class="card-body">Rust 内核的语义代码智能 CLI：预索引、增量同步、100% 本地，为编码 Agent 提供「外科手术式上下文」。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>团队重度使用编码 Agent、想降低上下文成本时。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="cat-vocab.html"><span>上一篇</span><strong>8.6 领域词表与本体资产</strong></a><a class="pager-next" href="trends.html"><span>下一篇</span><strong>九 · 八个趋势的独立核验</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-ontop-ontop">Ontop</a></li><li class="lvl3"><a href="#p-openspg-openspg">OpenSPG</a></li><li class="lvl3"><a href="#p-terminusdb-terminusdb">TerminusDB</a></li><li class="lvl3"><a href="#p-getzep-graphiti">Graphiti</a></li><li class="lvl3"><a href="#p-topoteretes-cognee">Cognee</a></li><li class="lvl3"><a href="#p-mem0ai-mem0">Mem0</a></li><li class="lvl3"><a href="#p-oxigraph-oxigraph">Oxigraph</a></li><li class="lvl3"><a href="#p-ontodev-robot">ROBOT</a></li><li class="lvl3"><a href="#p-ontoology-ontoology">OnToology</a></li><li class="lvl3"><a href="#p-krr-oxford-deeponto">DeepOnto</a></li><li class="lvl3"><a href="#p-liberai-ontoekg">OntoEKG</a></li><li class="lvl3"><a href="#p-senolisci-mykg">myKG</a></li><li class="lvl3"><a href="#p-ontorag-ontorag">OntoRAG</a></li><li class="lvl3"><a href="#p-deepaksaipendyala-ontokg">OntoKG</a></li><li class="lvl3"><a href="#p-homurat-llm4vkg">LLM4VKG</a></li><li class="lvl3"><a href="#p-sciknoworg-ontolearner">OntoLearner</a></li><li class="lvl3"><a href="#p-sciknoworg-ontoaligner">OntoAligner</a></li><li class="lvl3"><a href="#p-egonex-ai-understand-anything">Understand Anything</a></li><li class="lvl3"><a href="#p-colbymchenry-codegraph">CodeGraph</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

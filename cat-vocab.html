@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.6 领域词表与本体资产 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.6 领域词表与本体资产&lt;/h1&gt;&lt;p class="chapter-sub"&gt;别人已经付出的建模劳动，能不能借&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.6 领域词表与本体资产 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.6 领域词表与本体资产&lt;/h1&gt;&lt;p class="chapter-sub"&gt;别人已经付出的建模劳动，能不能借&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-vocab">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html" class="is-active">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.6 领域词表与本体资产</h1><p class="chapter-sub">别人已经付出的建模劳动，能不能借</p>
+      <p class="lede">这一格不是工具，是<strong>资产</strong>：术语、上位词、公理、标识符规范。借用时要区分三样东西的价值：公理（需要推理机才能兑现）、分层（业务系统真正需要的）、标识符（最容易被低估）。一个反复出现的教训是：<strong>标识符必须落在你自己能治理的命名空间里</strong>，否则词表还活着、ID 已经死了。</p>
+<div class="note"><strong>判据</strong>：整包引入几乎总是错的；摘术语、抄分层、借命名规范才是对的。</div>
+<div class="cards"><article class="card" id="p-edmcouncil-fibo">
+  <div class="card-head">
+    <h3 class="card-title">FIBO</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/edmcouncil/fibo">edmcouncil/fibo</a></div>
+  <div class="card-meta"><span class="stars">★ 784</span><span>2014-02-07</span><span>Shell</span><span>MIT</span></div>
+  <div class="card-body">金融业务本体，OMG 标准化、季度发版、MIT 许可。体量以 RDF 为主（约 440 MB），按业务实体、公司行为、衍生品、证券等十个域组织。它以合约与工具为中心，客户域很薄，且建模的是欧美市场结构。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要金融术语的权威定义与稳定 IRI 时，摘用而非整包引入。</div>
+</article><article class="card" id="p-google-schema-dts">
+  <div class="card-head">
+    <h3 class="card-title">Schema.org Types</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/google/schema-dts">google/schema-dts</a></div>
+  <div class="card-meta"><span class="stars">★ 1,254</span><span>2018-11-29</span><span>TypeScript</span><span>Apache-2.0</span></div>
+  <div class="card-body">Schema.org 词表的 TypeScript 类型定义，覆盖全网最常见的实体与关系。它是事实上的「轻本体」：没有公理，但标识符稳定、被搜索引擎与大量工具消费。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要对外导出 JSON-LD、让第三方能理解你的对象时。</div>
+</article><article class="card" id="p-ozekik-awesome-ontology">
+  <div class="card-head">
+    <h3 class="card-title">Awesome Ontology</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ozekik/awesome-ontology">ozekik/awesome-ontology</a></div>
+  <div class="card-meta"><span class="stars">★ 734</span><span>2019-03-01</span><span>—</span><span>CC-BY-4.0</span></div>
+  <div class="card-body">本体资源清单，价值在编辑动作而非链接本身：给每个停更项目标注停更年份，并记录「某个词表被合并进另一个」这类消亡方式。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>做技术尽调、需要快速判断某个词表还活着没有时。</div>
+</article><article class="card" id="p-ncor-organization-awesome-ontologies">
+  <div class="card-head">
+    <h3 class="card-title">Awesome Ontologies (NCOR)</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/NCOR-Organization/awesome-ontologies">NCOR-Organization/awesome-ontologies</a></div>
+  <div class="card-meta"><span class="stars">★ 25</span><span>2025-04-29</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">面向语义互操作的本体清单，BFO 一脉，要求贡献者附上可下载的实物文件而不只是链接。规模小、维护集中。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要 BFO 系上位本体的索引时。</div>
+</article><article class="card" id="p-tanghaibao-goatools">
+  <div class="card-head">
+    <h3 class="card-title">GO Tools</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/tanghaibao/goatools">tanghaibao/goatools</a></div>
+  <div class="card-meta"><span class="stars">★ 909</span><span>2010-01-15</span><span>Python</span><span>BSD-2-Clause</span></div>
+  <div class="card-body">Gene Ontology 的词条处理库（本身不是词表）。两个机制可借：slim 把细词归并到粗词；传播计数会导致父词虚高，需要专门的消除算法。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>处理层级汇总、又不想让父节点数字虚高时。</div>
+</article><article class="card" id="p-audioset-ontology">
+  <div class="card-head">
+    <h3 class="card-title">AudioSet Ontology</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/audioset/ontology">audioset/ontology</a></div>
+  <div class="card-meta"><span class="stars">★ 715</span><span>2016-09-02</span><span>—</span><span>—</span></div>
+  <div class="card-body">音频事件分类本体，结构干净：七字段的类记录，带正负例。它同时是一个警示：标识符锚在已关停的 Freebase 上，说明「稳定 ID」必须落在自己能治理的命名空间里。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要一份结构极简的本体样例时。</div>
+</article><article class="card" id="p-kbpedia-kbpedia">
+  <div class="card-head">
+    <h3 class="card-title">KBpedia</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/KBpedia/kbpedia">KBpedia/kbpedia</a></div>
+  <div class="card-meta"><span class="stars">★ 241</span><span>2016-09-19</span><span>—</span><span>—</span></div>
+  <div class="card-body">KKO 通用知识本体与跨源 linkage 映射，2020 年后停更。README 内部数字自相矛盾（5.8 万概念 / 54k 文件 / 「30 来个」），是死库文档漂移的实证。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要跨领域上位词表、且能容忍文档不一致时。</div>
+</article><article class="card" id="p-azure-opendigitaltwins-building">
+  <div class="card-head">
+    <h3 class="card-title">Open Digital Twins (Building)</h3>
+    <span class="tier tier-c" title="仅作存档">C</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/Azure/opendigitaltwins-building">Azure/opendigitaltwins-building</a></div>
+  <div class="card-meta"><span class="stars">★ 177</span><span>2020-06-03</span><span>—</span><span>MIT</span></div>
+  <div class="card-body">DTDL 加 RealEstateCore 的楼宇与不动产数字孪生本体。一个细节值得学：标识符里编码了版本（dtmi:...;1），使「同一实体的不同版本」天然可区分。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计「标识符要不要带版本」时参考。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="cat-graphrag.html"><span>上一篇</span><strong>8.5 图谱检索与 GraphRAG</strong></a><a class="pager-next" href="cat-beyond.html"><span>下一篇</span><strong>8.7 索引之外的系统</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-edmcouncil-fibo">FIBO</a></li><li class="lvl3"><a href="#p-google-schema-dts">Schema.org Types</a></li><li class="lvl3"><a href="#p-ozekik-awesome-ontology">Awesome Ontology</a></li><li class="lvl3"><a href="#p-ncor-organization-awesome-ontologies">Awesome Ontologies (NCOR)</a></li><li class="lvl3"><a href="#p-tanghaibao-goatools">GO Tools</a></li><li class="lvl3"><a href="#p-audioset-ontology">AudioSet Ontology</a></li><li class="lvl3"><a href="#p-kbpedia-kbpedia">KBpedia</a></li><li class="lvl3"><a href="#p-azure-opendigitaltwins-building">Open Digital Twins (Building)</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

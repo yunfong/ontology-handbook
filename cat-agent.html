@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8.2 Agent 上下文层与本体化记忆 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.2 Agent 上下文层与本体化记忆&lt;/h1&gt;&lt;p class="chapter-sub"&gt;给模型一份有类型、有约束、可追溯的语义&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="8.2 Agent 上下文层与本体化记忆 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;第八章 · 开源生态地图&lt;/div&gt;&lt;h1 class="chapter-title"&gt;8.2 Agent 上下文层与本体化记忆&lt;/h1&gt;&lt;p class="chapter-sub"&gt;给模型一份有类型、有约束、可追溯的语义&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cat-agent">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html" class="is-active">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">第八章 · 开源生态地图</div><h1 class="chapter-title">8.2 Agent 上下文层与本体化记忆</h1><p class="chapter-sub">给模型一份有类型、有约束、可追溯的语义</p>
+      <p class="lede">这一类的共同判断是：Agent 的失败主要不是模型不行，而是缺一份<strong>有类型、有约束、可追溯</strong>的企业语义。但落到实现上，十个项目里只有三个是真形式本体（OntoGPT、CortexDB、OntoBricks），其余是「带类型的上下文」或「记忆」。混淆这两者，会高估它们的推理能力、低估它们的工程价值。</p>
+<div class="note"><strong>判据</strong>：问它「能不能拒绝一条不合法的写入」。能，是本体；不能，是上下文。</div>
+<div class="cards"><article class="card" id="p-semantica-agi-semantica">
+  <div class="card-head">
+    <h3 class="card-title">Semantica</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/semantica-agi/semantica">semantica-agi/semantica</a></div>
+  <div class="card-meta"><span class="stars">★ 14,342</span><span>2025-06-25</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">图原生的上下文与「可问责 AI」基础设施，topics 覆盖 agent-memory、context-graphs、ai-governance。README 自称是昂贵企业平台的替代品。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>比较「上下文层」这一品类时，作为高星参照。</div>
+</article><article class="card" id="p-deeplethe-utopia">
+  <div class="card-head">
+    <h3 class="card-title">Utopia</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/deeplethe/utopia">deeplethe/utopia</a></div>
+  <div class="card-meta"><span class="stars">★ 8,637</span><span>2026-08-07</span><span>Rust</span><span>Apache-2.0</span></div>
+  <div class="card-body">自称「首个开源企业世界模型」，Rust 实现，带双时态（事实何时为真 / 系统何时得知）与自家规则格式。有真公理，但 README 不提 OWL / RDF / SPARQL。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>需要「两个时钟」的时间模型参考时。</div>
+</article><article class="card" id="p-yuezhiai-jonex">
+  <div class="card-head">
+    <h3 class="card-title">Jonex</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/yuezhiai/jonex">yuezhiai/jonex</a></div>
+  <div class="card-meta"><span class="stars">★ 1,518</span><span>2026-07-19</span><span>Python</span><span>NOASSERTION</span></div>
+  <div class="card-body">多模态文档解析 + 本体驱动的知识引擎，对外叫 LLMWiki。定位是「把文档变成可问的知识」，本体在其中承担概念层。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>文档密集型场景的端到端参考。</div>
+</article><article class="card" id="p-ruc-datalab-evoontology">
+  <div class="card-head">
+    <h3 class="card-title">EvoOntology</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/ruc-datalab/EvoOntology">ruc-datalab/EvoOntology</a></div>
+  <div class="card-meta"><span class="stars">★ 1,102</span><span>2026-09-15</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">人大团队给编码 Agent 装的一层「自进化本体」，MCP 兼容。最值得看的是 gated versioning：同一份数据、同一个 Agent、同一份预算下对比 Parent 与 Candidate，通过才发布。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>设计「新版本本体怎么才算更好」的验收门时。</div>
+</article><article class="card" id="p-monarch-initiative-ontogpt">
+  <div class="card-head">
+    <h3 class="card-title">OntoGPT</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/monarch-initiative/ontogpt">monarch-initiative/ontogpt</a></div>
+  <div class="card-meta"><span class="stars">★ 1,080</span><span>2023-01-03</span><span>Jupyter Notebook</span><span>BSD-3-Clause</span></div>
+  <div class="card-body">LLM 加本体约束的结构化抽取（SPIRES 路线），学术机构长期维护。本体在外部，项目负责把文本「接地」到既有术语上，而不是自己发明一套。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>要从文献/报告里抽出结构化事实并对齐既有词表时。</div>
+</article><article class="card" id="p-clearailhc-clearai-dsh">
+  <div class="card-head">
+    <h3 class="card-title">ClearAI DSH</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/Clearailhc/clearai-dsh">Clearailhc/clearai-dsh</a></div>
+  <div class="card-meta"><span class="stars">★ 680</span><span>2026-09-12</span><span>JavaScript</span><span>Apache-2.0</span></div>
+  <div class="card-body">本体优先的 Agent preset：状态从会话记录投影、判卷与执行分离、阈值预注册、被推翻的结论不删除。它把这些认识论纪律写进了 Agent 的运行方式，而不是文档里。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>想把「评测先行」变成 Agent 的硬约束时。</div>
+</article><article class="card" id="p-nvidia-auto-ontology">
+  <div class="card-head">
+    <h3 class="card-title">NVIDIA Auto Ontology</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/NVIDIA/auto-ontology">NVIDIA/auto-ontology</a></div>
+  <div class="card-meta"><span class="stars">★ 648</span><span>2026-04-27</span><span>Python</span><span>Apache-2.0</span></div>
+  <div class="card-body">从数据反推语义图的框架，四步 Discover → Ground → Validate → Expose，强调确定性查询，对外暴露 MCP / CLI / API 三种入口。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>评估「从表结构自动生成语义层」的可行性时。</div>
+</article><article class="card" id="p-fengzhenfei-carrel">
+  <div class="card-head">
+    <h3 class="card-title">Carrel</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/FengZhenfei/carrel">FengZhenfei/carrel</a></div>
+  <div class="card-meta"><span class="stars">★ 643</span><span>2026-09-28</span><span>Python</span><span>MIT</span></div>
+  <div class="card-body">Ontology-Augmented Generation：自托管知识库，解析、索引、检索，图谱是可选增强。作者自述 Agent Loop 尚未实现，本体是未完成部分——这一点比它的宣传更值得注意。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>了解 OAG 这一提法的实际完成度时。</div>
+</article><article class="card" id="p-liliang-cn-cortexdb">
+  <div class="card-head">
+    <h3 class="card-title">CortexDB</h3>
+    <span class="tier tier-b" title="观察备选">B</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/liliang-cn/cortexdb">liliang-cn/cortexdb</a></div>
+  <div class="card-meta"><span class="stars">★ 473</span><span>2025-08-07</span><span>Go</span><span>MIT</span></div>
+  <div class="card-body">单文件 SQLite 装下 Agent 记忆、知识图与本体约束：RDF 1.2 / SPARQL / OWL 2 RL / SHACL，通 W3C 测试套件，并带一条 exactly-once 的变更流。零部署。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>边缘侧、单机部署、又想有约束能力时。</div>
+</article><article class="card" id="p-databrickslabs-ontobricks">
+  <div class="card-head">
+    <h3 class="card-title">OntoBricks</h3>
+    <span class="tier tier-a" title="重要参考">A</span>
+  </div>
+  <div class="card-repo"><a href="https://github.com/databrickslabs/ontobricks">databrickslabs/ontobricks</a></div>
+  <div class="card-meta"><span class="stars">★ 455</span><span>2026-04-07</span><span>Python</span><span>NOASSERTION</span></div>
+  <div class="card-body">把 Unity Catalog 的表变成知识图：OWL 2 RL、SWRL、R2RML、SHACL 全部编译成 Spark SQL 执行，带 DRAFT→IN-REVIEW→PUBLISHED 与单编辑者租约。是这一类里唯一同时具备标准本体栈、映射层、物化与治理的项目。</div>
+  <div class="card-adopt"><span class="adopt-label">何时采纳</span>想知道「湖仓上的本体工程」长什么样时。</div>
+</article></div>
+      <div class="pager"><a class="pager-prev" href="cat-platform.html"><span>上一篇</span><strong>8.1 企业本体平台</strong></a><a class="pager-next" href="cat-toolchain.html"><span>下一篇</span><strong>8.3 建模与工程工具链</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl3"><a href="#p-semantica-agi-semantica">Semantica</a></li><li class="lvl3"><a href="#p-deeplethe-utopia">Utopia</a></li><li class="lvl3"><a href="#p-yuezhiai-jonex">Jonex</a></li><li class="lvl3"><a href="#p-ruc-datalab-evoontology">EvoOntology</a></li><li class="lvl3"><a href="#p-monarch-initiative-ontogpt">OntoGPT</a></li><li class="lvl3"><a href="#p-clearailhc-clearai-dsh">ClearAI DSH</a></li><li class="lvl3"><a href="#p-nvidia-auto-ontology">NVIDIA Auto Ontology</a></li><li class="lvl3"><a href="#p-fengzhenfei-carrel">Carrel</a></li><li class="lvl3"><a href="#p-liliang-cn-cortexdb">CortexDB</a></li><li class="lvl3"><a href="#p-databrickslabs-ontobricks">OntoBricks</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

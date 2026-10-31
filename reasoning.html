@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>四 · 推理与校验 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;四 · 推理与校验&lt;/h1&gt;&lt;p class="chapter-sub"&gt;四类推理、复杂度、三层校验&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="四 · 推理与校验 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;四 · 推理与校验&lt;/h1&gt;&lt;p class="chapter-sub"&gt;四类推理、复杂度、三层校验&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="reasoning">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html" class="is-active">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">方法论</div><h1 class="chapter-title">四 · 推理与校验</h1><p class="chapter-sub">四类推理、复杂度、三层校验</p>
+      <p>推理与校验常被当成同一件事的两面，它们其实是两件相反的事：<strong>推理从已有事实里导出更多事实，校验从已有事实里找出不合规的那些。</strong> 一个只会让数据变多，一个只会说不。把它们装进同一个流程，是设计上的关键决定。</p>
+<h2 id="h2-0">四类推理，复杂度相差六个数量级</h2>
+<div class="table-wrap"><table><thead><tr><th>类</th><th>机制</th><th>代表实现</th><th>时间复杂度</th><th>什么时候用</th></tr></thead><tbody><tr><td><strong>RDFS 蕴含</strong></td><td>固定规则：子类传递、定义域值域</td><td>rdflib、Jena、OWL-RL</td><td>准线性</td><td>只需要类型继承与属性传递</td></tr><tr><td><strong>OWL 2 RL</strong></td><td>前向链规则闭包</td><td>OWL-RL（Python）、Reasonable（Rust）</td><td>多项式，可增量</td><td>规则形态清晰、想避免 tableau</td></tr><tr><td><strong>OWL 2 EL</strong></td><td>consequence-based，专为分类优化</td><td>ELK</td><td>多项式（PTime）</td><td>类数量极大、只需分类</td></tr><tr><td><strong>OWL 2 DL</strong></td><td>tableau，可判定但重</td><td>HermiT、Openllet、Konclude</td><td>最坏 2-NEXPTIME</td><td>需要完整表达、能接受不可预测的耗时</td></tr></tbody></table></div>
+<p>这张表最实用的读法是最后两行：<strong>EL 与 DL 的差别不是「表达力多一点」，而是「能不能预测耗时」。</strong> 一个在测试数据上 200ms 完成的 DL 推理，在生产数据上可能跑 40 分钟，而且你不知道为什么。EL 的耗时是可估计的，这是它被选来跑 SNOMED（数十万类）的真正原因。</p>
+<h2 id="h2-1">一个必须记住的事实：推理机不会报错</h2>
+<p>第十一章有实测记录，这里先把结论放前面。</p>
+<p>同一份数据、同一批约束，用两种方式处理：</p>
+<ul><li><strong>SHACL 校验</strong>：报出 5 条违规，判定不通过，进程退出码非零。</li><li><strong>OWL-RL 推理</strong>：零报错，新增 217 条三元组，进程退出码零。</li></ul>
+<p>这不是 bug，是两种范式的定义差异：</p>
+<ul><li>OWL 是<strong>开放世界</strong>的：数据里没写的，是「未知」而不是「错误」。因此不存在「不合规」这个概念，只有「能推出什么」。</li><li>SHACL 是<strong>闭合世界</strong>的：数据里没写的，就是缺失。因此它可以判定不合规。</li></ul>
+<p>所以如果有人告诉你「我们用 OWL 做了数据质量校验」，正确的追问是：<strong>你用的那个推理机，在数据缺字段时会返回什么？</strong> 答案通常是「什么也不返回」，然后这个校验就被悄悄降级成了一份没人看的报告。</p>
+<h2 id="h2-2">三层校验，缺一层就漏一类错</h2>
+<p>工程上，校验应该分三层，且三层都要有非零退出码：</p>
+<div class="table-wrap"><table><thead><tr><th>层</th><th>检查什么</th><th>手段</th><th>典型错误</th></tr></thead><tbody><tr><td><strong>语法层</strong></td><td>文件能不能解析、IRI 是否合法、前缀是否声明</td><td>rdflib parse、jena riot</td><td>拼写错误、编码错误、重复定义</td></tr><tr><td><strong>结构层</strong></td><td>必填、类型、基数、枚举、跨字段条件</td><td>SHACL Core + SPARQL 约束</td><td>缺 owner、单位不一致、状态值越界</td></tr><tr><td><strong>语义层</strong></td><td>类层次是否一致、有没有不可满足的类、定义域值域冲突</td><td>推理机 + 一致性检查</td><td>一个类既属于 A 又属于 disjoint 的 B</td></tr></tbody></table></div>
+<p>三层的分工很明确：语法层防手滑，结构层防业务错误，语义层防建模错误。<strong>大多数团队只做了第一层和第三层的一半</strong>——语法检查是工具自带的，一致性检查偶尔跑一次，而真正会产生业务损失的结构层校验反而缺失。</p>
+<h2 id="h2-3">校验的四条工程要求</h2>
+<p><strong>一、必须在写入路径上，或者至少在合并路径上。</strong> 事后扫描的价值随时间衰减。数据进入下游七个系统之后再发现问题，修复成本是写入时的百倍。</p>
+<p><strong>二、必须有明确的严重级别。</strong> 把所有违规都当错误，会导致规则被整体放宽；把所有违规都当警告，等于没有。实践中可用的三档：</p>
+<ul><li><strong>错误</strong>：阻断，必须修。</li><li><strong>警告</strong>：不阻断，但计入趋势，连续两周上升要处理。</li><li><strong>提示</strong>：只记录，供建模者参考。</li></ul>
+<p><strong>三、必须允许「带理由的豁免」。</strong> 真实数据总有历史遗留。如果规则不允许例外，团队会关掉规则。可行的做法是：豁免必须是一条显式记录，含对象 ID、规则 ID、理由、到期时间。到期未修，豁免自动失效、违规重新出现。<strong>没有到期时间的豁免等于永久删除规则。</strong></p>
+<p><strong>四、必须先给人看，再自动修。</strong> 自动修复的问题不是修错，而是<strong>没人知道它修了什么</strong>。至少在第一年，违规报告应该以人能读懂的形式呈现：哪个对象、哪条规则、原文怎么说、为什么不合规。工具里那些「一键全修复」的按钮，建议在团队建立直觉之前不要开。</p>
+<h2 id="h2-4">推理该放在哪</h2>
+<p>推理有三个合理的放置位置，收益依次递减：</p>
+<ol><li><strong>构建期</strong>：建模时跑一次分类，检查层次是否合理、有没有不可满足的类。这是收益最高、风险最低的用法——错了只影响建模决策。</li><li><strong>查询期</strong>：把推理结果当查询的一部分（例如 OBDA 的查询重写）。收益高，但对性能与可预测性要求高，适合 QL 这类为下推设计的 profile。</li><li><strong>写入期</strong>：每次写入都跑推理，把推论物化。收益中等，风险最高——推理失败会阻断写入，而推理失败的诊断信息通常对业务方毫无意义。</li></ol>
+<p><strong>推断：绝大多数团队应该只做第 1 种，按需做第 2 种，避免第 3 种。</strong> 把推理放在写入路径上，等于把一个不可预测耗时的组件放进了事务里。</p>
+<h2 id="h2-5">一个实测能说明的边界</h2>
+<p>实测里还有一条发现值得单独记：**OWL 2 RL 的规则集只包含 <code>maxCardinality</code> 为 0 和 1 的基数限制。** 这意味着：</p>
+<ul><li><code>owl:maxCardinality 1</code>（至多一个）可以推。</li><li><code>owl:minCardinality 1</code>（至少一个）推不出来。</li><li><code>owl:cardinality 1</code>（恰好一个）只能推出「至多一个」那一半。</li></ul>
+<p>「至少一个」是业务里最常见的约束（至少一个负责人、至少一条审批记录）。它在 OWL 2 RL 里<strong>不存在</strong>，这解释了为什么那么多「用 OWL 做校验」的尝试最终都回到了 SHACL。</p>
+<h2 id="h2-6">结论：两者不是替代关系</h2>
+<p>正确的组合是：</p>
+<ul><li><strong>SHACL 负责「不许错」</strong>，挂在写入或合并路径上，有退出码，有严重级别，有带期限的豁免。</li><li><strong>EL/RL 推理负责「帮着看懂」</strong>，在构建期跑，用来检查层次与发现意外推论。</li><li><strong>两者共用一份模型</strong>，但不要指望一份文件同时承担两种语义。同一个类，在 OWL 里是「由公理定义的集合」，在 SHACL 里是「一组必须有/必须没有的属性」——这两个意思不一样，硬塞进一个文件会得到两边都不彻底的结果。</li></ul>
+<p>实践中可行的做法是：模型用 LinkML 一类的中立格式写，编译出 OWL 与 SHACL 两份产物，各司其职。这也是第三章里那个「一份源、多目标编译」判断的由来。</p>
+      <div class="pager"><a class="pager-prev" href="languages.html"><span>上一篇</span><strong>三 · 建模语言与约束选型</strong></a><a class="pager-next" href="governance.html"><span>下一篇</span><strong>五 · 治理：版本、变更与 CI</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">四类推理，复杂度相差六个数量级</a></li><li class="lvl2"><a href="#h2-1">一个必须记住的事实：推理机不会报错</a></li><li class="lvl2"><a href="#h2-2">三层校验，缺一层就漏一类错</a></li><li class="lvl2"><a href="#h2-3">校验的四条工程要求</a></li><li class="lvl2"><a href="#h2-4">推理该放在哪</a></li><li class="lvl2"><a href="#h2-5">一个实测能说明的边界</a></li><li class="lvl2"><a href="#h2-6">结论：两者不是替代关系</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

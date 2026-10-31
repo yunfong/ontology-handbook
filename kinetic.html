@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>六 · 动力学层：从名词到动词 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;六 · 动力学层：从名词到动词&lt;/h1&gt;&lt;p class="chapter-sub"&gt;动作、门控写入、状态所有权、预期值&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="六 · 动力学层：从名词到动词 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;六 · 动力学层：从名词到动词&lt;/h1&gt;&lt;p class="chapter-sub"&gt;动作、门控写入、状态所有权、预期值&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="kinetic">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html" class="is-active">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">方法论</div><h1 class="chapter-title">六 · 动力学层：从名词到动词</h1><p class="chapter-sub">动作、门控写入、状态所有权、预期值</p>
+      <p>只描述「有什么」的本体，用完一次就过期。真正被业务接受的本体，都长出了动词：它不只说明对象之间存在什么关系，还规定<strong>允许对它们做什么、什么条件下允许、做完之后世界变成什么样</strong>。这一章讲这一层的设计。</p>
+<h2 id="h2-0">为什么名词层不够</h2>
+<p>举一个具体的失灵过程。第一版模型里有「客户」「产品」「持仓」「风险等级」四类对象和它们的关系，能回答「谁持有多少什么」。业务用了一周，提出第一个真实需求：</p>
+<blockquote><p>「客户风险等级上调时，能不能自动把超出其风险偏好的持仓标出来，并生成一份待确认清单？」</p></blockquote>
+<p>这个需求里有三样东西名词层给不了：一个<strong>动作</strong>（上调等级）、一个<strong>触发条件</strong>（超出偏好）、一个<strong>副作用</strong>（生成清单）。如果模型里没有动作这个概念，实现方式只能是：某段代码改数据库 → 另一个定时任务扫全表 → 再发一封邮件。这三步之间没有事务、没有权限、没有审计，出错时无法定位。</p>
+<p>动作层的价值就在这里：它把「一次会改变世界的操作」变成一个<strong>有名字、有参数、有前置条件、有审计记录的东西</strong>。</p>
+<h2 id="h2-1">动作的六个组成部分</h2>
+<p>一个动作声明至少要写清楚六件事：</p>
+<div class="table-wrap"><table><thead><tr><th>组成</th><th>说明</th><th>常见缺失</th></tr></thead><tbody><tr><td><strong>参数</strong></td><td>输入什么，类型与取值约束</td><td>参数校验散落在代码里</td></tr><tr><td><strong>目标</strong></td><td>作用于哪些对象（单个 / 集合）</td><td>集合操作没有数量上限</td></tr><tr><td><strong>前置条件</strong></td><td>什么条件下才允许执行</td><td>写成自然语言注释</td></tr><tr><td><strong>副作用</strong></td><td>会写哪些对象、哪些链接、哪些派生值</td><td>副作用不声明，靠读代码猜</td></tr><tr><td><strong>权限</strong></td><td>谁可以执行，依据什么策略</td><td>权限与动作分离，无法审计</td></tr><tr><td><strong>结果</strong></td><td>成功返回什么，失败返回什么</td><td>失败只返回一句「操作失败」</td></tr></tbody></table></div>
+<p>其中<strong>前置条件</strong>是最关键的一项，因为它把校验和动作连了起来：前置条件就是一组可执行的约束，作用于这次操作涉及的对象。这样「拒绝一次非法写入」这件事就不需要额外的机制——它是动作执行流程的天然一部分。</p>
+<p><strong>副作用</strong>的声明同样重要，因为它是影响面分析和回滚的基础。如果一次动作会写五个对象却只声明了两个，那么下游的血缘、缓存、派生指标全部会错。</p>
+<h2 id="h2-2">状态所有权：三类数据，三种待遇</h2>
+<p>这是整个动力学层最实用的一张表。任何一个字段，先归类，再决定谁能写。</p>
+<div class="table-wrap"><table><thead><tr><th>类别</th><th>含义</th><th>谁写</th><th>冲突处理</th></tr></thead><tbody><tr><td><strong>源系统所有</strong>（source-backed）</td><td>权威值在外部系统（核心、ERP、CRM）</td><td>只能由源系统写，本体只读</td><td>本体不覆盖；冲突时以源为准，差异进对账队列</td></tr><tr><td><strong>本体所有</strong>（ontology-owned）</td><td>只在本体里存在的语义（标签、分组、策略绑定）</td><td>只能由动作写</td><td>按动作的权限与版本</td></tr><tr><td><strong>派生</strong>（derived）</td><td>由前两类计算得出（风险分、敞口、评级）</td><td>不允许任何直接写入</td><td>只能重算；重算必须可追溯到输入版本</td></tr></tbody></table></div>
+<p>这张表能消掉大量争论。例如「客户等级到底以哪个系统为准」这个问题，答案不是开会讨论出来的，而是先归类：如果等级在核心系统里是权威的，那它就是 source-backed，本体里的等级只是镜像加语义；如果本体需要承载「内部评级」，那它是 ontology-owned，必须走动作写、必须留审计。</p>
+<p><strong>最常见的架构错误是把派生值当 source-backed</strong>：某个风险分被写进了本体，然后三处代码各自更新它，最后没有任何人知道当前值是怎么来的。正确做法是它只能是 derived，只能由一次重算产生，且重算记录输入的数据版本。</p>
+<h2 id="h2-3">写回权威源：三种模式</h2>
+<p>本体不是新的真相源，它要把变更写回去。三种模式，按风险从低到高：</p>
+<p><strong>一、只读镜像（无写回）。</strong> 本体定期同步源系统，所有变更回到源系统里做。最简单、最安全，代价是动作层的能力受限——你只能做「读 + 标记」，不能做「改」。</p>
+<p><strong>二、动作触发外部调用（推荐起步）。</strong> 动作在本体里声明，执行时调用源系统的 API 完成实际写入，本体记录动作日志与结果。写回是同步的、有事务边界（至少是补偿事务）。这个模式的好处是：<strong>真相源不变，本体只是加了一层「谁能改、怎么改、改过什么」。</strong></p>
+<p><strong>三、本体为主、异步回写（风险最高）。</strong> 本体先写自己的库，再异步同步到源系统。它带来最好的用户体验（快、可离线），也带来最难处理的问题：回写失败怎么办、两边冲突以谁为准、用户看到的和源系统里的不一致时怎么解释。</p>
+<p><strong>推断：从模式二开始。</strong> 模式三只有在源系统无法提供写接口、或写延迟不可接受时才考虑，且必须配一个显式的「待回写」状态和对账任务。</p>
+<h2 id="h2-4">预期值与对账</h2>
+<p>动作执行之后，世界应该变成什么样？这件事必须被声明，否则无法验证。</p>
+<p>做法是给每个动作声明<strong>后置条件</strong>（postcondition）：执行成功后，某些断言必须为真。例如「上调风险等级」的后置条件是「该客户的等级等于目标值，且变更记录存在，且关联的持仓标记任务已入队」。</p>
+<p>后置条件带来两个能力：</p>
+<ul><li><strong>幂等性可验证</strong>：同一个动作执行两次，后置条件仍然成立，说明它是幂等的。</li><li><strong>对账可自动化</strong>：定期抽样执行过的动作，重新检查后置条件，发现不一致就告警。</li></ul>
+<p>对账是这一层最被低估的机制。它不需要复杂技术，只需要一个定时任务去问：「上周执行的那 300 次动作，现在回头看，世界还是它们承诺的样子吗？」这个问题的答案，通常会在第一次运行时给出几个惊喜。</p>
+<h2 id="h2-5">审计：五个必须记录的字段</h2>
+<p>一次动作的审计记录至少要有：</p>
+<ul><li><strong>谁</strong>（主体，含其权限来源）</li><li><strong>何时</strong>（执行时间，以及策略生效的时间——两者可能不同）</li><li><strong>做了什么</strong>（动作 ID + 参数）</li><li><strong>为什么</strong>（业务理由，通常是一个必填的自由文本或工单号）</li><li><strong>结果</strong>（成功/失败、写了哪些对象、触发了哪些副作用）</li></ul>
+<p>其中「为什么」最容易被省，而它恰恰是事后追责与复盘唯一有用的字段。把它设成必填，会显著降低随意操作的数量。</p>
+<h2 id="h2-6">反模式：把动作做成 CRUD API</h2>
+<p>最常见的退化形态：所谓「动作」只是 <code>POST /objects/{id}</code> 加一个字段名。它有四个症状：</p>
+<ol><li>前置条件为空，任何值都能写。</li><li>副作用不声明，写了什么要看代码。</li><li>权限在网关层统一判，与「这个动作该不该被这个人执行」无关。</li><li>没有后置条件，无法验证执行结果。</li></ol>
+<p>这样的系统能跑，但它退化成了一个带权限的数据库客户端，动力学层的能力一点没拿到。</p>
+<p><strong>判断一个系统有没有动力学层，最快的办法是问：给我看一个被拒绝的动作，以及拒绝的理由。</strong> 如果拒绝的理由是「权限不足」或「参数不合法」，那只是接口校验；如果理由是「该客户存在未结清的头寸，不允许降级」，那才是业务规则在动作上生效。</p>
+<h2 id="h2-7">与本体其他层的关系</h2>
+<p>动力学层不是替代名词层，它是名词层的消费者：</p>
+<ul><li>动作的参数与目标，引用名词层的对象类型。</li><li>前置条件引用名词层的约束（第三章的 L2 层）。</li><li>副作用写的是名词层的对象与链接。</li><li>权限引用名词层的组织与角色。</li></ul>
+<p>所以顺序是：<strong>先把名词层的最小集合建好（12–18 个类型、5 条必须为真的约束），再挑一个高频、边界清晰的业务动作做成第一个动力学闭环。</strong> 不要一次建十个动作——第一个动作会暴露名词层 80% 的建模错误，改完再扩展成本最低。</p>
+      <div class="pager"><a class="pager-prev" href="governance.html"><span>上一篇</span><strong>五 · 治理：版本、变更与 CI</strong></a><a class="pager-next" href="case.html"><span>下一篇</span><strong>七 · 一个完整案例：五周与三个事故</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">为什么名词层不够</a></li><li class="lvl2"><a href="#h2-1">动作的六个组成部分</a></li><li class="lvl2"><a href="#h2-2">状态所有权：三类数据，三种待遇</a></li><li class="lvl2"><a href="#h2-3">写回权威源：三种模式</a></li><li class="lvl2"><a href="#h2-4">预期值与对账</a></li><li class="lvl2"><a href="#h2-5">审计：五个必须记录的字段</a></li><li class="lvl2"><a href="#h2-6">反模式：把动作做成 CRUD API</a></li><li class="lvl2"><a href="#h2-7">与本体其他层的关系</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

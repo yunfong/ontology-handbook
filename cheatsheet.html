@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>附录 B · 选型速查表 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;附录&lt;/div&gt;&lt;h1 class="chapter-title"&gt;附录 B · 选型速查表&lt;/h1&gt;&lt;p class="chapter-sub"&gt;八张表：判断、选型、清单、纠偏&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="附录 B · 选型速查表 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;附录&lt;/div&gt;&lt;h1 class="chapter-title"&gt;附录 B · 选型速查表&lt;/h1&gt;&lt;p class="chapter-sub"&gt;八张表：判断、选型、清单、纠偏&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="cheatsheet">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html" class="is-active">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">附录</div><h1 class="chapter-title">附录 B · 选型速查表</h1><p class="chapter-sub">八张表：判断、选型、清单、纠偏</p>
+      <p>这一页是给「已经决定要做，需要立刻选点什么」的人用的。所有结论来自前面的章节，这里只保留可查的表。</p>
+<h2 id="h2-0">A. 三十秒判断该不该做</h2>
+<p>依次回答，遇到「否」就停：</p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>问题</th><th>若「否」</th><th>章</th></tr></thead><tbody><tr><td>1</td><td>有没有一个具体的、曾经做错的报表或事故？</td><td><strong>别做。</strong> 先去修那个问题</td><td>12</td></tr><tr><td>2</td><td>这个错误能否用一条可执行约束描述？</td><td>问题不在语义层，在流程或代码</td><td>2</td></tr><tr><td>3</td><td>有没有一个业务侧的人能拍板「这条不合规」？</td><td><strong>别做。</strong> 没有裁决者，约束不会被遵守</td><td>13</td></tr><tr><td>4</td><td>改一条约束，会不会有人被通知/有构建失败？</td><td>没有消费者，做了没人用</td><td>5</td></tr><tr><td>5</td><td>上线后每月有 0.2 人月吗？</td><td>只做 A 形态（纯生成物 + 校验），别建平台</td><td>13</td></tr><tr><td>6</td><td>三年后这个模型还会被改吗？</td><td>它是文档，不是资产</td><td>12</td></tr></tbody></table></div>
+<h2 id="h2-1">B. 场景 → 最小可行栈</h2>
+<div class="table-wrap"><table><thead><tr><th>你的场景</th><th>最小栈</th><th>不要做</th><th>人月（首年）</th></tr></thead><tbody><tr><td>指标口径不一，报表对不上</td><td>LinkML/纯 YAML 源 + <code>sqltablegen</code> 生成建表 + SHACL 校验指标定义 + 一张对账视图</td><td>不要上图库、不要上推理机</td><td>6–10</td></tr><tr><td>跨系统实体对不齐（客户/供应商/物料）</td><td>源模型 + 实体解析脚本 + <code>sh:class</code> 抓悬空引用 + 每周对账</td><td>不要一开始就做全公司主数据</td><td>8–14</td></tr><tr><td>模型要发起写操作（Agent/自动化）</td><td>SHACL 前置条件 + 动作网关 + 写回 + 审计五字段</td><td>不要把校验交给 LLM</td><td>12–20</td></tr><tr><td>已有数仓，想「语义化」但不搬数据</td><td>LinkML → YARRRML → R2RML → OBDA（Ontop）<strong>（未验证，需 spike）</strong></td><td>不要先建 ETL 把数据搬进图库</td><td>15–25</td></tr><tr><td>领域术语混乱（同义词、译名）</td><td>SKOS 词表 + 归一脚本进 CI + 枚举约束</td><td>不要用 OWL 表达同义词</td><td>3–6</td></tr><tr><td>只是想「让模型更懂业务」</td><td><strong>先别做本体。</strong> 上向量 RAG，加元数据过滤</td><td>不要用本体解决召回问题</td><td>0–2</td></tr></tbody></table></div>
+<h2 id="h2-2">C. 语言怎么选</h2>
+<div class="table-wrap"><table><thead><tr><th>判据</th><th>选</th><th>理由</th></tr></thead><tbody><tr><td>需要<strong>拒绝</strong>非法数据</td><td>SHACL</td><td>封闭世界、有违规报告、有退出码。<strong>唯一能进 CI 闸门的</strong></td></tr><tr><td>需要<strong>推出</strong>新事实（分类、传递闭包）</td><td>OWL 2 EL/RL</td><td>只在构建期用；RL 无 <code>minCardinality</code>（第 11 章实测）</td></tr><tr><td>需要<strong>一份源生成多种产物</strong></td><td>LinkML（或同类 YAML 驱动）</td><td>41 个生成器为证（第 11 章）</td></tr><tr><td>团队是 SQL/BI 背景、不想学 RDF</td><td>属性图 + 约束 DSL，或直接在数仓里做断言</td><td>学习成本决定能不能活下去</td></tr><tr><td>只需要<strong>术语与同义词</strong></td><td>SKOS</td><td>别用 OWL 表达「同义词」，那是词表不是本体</td></tr><tr><td>需要<strong>与 Web/前端集成</strong></td><td>JSON-LD</td><td>事实标准</td></tr></tbody></table></div>
+<p><strong>默认可执行方案</strong>：<code>RDFS 骨架 + SHACL 约束 + SPARQL 查询</code>。这三件覆盖 80% 的实际需求，且都是 W3C 标准。</p>
+<h2 id="h2-3">D. 存储怎么选</h2>
+<div class="table-wrap"><table><thead><tr><th>数据量 / 场景</th><th>选</th><th>备注</th></tr></thead><tbody><tr><td>&lt; 100 万三元组、分析为主</td><td>文件（Turtle）+ rdflib/内存</td><td>第 11 章实测 16 万三元组校验 1.4 秒，文件足够</td></tr><tr><td>需要事务、版本、多用户</td><td>TerminusDB / 图库</td><td>看是否需要 git 式版本语义</td></tr><tr><td>已有关系库、不想搬</td><td>OBDA（Ontop）</td><td>映射错了不报错，必须配对账</td></tr><tr><td>高并发查询、RDF 原生</td><td>Oxigraph / Jena TDB2 / GraphDB</td><td>先压测再定</td></tr><tr><td>只需要「图的样子」给业务看</td><td>任意图库 + 只读视图</td><td>别让它成为第二个真实来源</td></tr></tbody></table></div>
+<p><strong>一条硬规矩</strong>：不要在项目第一年引入第二个真实来源。模型是文件，视图是派生的，源系统仍是源系统。</p>
+<h2 id="h2-4">E. 校验与推理工具</h2>
+<div class="table-wrap"><table><thead><tr><th>用途</th><th>工具</th><th>注意</th></tr></thead><tbody><tr><td>SHACL 校验</td><td>pySHACL（Python）、Jena SHACL（Java）</td><td><code>inference</code> 合法值是 <code>"owlrl"</code>，不是 <code>"rl"</code></td></tr><tr><td>OWL 推理（大规模分类）</td><td>ELK、Konclude、HermiT</td><td>ELK 快但不支持全部构造；Konclude 自陈可能有 bug</td></tr><tr><td>OWL RL 规则推理</td><td>owlrl（Python）、Jena rules</td><td>闭包膨胀 2.1–2.3 倍，别放写入路径</td></tr><tr><td>本体质量检查</td><td>ROBOT（生物医学生态，通用）、OOPS!</td><td>ROBOT 的 <code>report</code> 可当 lint</td></tr><tr><td>CI 集成</td><td>pySHACL + 退出码</td><td>关键是<strong>非零退出码</strong>，不是输出格式</td></tr><tr><td>文档生成</td><td>WIDOCO、pyLODE</td><td>别用文档替代校验</td></tr></tbody></table></div>
+<h2 id="h2-5">F. 按任务挑工具（从 78 个项目里）</h2>
+<div class="table-wrap"><table><thead><tr><th>你要做的事</th><th>先看这几个</th><th>分级</th></tr></thead><tbody><tr><td>起一个能跑的最小模型</td><td>LinkML、rdflib、pySHACL</td><td>S/A</td></tr><tr><td>写约束并进 CI</td><td>pySHACL、Jena、SHACL Play</td><td>S/A</td></tr><tr><td>生成建表/文档/API</td><td>LinkML（41 个生成器）、ROBOT</td><td>S/A</td></tr><tr><td>从关系库虚拟出图</td><td>Ontop（OBDA）</td><td>A</td></tr><tr><td>需要图库</td><td>Oxigraph、TerminusDB、FalkorDB</td><td>A/B</td></tr><tr><td>借现成词表</td><td>Schema.org、FIBO、QUDT、SKOS 词表</td><td>S/A</td></tr><tr><td>给 Agent 做记忆/上下文</td><td>mem0、cognee、graphiti</td><td>A/B（注意：都不提供约束）</td></tr><tr><td>做 GraphRAG</td><td>microsoft/graphrag、LightRAG</td><td>B（是邻居，不是本体）</td></tr><tr><td>想做「Palantir 式平台」</td><td>那 11 个平台项目，多数 2026 年新建</td><td>C（观察，勿生产依赖）</td></tr></tbody></table></div>
+<p>完整分级与理由见第 8 章七个小节。</p>
+<h2 id="h2-6">G. 上线前检查清单</h2>
+<p>打勾之前不要宣布「上线」：</p>
+<ul><li>[ ] 有 20 条 competency question，且每条能被回答</li><li>[ ] 约束有非零退出码，接进了 CI</li><li>[ ] 违规分三档严重级别（阻断/告警/记录）</li><li>[ ] 豁免带负责人与到期日，到期会升级给人（不是变红等人改）</li><li>[ ] 有一个动作会因为约束失败而被拒绝，且拒绝原因带「找谁」</li><li>[ ] 有一张每周对账表，输出是工单而不是报表</li><li>[ ] 变更能算出影响面（表、报表、API、下游模型）</li><li>[ ] 新增必填字段走两步（先可选、补数据、再必填）</li><li>[ ] 有明确的领域裁决者，且他知道自己签什么</li><li>[ ] 有稳态预算（人月），不是只有首年预算</li><li>[ ] 模型源在版本控制里，有评审记录</li><li>[ ] 有一个人能在原作者离职后改它（这条最容易被跳过）</li></ul>
+<h2 id="h2-7">H. 三个常见错误，一句话纠偏</h2>
+<div class="table-wrap"><table><thead><tr><th>你正在做的事</th><th>纠偏</th></tr></thead><tbody><tr><td>用 OWL 做数据校验，期待它报错</td><td>换 SHACL。OWL 在开放世界下永远不会说「缺了」</td></tr><tr><td>把整个模型塞进 prompt 让模型遵守</td><td>只塞当前任务相关的 5–15 条做提示，真正的拦截放在工具侧</td></tr><tr><td>用 LLM 判断数据对不对</td><td>用校验器判断，用 LLM 解释结果</td></tr><tr><td>第一年就引入图数据库 + 推理机</td><td>先用文件 + 校验跑到 100 万三元组，再评估要不要换</td></tr><tr><td>用「模型类数量」汇报进展</td><td>换成「拦截的坏数据条数」和「口径争议关闭时间」</td></tr><tr><td>把本体当 AI 项目立项</td><td>换成治理语言：口径统一、坏数据拦截、变更可审计</td></tr></tbody></table></div>
+<h2 id="h2-8">一句话</h2>
+<p><strong>如果你只从这本手册带走一张表，带走 A 表。</strong> 六个问题里有一个「否」，剩下的所有选型都是浪费。</p>
+      <div class="pager"><a class="pager-prev" href="method.html"><span>上一篇</span><strong>附录 A · 方法与可复现性</strong></a><a class="pager-next" href="appendix-projects.html"><span>下一篇</span><strong>附录 C · 78 个项目总表</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">A. 三十秒判断该不该做</a></li><li class="lvl2"><a href="#h2-1">B. 场景 → 最小可行栈</a></li><li class="lvl2"><a href="#h2-2">C. 语言怎么选</a></li><li class="lvl2"><a href="#h2-3">D. 存储怎么选</a></li><li class="lvl2"><a href="#h2-4">E. 校验与推理工具</a></li><li class="lvl2"><a href="#h2-5">F. 按任务挑工具（从 78 个项目里）</a></li><li class="lvl2"><a href="#h2-6">G. 上线前检查清单</a></li><li class="lvl2"><a href="#h2-7">H. 三个常见错误，一句话纠偏</a></li><li class="lvl2"><a href="#h2-8">一句话</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

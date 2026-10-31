@@ -1,0 +1,470 @@
+{
+ "microsoft/Ontology-Playground": {
+  "stars": 2988,
+  "created": "2026-02-17",
+  "license": "MIT",
+  "lang": "TypeScript"
+ },
+ "trustgraph-ai/trustgraph": {
+  "stars": 2853,
+  "created": "2024-07-10",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "fabio-rovai/open-ontologies": {
+  "stars": 2240,
+  "created": "2026-03-09",
+  "license": "MIT",
+  "lang": "Rust"
+ },
+ "HelixDB/helix-foundry": {
+  "stars": 1852,
+  "created": "2026-10-07",
+  "license": "Apache-2.0",
+  "lang": "Go"
+ },
+ "ModernRelay/omnigraph": {
+  "stars": 1817,
+  "created": "2026-04-10",
+  "license": "MIT",
+  "lang": "Rust"
+ },
+ "aws/context-ontology-accelerator": {
+  "stars": 1045,
+  "created": "2026-07-28",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "openbkn-ai/bkn-foundry": {
+  "stars": 1040,
+  "created": "2026-05-26",
+  "license": "NOASSERTION",
+  "lang": "Go"
+ },
+ "Leading-AI-IO/palantir-ontology-strategy": {
+  "stars": 246,
+  "created": "2026-02-21",
+  "license": "NOASSERTION",
+  "lang": ""
+ },
+ "gura105/operational-ontology": {
+  "stars": 202,
+  "created": "2026-07-18",
+  "license": "MIT",
+  "lang": "TypeScript"
+ },
+ "u485349-coder/OpenFoundry": {
+  "stars": 152,
+  "created": "2026-04-24",
+  "license": "NOASSERTION",
+  "lang": ""
+ },
+ "cloudbadal007/foundry-ontology-open": {
+  "stars": 108,
+  "created": "2026-03-22",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "semantica-agi/semantica": {
+  "stars": 14342,
+  "created": "2025-06-25",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "deeplethe/utopia": {
+  "stars": 8637,
+  "created": "2026-08-07",
+  "license": "Apache-2.0",
+  "lang": "Rust"
+ },
+ "yuezhiai/jonex": {
+  "stars": 1518,
+  "created": "2026-07-19",
+  "license": "NOASSERTION",
+  "lang": "Python"
+ },
+ "ruc-datalab/EvoOntology": {
+  "stars": 1102,
+  "created": "2026-09-15",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "monarch-initiative/ontogpt": {
+  "stars": 1080,
+  "created": "2023-01-03",
+  "license": "BSD-3-Clause",
+  "lang": "Jupyter Notebook"
+ },
+ "Clearailhc/clearai-dsh": {
+  "stars": 680,
+  "created": "2026-09-12",
+  "license": "Apache-2.0",
+  "lang": "JavaScript"
+ },
+ "NVIDIA/auto-ontology": {
+  "stars": 648,
+  "created": "2026-04-27",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "FengZhenfei/carrel": {
+  "stars": 643,
+  "created": "2026-09-28",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "liliang-cn/cortexdb": {
+  "stars": 473,
+  "created": "2025-08-07",
+  "license": "MIT",
+  "lang": "Go"
+ },
+ "databrickslabs/ontobricks": {
+  "stars": 455,
+  "created": "2026-04-07",
+  "license": "NOASSERTION",
+  "lang": "Python"
+ },
+ "protegeproject/protege": {
+  "stars": 1617,
+  "created": "2013-08-20",
+  "license": "NOASSERTION",
+  "lang": "Java"
+ },
+ "VisualDataWeb/WebVOWL": {
+  "stars": 1021,
+  "created": "2015-04-17",
+  "license": "MIT",
+  "lang": "JavaScript"
+ },
+ "linkml/linkml": {
+  "stars": 677,
+  "created": "2021-03-16",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "INCATools/ontology-development-kit": {
+  "stars": 387,
+  "created": "2015-12-15",
+  "license": "BSD-3-Clause",
+  "lang": "Dockerfile"
+ },
+ "sparna-git/Sparnatural": {
+  "stars": 315,
+  "created": "2018-08-31",
+  "license": "LGPL-3.0",
+  "lang": "TypeScript"
+ },
+ "ThHanke/ontosphere": {
+  "stars": 255,
+  "created": "2025-09-03",
+  "license": "NOASSERTION",
+  "lang": "TypeScript"
+ },
+ "ralforion/orionbelt-ontology-builder": {
+  "stars": 218,
+  "created": "2025-11-25",
+  "license": "NOASSERTION",
+  "lang": "Python"
+ },
+ "faubulous/mentor-vscode": {
+  "stars": 49,
+  "created": "2023-09-23",
+  "license": "GPL-3.0",
+  "lang": "TypeScript"
+ },
+ "RDFLib/rdflib": {
+  "stars": 2542,
+  "created": "2012-02-03",
+  "license": "BSD-3-Clause",
+  "lang": "Python"
+ },
+ "apache/jena": {
+  "stars": 1490,
+  "created": "2013-01-04",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ },
+ "owlcs/owlapi": {
+  "stars": 944,
+  "created": "2013-02-17",
+  "license": "",
+  "lang": "Java"
+ },
+ "neo4j-labs/neosemantics": {
+  "stars": 971,
+  "created": "2016-03-21",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ },
+ "eclipse-rdf4j/rdf4j": {
+  "stars": 422,
+  "created": "2016-01-14",
+  "license": "BSD-3-Clause",
+  "lang": "Java"
+ },
+ "RDFLib/pySHACL": {
+  "stars": 364,
+  "created": "2018-09-05",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "stardog-union/pellet": {
+  "stars": 357,
+  "created": "2013-04-10",
+  "license": "NOASSERTION",
+  "lang": "Web Ontology Language"
+ },
+ "TopQuadrant/shacl": {
+  "stars": 246,
+  "created": "2015-05-24",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ },
+ "gtfierro/reasonable": {
+  "stars": 137,
+  "created": "2019-10-31",
+  "license": "BSD-3-Clause",
+  "lang": "Rust"
+ },
+ "Galigator/openllet": {
+  "stars": 136,
+  "created": "2016-01-21",
+  "license": "NOASSERTION",
+  "lang": "Java"
+ },
+ "liveontologies/elk-reasoner": {
+  "stars": 129,
+  "created": "2015-10-16",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ },
+ "konclude/Konclude": {
+  "stars": 54,
+  "created": "2019-07-02",
+  "license": "",
+  "lang": "C++"
+ },
+ "IBM/expressive-reasoning-graph-store": {
+  "stars": 32,
+  "created": "2020-08-20",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ },
+ "Graphify-Labs/graphify": {
+  "stars": 139218,
+  "created": "2026-04-03",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "HKUDS/LightRAG": {
+  "stars": 40440,
+  "created": "2024-10-02",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "microsoft/graphrag": {
+  "stars": 36497,
+  "created": "2024-03-27",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "FalkorDB/FalkorDB": {
+  "stars": 10505,
+  "created": "2023-07-20",
+  "license": "NOASSERTION",
+  "lang": "Rust"
+ },
+ "neo4j-labs/llm-graph-builder": {
+  "stars": 5290,
+  "created": "2024-01-11",
+  "license": "Apache-2.0",
+  "lang": "Jupyter Notebook"
+ },
+ "memgraph/memgraph": {
+  "stars": 4636,
+  "created": "2020-09-21",
+  "license": "NOASSERTION",
+  "lang": "C++"
+ },
+ "nicolas-hbt/pygraft": {
+  "stars": 717,
+  "created": "2023-09-07",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "biocypher/biocypher": {
+  "stars": 342,
+  "created": "2021-09-10",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "google/schema-dts": {
+  "stars": 1254,
+  "created": "2018-11-29",
+  "license": "Apache-2.0",
+  "lang": "TypeScript"
+ },
+ "tanghaibao/goatools": {
+  "stars": 909,
+  "created": "2010-01-15",
+  "license": "BSD-2-Clause",
+  "lang": "Python"
+ },
+ "edmcouncil/fibo": {
+  "stars": 784,
+  "created": "2014-02-07",
+  "license": "MIT",
+  "lang": "Shell"
+ },
+ "ozekik/awesome-ontology": {
+  "stars": 734,
+  "created": "2019-03-01",
+  "license": "CC-BY-4.0",
+  "lang": ""
+ },
+ "audioset/ontology": {
+  "stars": 715,
+  "created": "2016-09-02",
+  "license": "",
+  "lang": ""
+ },
+ "KBpedia/kbpedia": {
+  "stars": 241,
+  "created": "2016-09-19",
+  "license": "",
+  "lang": ""
+ },
+ "Azure/opendigitaltwins-building": {
+  "stars": 177,
+  "created": "2020-06-03",
+  "license": "MIT",
+  "lang": ""
+ },
+ "NCOR-Organization/awesome-ontologies": {
+  "stars": 25,
+  "created": "2025-04-29",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "HomuraT/LLM4VKG": {
+  "stars": 25,
+  "created": "2025-05-09",
+  "license": "",
+  "lang": "PLpgSQL"
+ },
+ "sciknoworg/OntoAligner": {
+  "stars": 98,
+  "created": "2024-10-01",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "sciknoworg/OntoLearner": {
+  "stars": 124,
+  "created": "2025-01-08",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "KRR-Oxford/DeepOnto": {
+  "stars": 328,
+  "created": "2021-11-21",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "colbymchenry/codegraph": {
+  "stars": 75983,
+  "created": "2026-01-18",
+  "license": "MIT",
+  "lang": "TypeScript"
+ },
+ "terminusdb/terminusdb": {
+  "stars": 3464,
+  "created": "2019-07-23",
+  "license": "Apache-2.0",
+  "lang": "Prolog"
+ },
+ "ontodev/robot": {
+  "stars": 329,
+  "created": "2015-01-31",
+  "license": "BSD-3-Clause",
+  "lang": "Java"
+ },
+ "deepaksaipendyala/OntoKG": {
+  "stars": 11,
+  "created": "2025-09-13",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "SenolIsci/mykg": {
+  "stars": 80,
+  "created": "2026-05-27",
+  "license": "MIT",
+  "lang": "Python"
+ },
+ "topoteretes/cognee": {
+  "stars": 32926,
+  "created": "2023-08-16",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "oxigraph/oxigraph": {
+  "stars": 2013,
+  "created": "2018-05-16",
+  "license": "Apache-2.0",
+  "lang": "Rust"
+ },
+ "OnToology/OnToology": {
+  "stars": 116,
+  "created": "2015-03-11",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "mem0ai/mem0": {
+  "stars": 68105,
+  "created": "2023-06-20",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "Egonex-AI/Understand-Anything": {
+  "stars": 89016,
+  "created": "2026-03-15",
+  "license": "MIT",
+  "lang": "TypeScript"
+ },
+ "ontorag/ontorag": {
+  "stars": 33,
+  "created": "2025-12-31",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "LiberAI/OntoEKG": {
+  "stars": 79,
+  "created": "2025-12-31",
+  "license": "MIT",
+  "lang": "Jupyter Notebook"
+ },
+ "OpenSPG/openspg": {
+  "stars": 2285,
+  "created": "2023-10-23",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ },
+ "getzep/graphiti": {
+  "stars": 32367,
+  "created": "2024-08-08",
+  "license": "Apache-2.0",
+  "lang": "Python"
+ },
+ "RDFLib/OWL-RL": {
+  "stars": 181,
+  "created": "2012-04-25",
+  "license": "BSD-3-Clause",
+  "lang": "Python"
+ },
+ "ontop/ontop": {
+  "stars": 1005,
+  "created": "2013-07-22",
+  "license": "Apache-2.0",
+  "lang": "Java"
+ }
+}

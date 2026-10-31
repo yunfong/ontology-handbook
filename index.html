@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>封面与导读 · 本体论工程手册</title>
+<meta name="description" content="Ontology Engineering: A Research Compendium">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="封面与导读 · 本体论工程手册">
+<meta property="og:description" content="Ontology Engineering: A Research Compendium">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="index">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html" class="is-active">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      
+      <section class="hero">
+  <div class="hero-kicker">Research Compendium · v1.0 · 2026-10-31</div>
+  <h1 class="hero-title">本体论工程手册</h1>
+  <div class="hero-sub">Ontology Engineering: A Research Compendium</div>
+  <p class="hero-lede">78 个开源项目的逐个核验、六层技术栈的选型框架、八个趋势的独立判定、五周落地的完整案例，以及四次可复现的实测。写给需要判断「这件事该不该做、用什么做、做到什么程度」的技术决策者。</p>
+  <div class="hero-meta">
+    <span>78 个项目</span><span>15 章</span><span>3 个附录</span><span>7 个分类页</span><span>约 4.3 万字</span><span>CC BY 4.0</span>
+  </div>
+</section><p>本页是新读者的入口。它说明这份汇编要解决什么问题、给出六个可以直接拿去用的结论、交代证据的等级划分，并提供三条不同的阅读路径。</p>
+<h2 id="h2-0">这份材料想解决什么</h2>
+<p>过去两年，「本体」（ontology）这个词在技术圈重新流行起来。但把它拆开看，至少有四件互不相同的事被同一个词包着：哲学上的范畴论、W3C 标准里的形式逻辑、BI 领域的指标语义层、以及数据平台里的对象-动作模型。这四件事的交付物、验收标准和失败样子都不一样。混淆它们，是导致「本体项目」超支、失焦、最后被当成文档工程的主要原因。</p>
+<p>这份汇编做三件事：</p>
+<ul><li><strong>核验</strong>。把 78 个开源项目逐个查过：真实星数、建库时间、许可证、最近提交、README 的真实主张，以及它到底有没有能力拒绝一次非法写入。</li><li><strong>收敛</strong>。把散落在标准文档、论文和实践者笔记里的方法，收敛成一套可以执行的判据：什么时候该做、用什么表达、校验放在哪、变更怎么管。</li><li><strong>证伪</strong>。流行的「八个趋势」逐条独立判定，哪些成立、哪些只是措辞成立、哪些证据根本不够。</li></ul>
+<p>它不推荐任何一款产品，也不假设读者已经在做本体。它假设读者正在被要求回答一个问题：<strong>这件事值不值得投入，如果值得，第一个月该干什么。</strong></p>
+<h2 id="h2-1">六个结论，先看这里</h2>
+<p><strong>一、这轮热度里，「结构热」远大于「语义热」。</strong> 主索引 59 个项目的星数中位数是 716；其中真正的本体核心工具（解析器、推理机、校验器、建模编辑器）中位数 944。而趋势章节引用的几个「代码结构图」项目，星数在 7.6 万到 13.9 万之间，比前者高两个数量级。把它们并称「本体热」，会严重高估语义技术的真实采用度。</p>
+<p><strong>二、新增供给几乎全部集中在最后一个环节。</strong> 企业本体平台这一格 11 个项目里，10 个建于 2026 年。它们复刻的是同一个模式——对象类型、链接、动作、权限——而不是推理或公理。生态的增量在「怎么用」，不在「怎么推」。</p>
+<p><strong>三、推理在萎缩，校验在增长。</strong> 经典 DL 推理机的开源供给正在消失：一个 2017 年停更、一个 2025 年 8 月后无提交。而 SHACL 相关项目全部活跃。原因不复杂：业务系统问的永远是「缺了什么」，不是「能推出什么」。</p>
+<p><strong>四、真正的分水岭是「能不能拒绝一次写入」。</strong> 图谱检索、Agent 记忆、上下文层与本体层的区别，不在于用不用图，而在于<strong>是否具备拒绝能力</strong>：一条不符合约束的写入，是被挡在门外，还是被存下来等事后报表。能拒，是本体；不能拒，是上下文。</p>
+<p><strong>五、借外部词表，只借三样。</strong> 术语、分层、标识符命名规范可以借；公理不要整包引入。而标识符必须落在你自己能治理的命名空间里——有几个著名词表还活着，它们引用的 ID 体系已经死了。</p>
+<p><strong>六、一次实测能打掉一半幻想。</strong> 第十一章记录了两次真实执行：同一份数据，SHACL 报出 5 条违规并非零退出，OWL-RL 推理零报错、新增 217 条三元组。<strong>推理机不会告诉你「这条数据错了」，它只会安静地推出更多东西。</strong> 这个差异决定了校验和推理不能互相替代。</p>
+<h2 id="h2-2">证据分三级</h2>
+<p>全文对每一句判断标注来源强度，只有三种：</p>
+<ul><li><strong>实测</strong>——在本地真实跑过，命令、版本、输出都可复现。全篇只有两处，但它们是全篇最硬的部分。</li><li><strong>核验</strong>——从 GitHub API、仓库源码、README 原文、标准文档读到的。星数、建库日期、许可证、某个模块是否真实存在，都属于这一级。</li><li><strong>推断</strong>——基于以上两者的判断。文中统一用「推断：」开头，读者可以不同意。</li></ul>
+<p>反过来说，凡是<strong>没有</strong>标注的东西，都来自项目自己的宣传语，应当按营销材料对待。</p>
+<h2 id="h2-3">三条阅读路径</h2>
+<p><strong>给做决定的人（约 40 分钟）</strong> 本页 → <a href="concepts.html">一 · 四个被混用的「本体」</a> → <a href="stack.html">九 · 技术栈分层与选型框架</a> → <a href="antipatterns.html">十一 · 反模式与落地判据</a>。读完能回答「做不做、第一个月做什么、什么情况下该停」。</p>
+<p><strong>给架构师（约 3 小时）</strong> 在上面基础上加 <a href="languages.html">三 · 建模语言与约束选型</a>、<a href="reasoning.html">四 · 推理与校验</a>、<a href="governance.html">五 · 治理</a>、<a href="kinetic.html">六 · 动力学层</a>，然后按需翻 <a href="ecosystem.html">七 · 生态地图</a> 下的七个分类页。</p>
+<p><strong>给要动手的人（半天）</strong> 直接看 <a href="evidence.html">十 · 两次实测</a>，照着复现一遍；再看 <a href="method.html">十三 · 方法与可复现性</a> 了解数据口径；最后按 <a href="stack.html">九</a> 的决策树选型。</p>
+<h2 id="h2-4">范围与局限</h2>
+<ul><li>覆盖 <strong>78 个开源项目</strong>，不含商业产品。Palantir 只作为模式参照被提及，不做功能对比。</li><li>数据核验时间 <strong>2026-10-30</strong>。星数与活跃度会变，判断的时效性约为一个季度。</li><li>不覆盖合规、审计、行业监管的具体条款；这些在落地时是硬约束，但不在本汇编范围内。</li><li>立场一句话：<strong>本体首先是一种治理工具，其次才是一种智能工具。</strong> 把它当智能工具卖，通常三个月后会被要求证明 ROI；把它当治理工具做，验收标准是「坏数据进不来」和「口径可对账」，这两件事可以当场演示。</li></ul>
+      <div class="pager"><span></span><a class="pager-next" href="concepts.html"><span>下一篇</span><strong>一 · 四个被混用的「本体」</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">这份材料想解决什么</a></li><li class="lvl2"><a href="#h2-1">六个结论，先看这里</a></li><li class="lvl2"><a href="#h2-2">证据分三级</a></li><li class="lvl2"><a href="#h2-3">三条阅读路径</a></li><li class="lvl2"><a href="#h2-4">范围与局限</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

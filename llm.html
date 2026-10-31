@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十四 · 本体与模型系统的边界 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;实证&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十四 · 本体与模型系统的边界&lt;/h1&gt;&lt;p class="chapter-sub"&gt;三个真接触面、两个伪接触面、四条判据&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="十四 · 本体与模型系统的边界 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;实证&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十四 · 本体与模型系统的边界&lt;/h1&gt;&lt;p class="chapter-sub"&gt;三个真接触面、两个伪接触面、四条判据&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="llm">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html" class="is-active">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">实证</div><h1 class="chapter-title">十四 · 本体与模型系统的边界</h1><p class="chapter-sub">三个真接触面、两个伪接触面、四条判据</p>
+      <p>这一章回答一个 2026 年最常被问到、也最容易被答错的问题：<strong>有了大模型，还需要本体吗？</strong></p>
+<p>先给结论，再给理由：</p>
+<p><strong>需要，但不是在多数人以为的地方。</strong> 本体对模型系统最大的价值不是「让模型更懂业务」，而是<strong>在模型动手之前和动手之后，提供一道可执行、可复现、可审计的边界</strong>。这不是 AI 能力的扩展，是 AI 可靠性的基础设施。</p>
+<p>反过来，把本体塞进 prompt、或指望模型自己生成契约级的本体，这两条路目前都不成立。</p>
+<h2 id="h2-0">三个真接触面，两个伪接触面</h2>
+<p>「本体 + 大模型」的讨论之所以混乱，是因为没有区分<strong>模型在哪一步用到本体</strong>。</p>
+<div class="table-wrap"><table><thead><tr><th>接触面</th><th>模型做什么</th><th>本体提供什么</th><th>判定</th></tr></thead><tbody><tr><td><strong>一、工具调用前的参数校验</strong></td><td>提议一个动作（下单、收货、退款）</td><td>前置条件、类型、枚举、引用完整性</td><td><strong>最强，优先做</strong></td></tr><tr><td><strong>二、检索的元数据过滤</strong></td><td>检索前缩小范围</td><td>类型、状态、时效、权限标记</td><td>中等价值，容易做</td></tr><tr><td><strong>三、生成结果的结构化落地</strong></td><td>输出 JSON / 引用实体</td><td><code>sh:class</code> 抓悬空引用，schema 抓结构</td><td>中等价值，防幻觉有效</td></tr><tr><td>四、把本体写进 prompt</td><td>—</td><td>整个模型</td><td><strong>伪接触面</strong></td></tr><tr><td>五、让模型生成本体</td><td>—</td><td>草稿素材</td><td><strong>伪接触面</strong>（不能做契约）</td></tr></tbody></table></div>
+<h2 id="h2-1">接触面一：工具调用前的参数校验（最强）</h2>
+<p>一个 Agent 要执行 <code>ReceiveBatch</code>（收货）。模型输出：</p>
+<pre><code class="lang-json">{"action":"ReceiveBatch","poId":"PO-2026-00871","supplierId":"S-2041",
+ "materialId":"M-3382","qty":120,"arrivalDate":"2026-11-02"}</code></pre>
+<p><strong>在真正调用之前</strong>，把这组参数当作数据送进校验器：</p>
+<pre><code class="lang-python">def guard(action, args, shapes):
+    g = to_rdf(action, args)              # 参数 → 三元组
+    report = validate(g, shapes, inference=None)
+    if not report.conforms:
+        return Reject(code=report.top_code(), details=report.human_readable())
+    return Execute(args)</code></pre>
+<p>被拒绝的那一刻，系统拿到的是<strong>一个确定的、可解释的、与模型无关的结论</strong>：</p>
+<pre><code>REJECTED  SUPPLIER_FROZEN
+供应商 S-2041 于 2026-10-12 因质量问题被冻结，尚未解除</code></pre>
+<p>这个接触面之所以最强，有四个原因：</p>
+<ol><li><strong>可复现。</strong> 同样的参数永远得到同样的结论，与模型版本、温度、上下文长度无关。</li><li><strong>可审计。</strong> 拒绝记录能直接进审计日志，回答「为什么这笔没做成」。</li><li><strong>成本近零。</strong> 第 11 章实测：16 万三元组校验 1.4 秒；单次动作校验是毫秒级。</li><li><strong>不随模型升级失效。</strong> 换个更强的模型，这道边界还在；换个更弱的，它仍然挡住。</li></ol>
+<p><strong>这才是本体在 AI 时代的位置</strong>：不是模型的记忆，是模型的刹车。</p>
+<h2 id="h2-2">接触面二：检索的元数据过滤（中等）</h2>
+<p>RAG 的常见问题不是「召回不到」，是「召回了不该用的」：过期版本的口径定义、已冻结供应商的资料、没权限的项目文档。</p>
+<p>本体提供的是<strong>过滤维度</strong>，不是语义扩展：</p>
+<pre><code class="lang-sparql">SELECT ?doc ?text WHERE {
+  ?doc a ex:MetricDefinition ;
+       ex:metric ?m ; ex:version ?v ; ex:status ex:effective ;
+       ex:text ?text .
+  FILTER (?m = ex:on_time_delivery_rate)
+  FILTER (?v = (SELECT MAX(?v2) WHERE { ?d2 ex:metric ?m ; ex:version ?v2 }))
+}</code></pre>
+<p>三条过滤——类型、状态、最新版本——把候选集从「所有文档」缩到「当前生效的那一版」。<strong>这比在 prompt 里写「请只使用最新版本」有效得多</strong>，因为后者是请求，前者是约束。</p>
+<p>⚠️ 注意这里不该做的事：不要指望本体做「语义相似」的召回。类型与约束管不了「意思相近的另一个句子」，那是向量的事。</p>
+<h2 id="h2-3">接触面三：生成结果的结构化落地（中等）</h2>
+<p>模型生成的结论要落到结构化系统里，两个关口：</p>
+<p><strong>关口一：结构。</strong> 强制 JSON Schema（可从模型生成，见第 3 章「一份源、多目标编译」）。结构不对直接拒绝，不进后续流程。</p>
+<p><strong>关口二：引用。</strong> 模型最容易犯的错是引用一个不存在的东西——不存在的指标、不存在的单据号、不存在的条款。而 <code>sh:class</code> 恰好抓这个：</p>
+<pre><code class="lang-turtle">ex:FindingShape a sh:NodeShape ;
+  sh:targetClass ex:Finding ;
+  sh:property [ sh:path ex:cites ; sh:minCount 1 ; sh:class ex:Metric ] .</code></pre>
+<p>第 11 章实测里，这条约束抓到 <code>finding_rpt_01 → metric_missing</code>。<strong>在 AI 场景下，同样的约束抓的是幻觉</strong>——模型编了一个指标名，引用完整性直接让它失败。</p>
+<p>这是本体与幻觉之间唯一有工程意义的对称关系：<strong>你不必让模型不说错话，你只需要让它说的话必须指向存在的东西。</strong></p>
+<h2 id="h2-4">伪接触面四：把本体塞进 prompt</h2>
+<p>做法：把 200 个类、800 条约束序列化进系统提示，希望模型「遵守」。</p>
+<p>四个问题，任何一个都足以否掉它：</p>
+<ul><li><strong>容量。</strong> 完整模型动辄数万 token，挤掉的是上下文里更有用的内容。</li><li><strong>不可保证。</strong> 模型是概率的，写进 prompt 的要求是「请求」不是「约束」。它可能在 95% 的情况下遵守，而 5% 的不遵守恰好落在最贵的那笔交易上。</li><li><strong>不可解释。</strong> 违反时你无法指出「违反了哪一条」，只能重试。</li><li><strong>随版本衰减。</strong> 换模型、改系统提示、加工具，行为都会漂移。</li></ul>
+<p><strong>一个可用的弱化形式</strong>：只把<strong>当前任务相关的 5–15 条约束</strong>注入 prompt，作为「提示」而非「保证」，同时在工具侧用校验器做<strong>真正的拦截</strong>。提示提升一次通过率，校验兜住底线。两者不冲突，但不能互相替代。</p>
+<h2 id="h2-5">伪接触面五：让模型生成本体</h2>
+<p>「用 LLM 从文档自动抽取本体」是过去两年最有吸引力的演示，也最容易误导决策。</p>
+<p><strong>能做的部分</strong>（有真实价值）：术语抽取、候选类建议、同义词聚类、从样本数据猜测字段语义、把自然语言规则翻译成 SHACL 草稿。</p>
+<p><strong>不能做的部分</strong>：把生成结果直接作为契约。</p>
+<p>三个原因：</p>
+<ol><li><strong>一致性。</strong> 同一份文档跑两次，得到的类名、粒度、关系方向会不同。契约需要的是「三次跑出同一个结果」。</li><li><strong>不可审计。</strong> 无法回答「为什么这个类存在」「为什么这条约束是 0.8 而不是 1」。而模型的每一条约束将来都会拒绝真实业务。</li><li><strong>责任真空。</strong> 自动生成的约束被违反时，没有人能对它负责——而约束必须有负责人（第 13 章的裁决者角色）。</li></ol>
+<p><strong>可用的工作流</strong>：模型生成草稿 → 人逐条审 → 审过的进入版本控制 → 从此不再由模型改。<strong>模型是笔，不是立法者。</strong></p>
+<h2 id="h2-6">RAG、GraphRAG、本体：三者到底什么关系</h2>
+<div class="table-wrap"><table><thead><tr><th></th><th>解决什么</th><th>不解决什么</th><th>与另外两者的关系</th></tr></thead><tbody><tr><td><strong>向量 RAG</strong></td><td>「找意思相近的文本」</td><td>精确约束、跨文档一致性、可审计</td><td>召回层</td></tr><tr><td><strong>GraphRAG</strong></td><td>「沿关系找多跳证据」</td><td>什么是合法的、什么必须为真</td><td>召回层的增强，仍不管对错</td></tr><tr><td><strong>本体</strong></td><td>「什么必须为真、什么必须拒绝」</td><td>召回、相似度、自然语言理解</td><td>边界层，不是召回层</td></tr></tbody></table></div>
+<p>一句话：<strong>RAG 系列解决「找得到」，本体解决「对不对」。</strong> 把三者混为一谈的项目，通常在演示时很好，在生产时说不清「为什么这条答案是错的」。</p>
+<p>第 9 章的趋势核验里有一条与此相关：GraphRAG 类项目的中位星数（7897）是本体工具（944）的八倍多。这不说明 GraphRAG 更重要，只说明<strong>「找得到」是当下更痛的问题</strong>。痛的那一端先被解决，是正常的技术演进顺序。</p>
+<h2 id="h2-7">Agent 记忆：本体能给什么，不能给什么</h2>
+<p>Agent 记忆目前有三种存法：</p>
+<div class="table-wrap"><table><thead><tr><th>存法</th><th>存什么</th><th>擅长</th><th>缺陷</th></tr></thead><tbody><tr><td>向量库</td><td>文本片段 + embedding</td><td>语义相似召回</td><td>无结构、无约束、会漂移</td></tr><tr><td>事件流</td><td>时间序列的动作与观察</td><td>时序推理、回放</td><td>无类型系统、关系查询弱</td></tr><tr><td>图 / 本体</td><td>实体、关系、约束、状态</td><td>一致性、可追溯、跨会话共享</td><td>写入成本高、建模成本高</td></tr></tbody></table></div>
+<p><strong>本体对 Agent 记忆的贡献不是「记得更多」，是「记得更准」</strong>：类型明确（这是订单不是文档）、约束明确（已冻结的供应商不能下单）、状态有所有权（这个字段谁说了算）、变更可追溯（这条记忆什么时候被谁改的）。</p>
+<p>多 Agent 协作时这一点尤其重要：<strong>两个 Agent 共享一个向量库，它们共享的是「相似」；共享一个本体，它们共享的是「同一个事实」。</strong></p>
+<h2 id="h2-8">什么时候模型系统真的需要本体</h2>
+<p>四条判据，满足两条以上才值得做：</p>
+<ol><li><strong>需要拒绝非法操作。</strong> 模型要发起写操作（下单、退款、改价、发消息），且有不能越过的边界。</li><li><strong>需要跨系统一致。</strong> 同一个事实在 3 个以上系统里存在，且要求一致。</li><li><strong>需要审计。</strong> 出问题时要能回答「谁在什么时候基于什么做了什么」。</li><li><strong>多 Agent / 多团队共享状态。</strong> 需要一份共同认可的事实定义。</li></ol>
+<p><strong>什么时候不需要</strong>：纯问答、摘要、翻译、语义搜索、内容生成。这些场景里，本体带来的复杂度远大于收益——加一份向量库就够了。</p>
+<h2 id="h2-9">一个可落地的集成</h2>
+<p>把上面三条接触面串成一条链，代码量很小：</p>
+<pre><code class="lang-python">def agent_write(action, args, ctx):
+    # 1. 结构：JSON Schema 校验（模型生成，见编译器）
+    if not schema_ok(action, args):        return Reject("SCHEMA")
+
+    # 2. 语义：参数 → 三元组 → SHACL
+    g = to_rdf(action, args, ctx.base_graph)
+    rep = validate(g, shapes_for(action), inference=None)
+    if not rep.conforms:                   return Reject(rep.code(), rep.detail())
+
+    # 3. 执行：动作由确定性代码完成，不由模型完成
+    result = ACTIONS[action](**args)
+
+    # 4. 后置：把结果写回图，供下一次校验使用
+    write_back(result, ctx.base_graph, audit_who=ctx.who)
+    return Ok(result)</code></pre>
+<p><strong>第四条值得强调</strong>：写回让校验具备记忆。例如「同一批次不能重复收货」这条约束，靠的就是上一次成功写回留下了 <code>Batch</code> 记录。没有写回，校验只能看静态规则，看不到历史。</p>
+<h2 id="h2-10">一个必须警告的替代方案</h2>
+<p>有一种做法正在流行：<strong>用 LLM 代替校验器</strong>——把数据丢给模型，问「这条数据有没有问题」。</p>
+<p>不要这么做，四个原因：</p>
+<ol><li><strong>不可复现。</strong> 同一条数据两次询问可能得到不同结论。而校验的第一要求是确定。</li><li><strong>不可解释。</strong> 你无法把「模型觉得有问题」写进审计报告。</li><li><strong>成本与延迟。</strong> 每次提交调一次模型，成本是校验器的千倍以上，延迟是百倍。</li><li><strong>无法回归。</strong> 模型升级后行为变化，历史结论无法复算。</li></ol>
+<p>模型可以做的是<strong>校验结果的自然语言解释</strong>：把 <code>SUPPLIER_FROZEN</code> 翻译成「这家供应商上周因质量问题被冻结了，找采购部张××解除」。这是有用的产品化工作，但它发生在校验之后，不替代校验。</p>
+<h2 id="h2-11">一句话</h2>
+<p><strong>模型负责「做什么」，本体负责「什么不能做」。</strong> 前者这两年被大幅改善，后者几乎没有进展——而生产系统的事故，绝大多数出在后者。</p>
+      <div class="pager"><a class="pager-prev" href="org.html"><span>上一篇</span><strong>十三 · 组织、角色与预算</strong></a><a class="pager-next" href="glossary.html"><span>下一篇</span><strong>十五 · 术语表</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">三个真接触面，两个伪接触面</a></li><li class="lvl2"><a href="#h2-1">接触面一：工具调用前的参数校验（最强）</a></li><li class="lvl2"><a href="#h2-2">接触面二：检索的元数据过滤（中等）</a></li><li class="lvl2"><a href="#h2-3">接触面三：生成结果的结构化落地（中等）</a></li><li class="lvl2"><a href="#h2-4">伪接触面四：把本体塞进 prompt</a></li><li class="lvl2"><a href="#h2-5">伪接触面五：让模型生成本体</a></li><li class="lvl2"><a href="#h2-6">RAG、GraphRAG、本体：三者到底什么关系</a></li><li class="lvl2"><a href="#h2-7">Agent 记忆：本体能给什么，不能给什么</a></li><li class="lvl2"><a href="#h2-8">什么时候模型系统真的需要本体</a></li><li class="lvl2"><a href="#h2-9">一个可落地的集成</a></li><li class="lvl2"><a href="#h2-10">一个必须警告的替代方案</a></li><li class="lvl2"><a href="#h2-11">一句话</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

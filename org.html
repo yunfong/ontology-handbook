@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>十三 · 组织、角色与预算 · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;实证&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十三 · 组织、角色与预算&lt;/h1&gt;&lt;p class="chapter-sub"&gt;三个角色、人月预算、KPI 与失败信号&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="十三 · 组织、角色与预算 · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;实证&lt;/div&gt;&lt;h1 class="chapter-title"&gt;十三 · 组织、角色与预算&lt;/h1&gt;&lt;p class="chapter-sub"&gt;三个角色、人月预算、KPI 与失败信号&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="org">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html" class="is-active">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">实证</div><h1 class="chapter-title">十三 · 组织、角色与预算</h1><p class="chapter-sub">三个角色、人月预算、KPI 与失败信号</p>
+      <p>前十二章讲的是「怎么做对」。这一章讲一个更容易被忽略的问题：<strong>这件事由谁负责、花多少钱、怎么向上证明它值得。</strong></p>
+<p>本体项目最常见的死法不是技术失败，是<strong>有支持、没资源</strong>——领导口头认可，但没人被明确指派，预算挂在「数字化专项」里，第一个季度结束就没人提了。这一章给一个可操作的最小组织形态与预算口径。</p>
+<h2 id="h2-0">三个角色，不是三个部门</h2>
+<p>本体项目只需要三个角色。它们可以是兼职的，但<strong>必须有人明确承担</strong>，且不能都由同一个人兼。</p>
+<div class="table-wrap"><table><thead><tr><th>角色</th><th>对什么负责</th><th>现实中该由谁兼</th><th>不该给谁</th></tr></thead><tbody><tr><td><strong>模型所有者</strong>（Model Owner）</td><td>「模型是否正确表达了业务」——类的划分、关系的方向、约束的内容</td><td>数据架构师 / 资深数据工程师</td><td>刚毕业的建模新人（没有裁决权，也没有业务信任）</td></tr><tr><td><strong>领域裁决者</strong>（Domain Arbiter）</td><td>争议拍板：「准时率到底按哪个口径算」</td><td>业务侧有签字权的人（如供应链总监、财务 BP）</td><td>IT 部门（IT 拍不了业务口径）</td></tr><tr><td><strong>工程维护者</strong>（Steward）</td><td>CI、发布、豁免处理、违规工单分派</td><td>平台组的一名工程师，0.5–1 FTE</td><td>外包（三个月后就没人能改了）</td></tr></tbody></table></div>
+<p>三者的关系可以用一句话概括：<strong>模型所有者提方案，领域裁决者签字，工程维护者保证它每天真的在跑。</strong></p>
+<h3 id="h3-1">RACI</h3>
+<div class="table-wrap"><table><thead><tr><th>事项</th><th>模型所有者</th><th>领域裁决者</th><th>工程维护者</th><th>业务方</th></tr></thead><tbody><tr><td>新增/修改类与关系</td><td><strong>A/R</strong></td><td>C</td><td>C</td><td>I</td></tr><tr><td>新增/修改约束</td><td><strong>R</strong></td><td><strong>A</strong></td><td>C</td><td>I</td></tr><tr><td>口径变更</td><td>R</td><td><strong>A</strong></td><td>I</td><td>C</td></tr><tr><td>豁免审批</td><td>C</td><td><strong>A</strong></td><td>R</td><td>I</td></tr><tr><td>违规处理</td><td>I</td><td>C</td><td><strong>R</strong></td><td><strong>A</strong>（业务侧整改）</td></tr><tr><td>CI 与发布</td><td>I</td><td>I</td><td><strong>A/R</strong></td><td>—</td></tr></tbody></table></div>
+<p>（A = 最终负责，R = 执行，C = 需咨询，I = 需告知）</p>
+<p><strong>这张表里最容易出错的一格是「违规处理」</strong>：工程维护者负责把违规清单分派出去，但<strong>整改必须由业务方负责</strong>。如果整改也落在数据团队身上，他们就会倾向于放宽规则——这是校验体系退化的最常见机制。</p>
+<h2 id="h2-2">为什么不建议建「本体团队」</h2>
+<p>三个理由：</p>
+<p><strong>一、规模不支撑。</strong> 一个 18–40 个类的模型，稳态维护不需要专职团队。设一个 5 人的「知识工程部」，实际工作量会在 0.5–1 FTE 左右，剩下的人会开始做「更有产出感」的事——通常是写文档和画图，也就是退化成文档组。</p>
+<p><strong>二、容易与业务脱节。</strong> 独立团队会形成自己的语言与节奏，然后开始「向业务收集需求」，而不是「和业务一起定义」。本体是业务概念的形式化，脱离日常业务讨论就很难做对。</p>
+<p><strong>三、汇报线决定生死。</strong> 挂在 IT 下的本体团队，KPI 往往是「系统上线」「模型数量」；挂在业务下的，KPI 天然是「口径统一」「坏数据下降」。后者才活得久。</p>
+<p><strong>推荐编制</strong>：平台/数据架构组内 1.5–2 FTE（一名所有者 + 半名维护者），加业务侧兼职裁决者 2–4 人（每人每月 2–4 小时）。这个规模能支撑到 B 形态（第 10 章），再往上才需要考虑专职。</p>
+<h2 id="h2-3">预算：用人月算，不用钱算</h2>
+<p>软件许可可以谈，人力不能。所以预算口径统一折成人月：</p>
+<div class="table-wrap"><table><thead><tr><th>形态</th><th>首年</th><th>稳态（第 2 年起）</th><th>用途</th></tr></thead><tbody><tr><td><strong>A</strong> 小团队、无新存储、纯生成物 + 校验</td><td>6–10 人月</td><td>3–5 人月/年</td><td>1 个域、20 个类、5–15 条约束</td></tr><tr><td><strong>B</strong> 编译器为核心、多域共享一份源</td><td>20–30 人月</td><td>12–20 人月/年</td><td>3–5 个域、40–80 个类、生成多目标产物</td></tr><tr><td><strong>C</strong> 受监管、动作网关 + 审计</td><td>50–80 人月</td><td>40–60 人月/年</td><td>全公司域、动作门控、审计与回放</td></tr></tbody></table></div>
+<p><strong>这张表最该被记住的是「稳态」那一列。</strong> 立项时几乎所有人只看首年，而失败几乎都发生在第 12–18 个月——那时首年预算花完，稳态预算没批。</p>
+<p>一个粗略的经验比例：<strong>稳态维护成本约等于首年建设成本的 35%–50%</strong>。如果一个方案声称「建完就不用管了」，它不是方案，是采购话术。</p>
+<h2 id="h2-4">买还是自建</h2>
+<div class="table-wrap"><table><thead><tr><th>维度</th><th>开源 + 自建</th><th>商业平台</th></tr></thead><tbody><tr><td>软件成本</td><td>0（或极低）</td><td>30–80 万元/年起（按席位或数据量）</td></tr><tr><td>首年人力</td><td>6–30 人月</td><td>4–12 人月（实施方承担一部分）</td></tr><tr><td>三年 TCO</td><td>人力为主，可预测</td><td>许可 + 实施 + 升级，通常更高</td></tr><tr><td>得到什么</td><td>完全可控、可嵌进现有 CI、无锁定</td><td>图形化建模、协作与评审 UI、厂商支持</td></tr><tr><td>主要风险</td><td>版本演进靠自己、缺 UI 导致业务方不参与</td><td>锁定、升级成本、定制靠厂商排期</td></tr></tbody></table></div>
+<p><strong>建议路径</strong>：先用开源把 A 形态跑通（6–10 人月），<strong>在真实数据上验证「拒绝写入」这件事对你的组织是否有价值</strong>。如果答案是「有价值但没 UI 业务方不用」，再买；如果答案是「业务方根本不看」，买了也没用。</p>
+<p>反过来做（先买平台再找场景）的失败率极高，因为平台的能力边界会反过来塑造需求——你会开始做「平台擅长的事」，而不是「业务疼的事」。</p>
+<h2 id="h2-5">哪些能外包，哪些不能</h2>
+<p><strong>可以外包</strong>：工具链搭建、迁移脚本、CI 集成、可视化看板、一次性数据清洗。</p>
+<p><strong>不能外包</strong>：</p>
+<ul><li><strong>模型本身。</strong> 外包方交付的模型，在合同结束后的第一次业务变更时就会变成黑盒。三个月后没人敢改。</li><li><strong>裁决。</strong> 口径争议的拍板权无法外包，也不该外包给咨询方。</li><li><strong>豁免审批。</strong> 这是治理动作，必须留在组织内。</li></ul>
+<p>一个可用的判据：<strong>凡是「三年后还会被修改」的东西，都不能外包。</strong> 本体恰好全部属于这一类（第 12 章判据第 6 条）。</p>
+<h2 id="h2-6">三个月内证明价值：三个 KPI，选一个</h2>
+<p>不要用「模型类数量」「覆盖表数量」「问答准确率」当 KPI——前两个是产出量不是价值，第三个会把项目拖进 AI 叙事（第 12 章死法五）。</p>
+<p>三个可测、可归因、三个月内能出数的 KPI：</p>
+<div class="table-wrap"><table><thead><tr><th>KPI</th><th>怎么测</th><th>三个月后的合理值</th></tr></thead><tbody><tr><td><strong>坏数据拦截数</strong></td><td>校验闸门在 CI 与写入路径上拦下的条数（按类型分）</td><td>从 0 到每周 10–50 条，且 60% 以上被真正修复</td></tr><tr><td><strong>口径争议关闭时间</strong></td><td>从提出到裁决的平均天数</td><td>从 3 周降到 3–5 天</td></tr><tr><td><strong>变更引发的事故数</strong></td><td>因模型/口径变更导致的下游错误</td><td>目标 0；对照基线是过去 6 个月的实际次数</td></tr></tbody></table></div>
+<p>第一个 KPI 最有说服力，因为它能当场演示；第三个最容易被管理层记住，因为它对应「省下的损失」。</p>
+<p><strong>反例 KPI</strong>（看起来合理，实际有害）：模型类数量（鼓励过度建模）、覆盖表数量（鼓励做宽不做深）、图谱节点数（纯粹的虚荣指标）。</p>
+<h2 id="h2-7">组织失败的四个信号</h2>
+<p>按出现频率排序：</p>
+<p><strong>一、委员会化。</strong> 变成「每月开一次会、每次没有决议」。判断标准：<strong>最近三次会议的产出里，有没有一次改变了模型或裁决了争议？</strong> 没有，就是委员会化。</p>
+<p><strong>二、汇报线在 IT，且没有业务 KPI。</strong> 症状是项目汇报全是技术指标，业务方只在验收时出现。</p>
+<p><strong>三、只有一个人在维护。</strong> 单点即风险。这个人休假两周，流水线就红着没人管——这种情况在调研中非常普遍。</p>
+<p><strong>四、豁免没有到期日。</strong> 这是治理失效最早的信号：一旦出现「永久豁免」，约束体系就开始名存实亡。第 7 章案例里那条「豁免到期后有人把日期改到下季度」，正是这个信号的典型形态。</p>
+<h2 id="h2-8">招聘：三道题就够</h2>
+<p>不需要「本体专家」，需要「能把业务概念形式化、并且愿意写测试的人」。三道面试题：</p>
+<ol><li><strong>给一个业务场景，让候选人写 5 条约束</strong>，并说明每条对应什么错误。看的是「能不能从错误倒推约束」，而不是会不会 Turtle。</li><li><strong>给一份有冲突的口径定义，问他怎么推进裁决。</strong> 看的是组织能力，不是技术能力。</li><li><strong>问：如果校验报出 100% 违规，你的第一反应是什么？</strong> 正确答案是「规则写错了」，不是「数据太差」。这一题能筛掉一大批只会跑工具的人。</li></ol>
+<h2 id="h2-9">一句话</h2>
+<p><strong>本体项目的组织问题，本质是「谁有权说这条数据是错的」。</strong> 技术选型可以慢慢改，这个权力归属定错了，项目从第一天起就只是在生产文档。</p>
+      <div class="pager"><a class="pager-prev" href="antipatterns.html"><span>上一篇</span><strong>十二 · 反模式与落地判据</strong></a><a class="pager-next" href="llm.html"><span>下一篇</span><strong>十四 · 本体与模型系统的边界</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">三个角色，不是三个部门</a></li><li class="lvl3"><a href="#h3-1">RACI</a></li><li class="lvl2"><a href="#h2-2">为什么不建议建「本体团队」</a></li><li class="lvl2"><a href="#h2-3">预算：用人月算，不用钱算</a></li><li class="lvl2"><a href="#h2-4">买还是自建</a></li><li class="lvl2"><a href="#h2-5">哪些能外包，哪些不能</a></li><li class="lvl2"><a href="#h2-6">三个月内证明价值：三个 KPI，选一个</a></li><li class="lvl2"><a href="#h2-7">组织失败的四个信号</a></li><li class="lvl2"><a href="#h2-8">招聘：三道题就够</a></li><li class="lvl2"><a href="#h2-9">一句话</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

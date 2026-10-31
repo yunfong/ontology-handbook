@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>五 · 治理：版本、变更与 CI · 本体论工程手册</title>
+<meta name="description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;五 · 治理：版本、变更与 CI&lt;/h1&gt;&lt;p class="chapter-sub"&gt;本体当代码：版本、兼容性、影响面、回滚&lt;/p&gt;">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="本体论工程手册">
+<meta property="og:title" content="五 · 治理：版本、变更与 CI · 本体论工程手册">
+<meta property="og:description" content="&lt;div class="chapter-kicker"&gt;方法论&lt;/div&gt;&lt;h1 class="chapter-title"&gt;五 · 治理：版本、变更与 CI&lt;/h1&gt;&lt;p class="chapter-sub"&gt;本体当代码：版本、兼容性、影响面、回滚&lt;/p&gt;">
+<meta name="theme-color" content="#14584c">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body data-page="governance">
+<a class="skip" href="#main">跳到正文</a>
+<header class="topbar">
+  <button class="icon-btn nav-toggle" aria-label="目录" data-action="nav">☰</button>
+  <a class="brand" href="index.html"><span class="brand-mark">◈</span><span class="brand-text">本体论工程手册</span></a>
+  <div class="topbar-right">
+    <button class="search-btn" data-action="search"><svg class="icon-search" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.6" cy="8.6" r="5.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12.8 12.8 17 17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>搜索</span><kbd>/</kbd></button>
+    <button class="icon-btn" data-action="theme" aria-label="切换主题">◐</button>
+  </div>
+</header>
+<div class="layout">
+  <aside class="sidebar" id="sidebar"><nav class="site-nav" aria-label="章节"><div class="nav-group"><div class="nav-group-title">导读</div><ul><li><a href="index.html">封面与导读</a></li></ul></div><div class="nav-group"><div class="nav-group-title">方法论</div><ul><li><a href="concepts.html">一 · 四个被混用的「本体」</a></li><li><a href="methodology.html">二 · 本体工程方法论谱系</a></li><li><a href="languages.html">三 · 建模语言与约束选型</a></li><li><a href="reasoning.html">四 · 推理与校验</a></li><li><a href="governance.html" class="is-active">五 · 治理：版本、变更与 CI</a></li><li><a href="kinetic.html">六 · 动力学层：从名词到动词</a></li><li><a href="case.html">七 · 一个完整案例：五周与三个事故</a></li></ul></div><div class="nav-group"><div class="nav-group-title">生态</div><ul><li><a href="ecosystem.html">八 · 开源生态地图</a></li><li><a href="cat-platform.html">8.1 企业本体平台</a></li><li><a href="cat-agent.html">8.2 Agent 上下文与记忆</a></li><li><a href="cat-toolchain.html">8.3 建模与工程工具链</a></li><li><a href="cat-infra.html">8.4 语义基础设施</a></li><li><a href="cat-graphrag.html">8.5 图谱检索与 GraphRAG</a></li><li><a href="cat-vocab.html">8.6 领域词表与本体资产</a></li><li><a href="cat-beyond.html">8.7 索引之外的系统</a></li></ul></div><div class="nav-group"><div class="nav-group-title">实证</div><ul><li><a href="trends.html">九 · 八个趋势的独立核验</a></li><li><a href="stack.html">十 · 技术栈分层与选型框架</a></li><li><a href="evidence.html">十一 · 四次实测</a></li><li><a href="antipatterns.html">十二 · 反模式与落地判据</a></li><li><a href="org.html">十三 · 组织、角色与预算</a></li><li><a href="llm.html">十四 · 本体与模型系统的边界</a></li></ul></div><div class="nav-group"><div class="nav-group-title">附录</div><ul><li><a href="glossary.html">十五 · 术语表</a></li><li><a href="method.html">附录 A · 方法与可复现性</a></li><li><a href="cheatsheet.html">附录 B · 选型速查表</a></li><li><a href="appendix-projects.html">附录 C · 78 个项目总表</a></li></ul></div></nav></aside>
+  <main id="main" class="main">
+    <article class="article">
+      <div class="chapter-kicker">方法论</div><h1 class="chapter-title">五 · 治理：版本、变更与 CI</h1><p class="chapter-sub">本体当代码：版本、兼容性、影响面、回滚</p>
+      <p>一个本体上线三个月后，真正的风险不是「建得不对」，而是「改不动」。改不动的原因有四个：不知道谁在用、不知道改了会炸什么、不敢删、删了没法回滚。这一章讲怎么把这四件事变成流程。</p>
+<h2 id="h2-0">本体当代码：三件必须落到仓库里的事</h2>
+<p><strong>一、源进 git，二进制产物不进。</strong> 可 diff 是前提。Protégé 的工程文件、Excel 的建模表、某些工具的二进制导出，都不适合当源——它们无法在 code review 里被读。这不是审美问题：<strong>无法 review 的变更，实际上就不是受控变更。</strong></p>
+<p><strong>二、每次变更是一个 PR，带三样东西。</strong> 变更说明（改了什么语义）、影响面报告（谁会受影响）、迁移方案（已有数据怎么办）。第三样最常被漏掉，而它是唯一能防止「合并后下游全红」的东西。</p>
+<p><strong>三、生成物与源的一致性由 CI 保证。</strong> 如果 JSON Schema、SQL DDL、文档都是生成的，那么 CI 必须验证「重新生成一遍，仓库里的产物没有变化」。否则手改生成物的情况一定会在三个月内发生，而且没人会发现。</p>
+<h2 id="h2-1">版本：语义化版本为什么不够用</h2>
+<p><code>1.2.3</code> 这套约定假设「破坏性变更」是可判定的。对本体，它不成立：加一个类通常是无害的（增补），但如果这个类名与下游某个类冲突，它就是破坏性的；删一个属性显然是破坏性的，但如果从没有人写过它，它就是无害的。</p>
+<p>可行的替代是把变更分成四类，分别处理：</p>
+<div class="table-wrap"><table><thead><tr><th>类型</th><th>例子</th><th>处理</th></tr></thead><tbody><tr><td><strong>增补</strong></td><td>新增类、新增可选属性、新增枚举成员</td><td>次版本号 +1，无需迁移</td></tr><tr><td><strong>收紧</strong></td><td>属性从可选变必填、枚举收窄、基数从 0..n 变 1..n</td><td>次版本号 +1，<strong>必须有迁移方案与过渡期</strong></td></tr><tr><td><strong>放宽</strong></td><td>必填变可选、枚举加值</td><td>次版本号 +1，无迁移</td></tr><tr><td><strong>破坏</strong></td><td>删除类/属性、改 IRI、类型变更</td><td>主版本号 +1，必须走弃用流程</td></tr></tbody></table></div>
+<p>关键判断：<strong>「收紧」在技术上不是破坏性变更，在实践中是最危险的一类。</strong> 它会让存量数据一夜之间变成不合规，而 schema 本身仍然「有效」。这一类必须单独识别、单独排期。</p>
+<h2 id="h2-2">兼容性：三条底线</h2>
+<p><strong>一、IRI 一旦发布，不改。</strong> 改 IRI 等于换了一个实体。如果一定要改，旧 IRI 必须作为 <code>owl:deprecated</code> 的别名保留，并指向新 IRI，且至少保留两个主版本。</p>
+<p><strong>二、弃用而不是删除。</strong> 流程：标记 <code>deprecated</code> + 记录替代项 + 记录弃用日期 → 观察使用情况（查询日志里还有没有人用）→ 至少一个主版本后再物理删除。跳过观察步骤直接删，是最常见的线上事故来源。</p>
+<p><strong>三、标识符里不要编码易变信息。</strong> 「部门代码 + 序号」这类 ID，在组织架构调整时会全部失效。需要版本时，把版本作为独立段（例如 <code>dtmi:...;1</code> 这种显式版本段），而不是混进名字里。</p>
+<h2 id="h2-3">影响面：三类，都要算</h2>
+<p>改一条公理之前，至少回答三个问题：</p>
+<p><strong>一、有多少存量数据会变成不合规？</strong> 方法：用新模型对全量（或抽样）数据跑一次校验，统计新增违规数与涉及对象数。这一步是机械的，必须自动化。</p>
+<p><strong>二、有多少下游查询会变？</strong> 方法：如果查询是集中管理的，可以静态分析引用；如果是分散的，只能靠查询日志。<strong>没有查询日志的团队，实际上无法回答这个问题</strong>——这也是为什么「先有日志、再有本体」的顺序更安全。</p>
+<p><strong>三、推论会新增还是消失？</strong> 方法：对同一份数据，跑旧模型和新模型的闭包，取差集。这是最容易被忽略、也最容易造成「数字悄悄变了」的一类影响。</p>
+<p>有一个极具说服力的例子：某次变更只增加了一条 <code>domain</code> 声明，不增删任何数据，闭包却多出 901 条推论。<strong>语义变更的爆炸半径与 diff 行数无关</strong>，所以影响面必须按语义算，不能按文本算。</p>
+<h2 id="h2-4">CI 流水线：六步</h2>
+<p>一份可用的本体流水线，最小形态是六个步骤：</p>
+<div class="table-wrap"><table><thead><tr><th>步骤</th><th>做什么</th><th>失败后果</th></tr></thead><tbody><tr><td>1 语法</td><td>解析所有源文件，检查 IRI、前缀、重复定义</td><td>阻断</td></tr><tr><td>2 生成</td><td>从源重新生成所有产物，比对仓库</td><td>阻断</td></tr><tr><td>3 校验</td><td>对样本数据跑 SHACL，统计违规率与新增违规</td><td>阻断（新增违规 &gt; 阈值）</td></tr><tr><td>4 一致性</td><td>跑推理机检查不可满足的类</td><td>阻断</td></tr><tr><td>5 影响面</td><td>与新模型对比，输出三类影响报告</td><td>警告（附在 PR 里）</td></tr><tr><td>6 发布</td><td>打标签、生成变更日志、发布到仓库</td><td>仅主分支</td></tr></tbody></table></div>
+<p>关于第 3 步的阈值：不要设「零违规」，存量数据几乎不可能零违规。可行的是<strong>增量阈值</strong>——本次变更不得新增违规，且存量违规数不得上升。这一条能挡住 90% 的意外破坏。</p>
+<h2 id="h2-5">角色与评审</h2>
+<p>本体评审最常见的失败是「所有人都参加，没人负责」。可行的分工是三个角色：</p>
+<ul><li><strong>建模者</strong>：对语义负责，写变更说明与迁移方案。</li><li><strong>消费者代表</strong>：至少一个下游系统的负责人，对影响面报告签字。</li><li><strong>数据管家</strong>：对存量数据的合规率负责，决定豁免与过渡期。</li></ul>
+<p>三个角色里，<strong>消费者代表</strong>最容易被省略，而它恰恰是唯一能发现「这个改动会炸我」的人。</p>
+<h2 id="h2-6">双时态与历史：要不要现在做</h2>
+<p>如果业务问过「上个月末这个客户属于哪个分层」，那你就需要历史。两个层次：</p>
+<ul><li><strong>有效时间</strong>（valid time）：事实在现实世界中何时为真。</li><li><strong>事务时间</strong>（transaction time）：系统何时得知这条事实。</li></ul>
+<p>只记事务时间，能回答「系统当时以为什么」；两个都记，才能回答「当时实际是什么、我们当时以为是什么」。后者在合规与对账场景中是刚需，代价是每条事实都要带两个时间区间，且所有查询都要指定「按哪个时间看」。</p>
+<p><strong>推断：不要在第一天就上双时态。</strong> 它会让每个查询复杂一倍，而在项目早期，「当时以为」和「当时实际」的差别通常不重要。等业务第一次因为「上个月的报表和这个月对不上」而开会时，再引入——但那时要接受一次数据模型重构。</p>
+<h2 id="h2-7">许可证：容易被完全忽略的一层</h2>
+<p>本体是资产，资产有许可。三类风险：</p>
+<ul><li><strong>整包引入外部词表</strong>：某些词表是 copyleft 或带署名要求的，衍生作品可能被要求同样开放。</li><li><strong>映射到外部 IRI</strong>：映射关系本身的许可，可能与被映射词表的许可不同。</li><li><strong>生成物的许可</strong>：从 OWL 生成的文档、代码，许可继承自哪一层，常在合同里说不清。</li></ul>
+<p><strong>做法</strong>：每个外部词表在引入时记录三项——来源 URL、许可证、引入范围（整包 / 摘用 / 仅对齐）。这份记录在并购尽调时会被要求提供。</p>
+      <div class="pager"><a class="pager-prev" href="reasoning.html"><span>上一篇</span><strong>四 · 推理与校验</strong></a><a class="pager-next" href="kinetic.html"><span>下一篇</span><strong>六 · 动力学层：从名词到动词</strong></a></div>
+    </article>
+  </main>
+  <aside class="toc"><div class="toc-title">本页目录</div><ul><li class="lvl2"><a href="#h2-0">本体当代码：三件必须落到仓库里的事</a></li><li class="lvl2"><a href="#h2-1">版本：语义化版本为什么不够用</a></li><li class="lvl2"><a href="#h2-2">兼容性：三条底线</a></li><li class="lvl2"><a href="#h2-3">影响面：三类，都要算</a></li><li class="lvl2"><a href="#h2-4">CI 流水线：六步</a></li><li class="lvl2"><a href="#h2-5">角色与评审</a></li><li class="lvl2"><a href="#h2-6">双时态与历史：要不要现在做</a></li><li class="lvl2"><a href="#h2-7">许可证：容易被完全忽略的一层</a></li></ul></aside>
+</div>
+<div class="search-overlay" id="search-overlay" hidden>
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="搜索章节、概念、项目…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+    <div class="search-hint">↑↓ 选择 · Enter 打开 · Esc 关闭</div>
+  </div>
+</div>
+<footer class="site-footer">
+  <div>本体论工程手册 v1.0 · 2026-10-31 · <a href="https://github.com/yunfong/ontology-handbook">yunfong</a></div>
+  <div>个人研究整理，不代表所在机构观点；案例数据已通用化处理。内容以 CC BY 4.0 发布，引用数据核验于 2026-10-30。</div>
+</footer>
+<script src="assets/search-index.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
